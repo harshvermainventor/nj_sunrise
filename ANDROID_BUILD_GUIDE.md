@@ -35,9 +35,9 @@ When compiled into the Android APK using the included GitHub Actions workflow:
 ## Optional Local PC Build (Free with Android Studio)
 
 ```bash
-npm install
+npm install --legacy-peer-deps
 npm run build
-npm install --no-save @capacitor/cli@^7.0.0 @capacitor/android@^7.0.0
+npm install --no-save --legacy-peer-deps @capacitor/cli@^8.0.0 @capacitor/android@^8.0.0
 npx cap add android
 npx cap sync android
 cd android && ./gradlew assembleDebug

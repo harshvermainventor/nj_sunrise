@@ -90,27 +90,27 @@ export const TimePicker: React.FC<TimePickerProps> = ({
         aria-expanded={open}
         aria-haspopup="dialog"
         onClick={() => setOpen(true)}
-        className={`w-full flex items-center justify-between gap-2 rounded-lg border border-slate-200 dark:border-slate-700 bg-white dark:bg-[#0B0F17] text-left transition-colors focus:border-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-600/20 ${
-          compact ? 'px-3 py-2 text-xs min-h-[36px]' : 'px-3 py-2.5 text-sm min-h-[42px]'
+        className={`w-full flex items-center justify-between gap-2 rounded-xl border border-zinc-200 dark:border-zinc-700 bg-zinc-50 dark:bg-zinc-900 text-left transition-colors focus:border-blue-600 dark:focus:border-blue-500 focus:bg-white dark:focus:bg-zinc-900 focus:outline-none focus:ring-2 focus:ring-blue-600/20 ${
+          compact ? 'px-3 py-2 text-xs min-h-[38px]' : 'px-3.5 py-2.5 text-sm min-h-[44px]'
         }`}
       >
         <span
           className={`font-mono-num truncate ${
             displayValue
-              ? 'text-slate-900 dark:text-slate-100'
-              : 'text-slate-400 dark:text-slate-500'
+              ? 'text-zinc-900 dark:text-zinc-100'
+              : 'text-zinc-400 dark:text-zinc-500'
           }`}
         >
           {displayValue || placeholder}
         </span>
-        <Clock className="h-4 w-4 text-slate-400 shrink-0" aria-hidden="true" />
+        <Clock className="h-4 w-4 text-zinc-400 dark:text-zinc-500 shrink-0" aria-hidden="true" />
       </button>
 
       {open &&
         typeof document !== 'undefined' &&
         createPortal(
           <div
-            className="fixed inset-0 z-[70] flex items-center justify-center bg-black/40 p-4"
+            className="fixed inset-0 z-[70] flex items-center justify-center bg-black/60 p-4"
             onMouseDown={(e) => {
               if (e.target === e.currentTarget) setOpen(false);
             }}
@@ -119,27 +119,27 @@ export const TimePicker: React.FC<TimePickerProps> = ({
               role="dialog"
               aria-modal="true"
               aria-label="Time selector"
-              className="w-full max-w-[330px] rounded-2xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-[#121826] p-4 shadow-2xl space-y-3"
+              className="w-full max-w-[330px] rounded-2xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-[#18181B] p-4 shadow-2xl space-y-3"
             >
               {/* Current Selection + AM / PM Toggle */}
-              <div className="flex items-center justify-between gap-2 pb-2.5 border-b border-slate-100 dark:border-slate-800">
+              <div className="flex items-center justify-between gap-2 pb-2.5 border-b border-zinc-100 dark:border-zinc-800">
                 <div className="flex items-center gap-2">
                   <Clock className="h-4 w-4 text-blue-600 dark:text-blue-400" aria-hidden="true" />
-                  <span className="font-mono-num text-base font-bold text-slate-900 dark:text-slate-100">
+                  <span className="font-mono-num text-base font-bold text-zinc-950 dark:text-zinc-50">
                     {displayValue || formatTime12h(buildTime24(parsed.hour12, parsed.minute, parsed.period))}
                   </span>
                 </div>
-                <div className="inline-flex rounded-lg border border-slate-200 dark:border-slate-700 p-0.5 bg-slate-50 dark:bg-[#0B0F17]">
+                <div className="inline-flex rounded-xl border border-zinc-200 dark:border-zinc-700 p-0.5 bg-zinc-100 dark:bg-zinc-900">
                   {(['AM', 'PM'] as const).map((period) => (
                     <button
                       key={period}
                       type="button"
                       onClick={() => setPeriod(period)}
                       aria-pressed={parsed.period === period}
-                      className={`px-3 py-1 rounded-md text-xs font-semibold transition-colors ${
+                      className={`px-3 py-1 rounded-lg text-xs font-semibold transition-colors ${
                         parsed.period === period
                           ? 'bg-blue-600 text-white'
-                          : 'text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800'
+                          : 'text-zinc-600 dark:text-zinc-300 hover:text-zinc-950 dark:hover:text-zinc-100'
                       }`}
                     >
                       {period}
@@ -150,7 +150,7 @@ export const TimePicker: React.FC<TimePickerProps> = ({
 
               {/* Hour Selection Grid */}
               <div>
-                <span className="block text-[11px] font-medium text-slate-500 dark:text-slate-400 mb-1.5">
+                <span className="block text-[11px] font-medium text-zinc-500 dark:text-zinc-400 mb-1.5">
                   Hour
                 </span>
                 <div className="grid grid-cols-6 gap-1.5">
@@ -166,7 +166,7 @@ export const TimePicker: React.FC<TimePickerProps> = ({
                         className={`h-9 rounded-lg font-mono-num text-xs font-medium transition-colors ${
                           active
                             ? 'bg-blue-600 text-white font-semibold'
-                            : 'bg-slate-50 dark:bg-[#0B0F17] text-slate-700 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800 border border-slate-200/70 dark:border-slate-800'
+                            : 'bg-zinc-50 dark:bg-zinc-900 text-zinc-700 dark:text-zinc-200 hover:bg-zinc-100 dark:hover:bg-zinc-800 border border-zinc-200 dark:border-zinc-800'
                         }`}
                       >
                         {h}
@@ -178,7 +178,7 @@ export const TimePicker: React.FC<TimePickerProps> = ({
 
               {/* Minute Selection Grid */}
               <div>
-                <span className="block text-[11px] font-medium text-slate-500 dark:text-slate-400 mb-1.5">
+                <span className="block text-[11px] font-medium text-zinc-500 dark:text-zinc-400 mb-1.5">
                   Minute
                 </span>
                 <div className="grid grid-cols-6 gap-1.5">
@@ -194,7 +194,7 @@ export const TimePicker: React.FC<TimePickerProps> = ({
                         className={`h-9 rounded-lg font-mono-num text-xs font-medium transition-colors ${
                           active
                             ? 'bg-blue-600 text-white font-semibold'
-                            : 'bg-slate-50 dark:bg-[#0B0F17] text-slate-700 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800 border border-slate-200/70 dark:border-slate-800'
+                            : 'bg-zinc-50 dark:bg-zinc-900 text-zinc-700 dark:text-zinc-200 hover:bg-zinc-100 dark:hover:bg-zinc-800 border border-zinc-200 dark:border-zinc-800'
                         }`}
                       >
                         :{String(m).padStart(2, '0')}
@@ -206,7 +206,7 @@ export const TimePicker: React.FC<TimePickerProps> = ({
 
               {/* Quick Slots */}
               <div>
-                <span className="block text-[11px] font-medium text-slate-500 dark:text-slate-400 mb-1.5">
+                <span className="block text-[11px] font-medium text-zinc-500 dark:text-zinc-400 mb-1.5">
                   Quick Select
                 </span>
                 <div className="grid grid-cols-2 gap-1.5">
@@ -218,10 +218,10 @@ export const TimePicker: React.FC<TimePickerProps> = ({
                         onChange(slot.time24);
                         setOpen(false);
                       }}
-                      className={`py-2 px-2 rounded-lg font-mono-num text-xs font-medium border transition-colors ${
+                      className={`py-2 px-2 rounded-xl font-mono-num text-xs font-medium border transition-colors ${
                         value === slot.time24
                           ? 'border-blue-600 bg-blue-50 dark:bg-blue-950/50 text-blue-700 dark:text-blue-300'
-                          : 'border-slate-200 dark:border-slate-700 text-slate-700 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-800'
+                          : 'border-zinc-200 dark:border-zinc-700 text-zinc-700 dark:text-zinc-300 hover:bg-zinc-50 dark:hover:bg-zinc-800'
                       }`}
                     >
                       {slot.label}
@@ -231,7 +231,7 @@ export const TimePicker: React.FC<TimePickerProps> = ({
               </div>
 
               {/* Footer */}
-              <div className="pt-2.5 border-t border-slate-100 dark:border-slate-800 flex items-center justify-between">
+              <div className="pt-2.5 border-t border-zinc-100 dark:border-zinc-800 flex items-center justify-between">
                 {allowClear && value ? (
                   <button
                     type="button"
@@ -245,7 +245,7 @@ export const TimePicker: React.FC<TimePickerProps> = ({
                     Clear
                   </button>
                 ) : (
-                  <span className="text-[11px] text-slate-400">Tap hour & minute</span>
+                  <span className="text-[11px] text-zinc-400 dark:text-zinc-500">Tap hour & minute</span>
                 )}
                 <button
                   type="button"
@@ -255,7 +255,7 @@ export const TimePicker: React.FC<TimePickerProps> = ({
                     }
                     setOpen(false);
                   }}
-                  className="px-4 py-1.5 rounded-lg bg-blue-600 text-xs font-semibold text-white hover:bg-blue-700"
+                  className="px-4 py-1.5 rounded-xl bg-blue-600 text-xs font-semibold text-white hover:bg-blue-700"
                 >
                   Done
                 </button>

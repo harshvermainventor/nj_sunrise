@@ -44,7 +44,7 @@ export const VisitStatusBadge: React.FC<VisitStatusBadgeProps> = ({
     <span
       data-testid="visit-status-badge"
       data-tone={tone}
-      className={`inline-flex items-center gap-1.5 rounded-md border font-medium whitespace-nowrap shrink-0 ${
+      className={`inline-flex items-center gap-1.5 rounded-lg border font-medium whitespace-nowrap shrink-0 ${
         compact ? 'px-2 py-0.5 text-[11px]' : 'px-2.5 py-1 text-xs'
       } ${toneClasses}`}
     >
@@ -68,7 +68,7 @@ export const PetStatusBadge: React.FC<PetStatusBadgeProps> = ({
       ? 'bg-red-50 text-red-700 border-red-200 dark:bg-red-950/60 dark:text-red-300 dark:border-red-800/70'
       : petStatus === 'No pets'
       ? 'bg-emerald-50 text-emerald-700 border-emerald-200 dark:bg-emerald-950/60 dark:text-emerald-300 dark:border-emerald-800/70'
-      : 'bg-slate-100 text-slate-600 border-slate-200 dark:bg-slate-800/80 dark:text-slate-300 dark:border-slate-700';
+      : 'bg-zinc-100 text-zinc-600 border-zinc-200 dark:bg-zinc-800 dark:text-zinc-300 dark:border-zinc-700';
 
   const Icon =
     petStatus === 'Has pets'
@@ -81,7 +81,7 @@ export const PetStatusBadge: React.FC<PetStatusBadgeProps> = ({
     <span
       data-testid="pet-status-badge"
       data-pet-status={petStatus}
-      className={`inline-flex items-center gap-1.5 rounded-md border font-medium whitespace-nowrap shrink-0 ${
+      className={`inline-flex items-center gap-1.5 rounded-lg border font-medium whitespace-nowrap shrink-0 ${
         compact ? 'px-2 py-0.5 text-[11px]' : 'px-2.5 py-1 text-xs'
       } ${toneClasses}`}
     >
@@ -96,10 +96,10 @@ export const VisitorStageText: React.FC<{ status: VisitorStatus }> = ({ status }
     status === 'Finalised'
       ? 'text-emerald-700 dark:text-emerald-400 font-semibold'
       : status === 'Interested' || status === 'Negotiating'
-      ? 'text-blue-700 dark:text-blue-400 font-medium'
+      ? 'text-blue-600 dark:text-blue-400 font-medium'
       : status === 'Not interested' || status === 'No-show'
-      ? 'text-red-700 dark:text-red-400 font-medium'
-      : 'text-slate-600 dark:text-slate-300 font-medium';
+      ? 'text-red-600 dark:text-red-400 font-medium'
+      : 'text-zinc-600 dark:text-zinc-400 font-medium';
 
   return <span className={`text-xs whitespace-nowrap ${colorClass}`}>{status}</span>;
 };

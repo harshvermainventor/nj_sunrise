@@ -139,17 +139,17 @@ export const FollowUpsView: React.FC<FollowUpsViewProps> = ({
 
   return (
     <div className="space-y-5">
-      {/* Device Notification Card (100% Free Local Notifications) */}
-      <section className="rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-[#121826] p-4 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
+      {/* Device Notification Strip */}
+      <section className="rounded-2xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-[#18181B] p-4 sm:p-5 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
         <div className="flex items-start gap-3">
-          <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-blue-50 dark:bg-blue-950/60 text-blue-600 dark:text-blue-400 shrink-0">
+          <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-zinc-100 dark:bg-zinc-800 text-blue-600 dark:text-blue-400 shrink-0">
             <Bell className="h-4 w-4" aria-hidden="true" />
           </div>
           <div>
-            <h2 className="font-display text-sm font-semibold text-slate-900 dark:text-slate-100">
+            <h2 className="font-display text-sm font-semibold text-zinc-950 dark:text-zinc-50">
               Device Follow-up Reminders
             </h2>
-            <p className="text-xs text-slate-500 dark:text-slate-400">
+            <p className="text-xs text-zinc-500 dark:text-zinc-400 mt-0.5">
               {notifPerm === 'granted'
                 ? 'Active on this device without any cloud or paid push service.'
                 : notifPerm === 'denied'
@@ -170,7 +170,7 @@ export const FollowUpsView: React.FC<FollowUpsViewProps> = ({
             <button
               type="button"
               onClick={handleEnableNotifications}
-              className="inline-flex items-center gap-1.5 rounded-lg bg-blue-600 px-3.5 py-2 text-xs font-medium text-white hover:bg-blue-700 whitespace-nowrap"
+              className="inline-flex items-center gap-1.5 rounded-xl bg-blue-600 px-3.5 py-2 text-xs font-semibold text-white hover:bg-blue-700 transition-colors whitespace-nowrap"
             >
               <BellRing className="h-3.5 w-3.5" aria-hidden="true" />
               Enable Reminders
@@ -180,7 +180,7 @@ export const FollowUpsView: React.FC<FollowUpsViewProps> = ({
             <button
               type="button"
               onClick={handleSendTestAlert}
-              className="inline-flex items-center gap-1.5 rounded-lg border border-slate-200 dark:border-slate-700 px-3.5 py-2 text-xs font-medium text-slate-700 dark:text-slate-200 hover:bg-slate-50 dark:hover:bg-slate-800 whitespace-nowrap"
+              className="inline-flex items-center gap-1.5 rounded-xl border border-zinc-200 dark:border-zinc-700 bg-zinc-50 dark:bg-zinc-900 px-3.5 py-2 text-xs font-semibold text-zinc-700 dark:text-zinc-200 hover:bg-zinc-100 dark:hover:bg-zinc-800 transition-colors whitespace-nowrap"
             >
               Send Test Reminder
             </button>
@@ -192,7 +192,7 @@ export const FollowUpsView: React.FC<FollowUpsViewProps> = ({
       <div
         role="tablist"
         aria-label="Follow-up categories"
-        className="grid grid-cols-4 gap-1.5 rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-[#121826] p-1.5"
+        className="grid grid-cols-4 gap-1.5 rounded-2xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-[#18181B] p-1.5"
       >
         {tabs.map((tab) => {
           const isActive = activeTab === tab.id;
@@ -203,20 +203,20 @@ export const FollowUpsView: React.FC<FollowUpsViewProps> = ({
               role="tab"
               aria-selected={isActive}
               onClick={() => setActiveTab(tab.id)}
-              className={`flex items-center justify-center gap-1.5 rounded-lg py-2 px-2 text-xs font-medium transition-colors whitespace-nowrap min-h-[40px] ${
+              className={`flex items-center justify-center gap-1.5 rounded-xl py-2 px-2 text-xs font-medium transition-colors whitespace-nowrap min-h-[40px] ${
                 isActive
-                  ? 'bg-blue-600 text-white'
-                  : 'text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800/70'
+                  ? 'bg-blue-600 text-white font-semibold'
+                  : 'text-zinc-600 dark:text-zinc-300 hover:bg-zinc-100 dark:hover:bg-zinc-800/70'
               }`}
             >
               <span>{tab.label}</span>
               <span
-                className={`font-mono-num px-1.5 py-0.5 rounded text-[11px] ${
+                className={`font-mono-num px-1.5 py-0.5 rounded-md text-[11px] ${
                   isActive
                     ? 'bg-white/20 text-white'
                     : tab.alert
                     ? 'bg-red-100 text-red-700 dark:bg-red-950/70 dark:text-red-300'
-                    : 'bg-slate-100 text-slate-700 dark:bg-slate-800 dark:text-slate-300'
+                    : 'bg-zinc-100 text-zinc-700 dark:bg-zinc-800 dark:text-zinc-300'
                 }`}
               >
                 {tab.count}
@@ -228,12 +228,12 @@ export const FollowUpsView: React.FC<FollowUpsViewProps> = ({
 
       {/* Follow-up List */}
       {currentItems.length === 0 ? (
-        <div className="rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-[#121826] p-10 text-center">
-          <CalendarClock className="mx-auto h-8 w-8 text-slate-400" aria-hidden="true" />
-          <h3 className="mt-3 font-display text-base font-semibold text-slate-900 dark:text-slate-100">
+        <div className="rounded-2xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-[#18181B] p-10 text-center">
+          <CalendarClock className="mx-auto h-8 w-8 text-zinc-400 dark:text-zinc-500" aria-hidden="true" />
+          <h3 className="mt-3 font-display text-base font-semibold text-zinc-950 dark:text-zinc-50">
             No {activeTab} follow-ups
           </h3>
-          <p className="mt-1 text-xs text-slate-500 dark:text-slate-400">
+          <p className="mt-1 text-xs text-zinc-500 dark:text-zinc-400">
             {activeTab === 'overdue'
               ? 'You are completely caught up on past follow-ups.'
               : 'Follow-ups scheduled during visitor registration or from a profile appear here.'}
@@ -247,23 +247,23 @@ export const FollowUpsView: React.FC<FollowUpsViewProps> = ({
               <article
                 key={followUp.id}
                 data-testid="followup-card"
-                className="rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-[#121826] p-4 sm:p-5 flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4"
+                className="rounded-2xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-[#18181B] p-4 sm:p-5 flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4"
               >
                 <div className="space-y-1.5 min-w-0">
                   <div className="flex flex-wrap items-center gap-2">
                     <button
                       type="button"
                       onClick={() => onSelectVisitor(visitor)}
-                      className="font-display text-base font-semibold text-slate-900 dark:text-slate-100 hover:text-blue-600 dark:hover:text-blue-400 text-left"
+                      className="font-display text-base font-semibold text-zinc-950 dark:text-zinc-50 hover:text-blue-600 dark:hover:text-blue-400 text-left"
                     >
                       {visitor.fullName}
                     </button>
-                    <span className="font-mono-num text-xs text-slate-500 dark:text-slate-400">
+                    <span className="font-mono-num text-xs text-zinc-500 dark:text-zinc-400">
                       {visitor.contactNumber}
                     </span>
                   </div>
 
-                  <div className="flex flex-wrap items-center gap-2 text-xs text-slate-600 dark:text-slate-300">
+                  <div className="flex flex-wrap items-center gap-2 text-xs text-zinc-600 dark:text-zinc-300">
                     <span className="font-mono-num font-medium">
                       {followUp.scheduledDate} at {followUp.preferredTime || 'Anytime'}
                     </span>
@@ -272,7 +272,7 @@ export const FollowUpsView: React.FC<FollowUpsViewProps> = ({
                   </div>
 
                   {followUp.notes && (
-                    <p className="text-xs text-slate-600 dark:text-slate-400">{followUp.notes}</p>
+                    <p className="text-xs text-zinc-600 dark:text-zinc-400">{followUp.notes}</p>
                   )}
 
                   {/* Separate Visit & Pet Status Indicators */}
@@ -290,7 +290,7 @@ export const FollowUpsView: React.FC<FollowUpsViewProps> = ({
                   <a
                     href={`tel:${visitor.contactNumber}`}
                     aria-label={`Call ${visitor.fullName}`}
-                    className="inline-flex items-center gap-1.5 rounded-lg border border-slate-200 dark:border-slate-700 px-3 py-2 text-xs font-medium text-slate-700 dark:text-slate-200 hover:bg-slate-50 dark:hover:bg-slate-800"
+                    className="inline-flex items-center gap-1.5 rounded-xl border border-zinc-200 dark:border-zinc-700 bg-zinc-50 dark:bg-zinc-900 px-3 py-2 text-xs font-medium text-zinc-700 dark:text-zinc-200 hover:bg-zinc-100 dark:hover:bg-zinc-800 transition-colors"
                   >
                     <Phone className="h-3.5 w-3.5" aria-hidden="true" />
                     Call
@@ -300,7 +300,7 @@ export const FollowUpsView: React.FC<FollowUpsViewProps> = ({
                       href={`https://wa.me/${waPhone}`}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="inline-flex items-center gap-1.5 rounded-lg border border-slate-200 dark:border-slate-700 px-3 py-2 text-xs font-medium text-emerald-700 dark:text-emerald-400 hover:bg-emerald-50 dark:hover:bg-emerald-950/40"
+                      className="inline-flex items-center gap-1.5 rounded-xl border border-zinc-200 dark:border-zinc-700 bg-zinc-50 dark:bg-zinc-900 px-3 py-2 text-xs font-medium text-emerald-700 dark:text-emerald-400 hover:bg-emerald-50 dark:hover:bg-emerald-950/40 transition-colors"
                     >
                       <MessageCircle className="h-3.5 w-3.5" aria-hidden="true" />
                       WhatsApp
@@ -311,7 +311,7 @@ export const FollowUpsView: React.FC<FollowUpsViewProps> = ({
                     onClick={() =>
                       setCommentTarget({ visitorId: visitor.id, visitorName: visitor.fullName })
                     }
-                    className="inline-flex items-center gap-1.5 rounded-lg border border-slate-200 dark:border-slate-700 px-3 py-2 text-xs font-medium text-slate-700 dark:text-slate-200 hover:bg-slate-50 dark:hover:bg-slate-800"
+                    className="inline-flex items-center gap-1.5 rounded-xl border border-zinc-200 dark:border-zinc-700 bg-zinc-50 dark:bg-zinc-900 px-3 py-2 text-xs font-medium text-zinc-700 dark:text-zinc-200 hover:bg-zinc-100 dark:hover:bg-zinc-800 transition-colors"
                   >
                     <MessageSquarePlus className="h-3.5 w-3.5" aria-hidden="true" />
                     Comment
@@ -321,14 +321,14 @@ export const FollowUpsView: React.FC<FollowUpsViewProps> = ({
                       <button
                         type="button"
                         onClick={() => openReschedule(visitor.id, followUp)}
-                        className="rounded-lg border border-slate-200 dark:border-slate-700 px-3 py-2 text-xs font-medium text-slate-700 dark:text-slate-200 hover:bg-slate-50 dark:hover:bg-slate-800"
+                        className="rounded-xl border border-zinc-200 dark:border-zinc-700 bg-zinc-50 dark:bg-zinc-900 px-3 py-2 text-xs font-medium text-zinc-700 dark:text-zinc-200 hover:bg-zinc-100 dark:hover:bg-zinc-800 transition-colors"
                       >
                         Reschedule
                       </button>
                       <button
                         type="button"
                         onClick={() => onCompleteFollowUp(visitor.id, followUp.id)}
-                        className="inline-flex items-center gap-1.5 rounded-lg bg-emerald-600 px-3.5 py-2 text-xs font-semibold text-white hover:bg-emerald-700"
+                        className="inline-flex items-center gap-1.5 rounded-xl bg-emerald-600 px-3.5 py-2 text-xs font-semibold text-white hover:bg-emerald-700 transition-colors"
                       >
                         <CheckCircle2 className="h-3.5 w-3.5" aria-hidden="true" />
                         Mark Completed
@@ -338,7 +338,7 @@ export const FollowUpsView: React.FC<FollowUpsViewProps> = ({
                     <button
                       type="button"
                       onClick={() => onReopenFollowUp(visitor.id, followUp.id)}
-                      className="inline-flex items-center gap-1.5 rounded-lg border border-slate-200 dark:border-slate-700 px-3 py-2 text-xs font-medium text-slate-700 dark:text-slate-200 hover:bg-slate-50 dark:hover:bg-slate-800"
+                      className="inline-flex items-center gap-1.5 rounded-xl border border-zinc-200 dark:border-zinc-700 bg-zinc-50 dark:bg-zinc-900 px-3 py-2 text-xs font-medium text-zinc-700 dark:text-zinc-200 hover:bg-zinc-100 dark:hover:bg-zinc-800 transition-colors"
                     >
                       <RotateCcw className="h-3.5 w-3.5" aria-hidden="true" />
                       Reopen
@@ -357,21 +357,21 @@ export const FollowUpsView: React.FC<FollowUpsViewProps> = ({
           role="dialog"
           aria-modal="true"
           aria-labelledby="reschedule-title"
-          className="fixed inset-0 z-50 flex items-center justify-center bg-black/55 p-4"
+          className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 p-4"
         >
           <form
             onSubmit={saveReschedule}
-            className="w-full max-w-md rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-[#121826] p-6 shadow-xl space-y-4"
+            className="w-full max-w-md rounded-2xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-[#18181B] p-6 shadow-2xl space-y-4"
           >
             <h3
               id="reschedule-title"
-              className="font-display text-lg font-semibold text-slate-900 dark:text-slate-100"
+              className="font-display text-lg font-semibold text-zinc-950 dark:text-zinc-50"
             >
               Reschedule Follow-up
             </h3>
             <div className="space-y-3">
               <div>
-                <label className="block text-xs font-medium text-slate-600 dark:text-slate-400 mb-1">
+                <label className="block text-xs font-medium text-zinc-600 dark:text-zinc-400 mb-1.5">
                   New Date
                 </label>
                 <CalendarDatePicker
@@ -382,7 +382,7 @@ export const FollowUpsView: React.FC<FollowUpsViewProps> = ({
                 />
               </div>
               <div>
-                <label className="block text-xs font-medium text-slate-600 dark:text-slate-400 mb-1">
+                <label className="block text-xs font-medium text-zinc-600 dark:text-zinc-400 mb-1.5">
                   Preferred Time
                 </label>
                 <TimePicker
@@ -393,13 +393,13 @@ export const FollowUpsView: React.FC<FollowUpsViewProps> = ({
                 />
               </div>
               <div>
-                <label className="block text-xs font-medium text-slate-600 dark:text-slate-400 mb-1">
+                <label className="block text-xs font-medium text-zinc-600 dark:text-zinc-400 mb-1.5">
                   Method
                 </label>
                 <select
                   value={rsMethod}
                   onChange={(e) => setRsMethod(e.target.value as FollowUpMethod)}
-                  className="w-full rounded-lg border border-slate-200 dark:border-slate-700 bg-white dark:bg-[#0B0F17] px-3 py-2 text-sm"
+                  className="w-full rounded-xl border border-zinc-200 dark:border-zinc-700 bg-zinc-50 dark:bg-zinc-900 px-3.5 py-2.5 text-sm text-zinc-900 dark:text-zinc-100 focus:border-blue-600 dark:focus:border-blue-500 focus:outline-none"
                 >
                   <option value="Phone call">Phone call</option>
                   <option value="WhatsApp">WhatsApp</option>
@@ -409,14 +409,14 @@ export const FollowUpsView: React.FC<FollowUpsViewProps> = ({
                 </select>
               </div>
               <div>
-                <label className="block text-xs font-medium text-slate-600 dark:text-slate-400 mb-1">
+                <label className="block text-xs font-medium text-zinc-600 dark:text-zinc-400 mb-1.5">
                   Notes
                 </label>
                 <textarea
                   rows={2}
                   value={rsNotes}
                   onChange={(e) => setRsNotes(e.target.value)}
-                  className="w-full rounded-lg border border-slate-200 dark:border-slate-700 bg-white dark:bg-[#0B0F17] px-3 py-2 text-sm"
+                  className="w-full rounded-xl border border-zinc-200 dark:border-zinc-700 bg-zinc-50 dark:bg-zinc-900 px-3.5 py-2.5 text-sm text-zinc-900 dark:text-zinc-100 focus:border-blue-600 dark:focus:border-blue-500 focus:outline-none"
                 />
               </div>
             </div>
@@ -424,13 +424,13 @@ export const FollowUpsView: React.FC<FollowUpsViewProps> = ({
               <button
                 type="button"
                 onClick={() => setRescheduleTarget(null)}
-                className="px-4 py-2 rounded-lg border border-slate-200 dark:border-slate-700 text-xs font-medium"
+                className="px-4 py-2 rounded-xl border border-zinc-200 dark:border-zinc-700 bg-zinc-50 dark:bg-zinc-900 text-xs font-semibold text-zinc-700 dark:text-zinc-200 hover:bg-zinc-100 dark:hover:bg-zinc-800"
               >
                 Cancel
               </button>
               <button
                 type="submit"
-                className="px-4 py-2 rounded-lg bg-blue-600 text-xs font-semibold text-white hover:bg-blue-700"
+                className="px-4 py-2 rounded-xl bg-blue-600 text-xs font-semibold text-white hover:bg-blue-700"
               >
                 Save Schedule
               </button>
@@ -445,7 +445,7 @@ export const FollowUpsView: React.FC<FollowUpsViewProps> = ({
           role="dialog"
           aria-modal="true"
           aria-labelledby="comment-modal-title"
-          className="fixed inset-0 z-50 flex items-center justify-center bg-black/55 p-4"
+          className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 p-4"
         >
           <form
             onSubmit={(e) => {
@@ -455,11 +455,11 @@ export const FollowUpsView: React.FC<FollowUpsViewProps> = ({
               setCommentText('');
               setCommentTarget(null);
             }}
-            className="w-full max-w-md rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-[#121826] p-6 shadow-xl space-y-4"
+            className="w-full max-w-md rounded-2xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-[#18181B] p-6 shadow-2xl space-y-4"
           >
             <h3
               id="comment-modal-title"
-              className="font-display text-lg font-semibold text-slate-900 dark:text-slate-100"
+              className="font-display text-lg font-semibold text-zinc-950 dark:text-zinc-50"
             >
               Add Comment for {commentTarget.visitorName}
             </h3>
@@ -469,7 +469,7 @@ export const FollowUpsView: React.FC<FollowUpsViewProps> = ({
               value={commentText}
               onChange={(e) => setCommentText(e.target.value)}
               placeholder="Write your follow-up outcome or note..."
-              className="w-full rounded-lg border border-slate-200 dark:border-slate-700 bg-white dark:bg-[#0B0F17] px-3 py-2 text-sm"
+              className="w-full rounded-xl border border-zinc-200 dark:border-zinc-700 bg-zinc-50 dark:bg-zinc-900 px-3.5 py-2.5 text-sm text-zinc-900 dark:text-zinc-100 placeholder:text-zinc-400 dark:placeholder:text-zinc-500 focus:border-blue-600 dark:focus:border-blue-500 focus:outline-none"
             />
             <div className="flex justify-end gap-2">
               <button
@@ -478,13 +478,13 @@ export const FollowUpsView: React.FC<FollowUpsViewProps> = ({
                   setCommentText('');
                   setCommentTarget(null);
                 }}
-                className="px-4 py-2 rounded-lg border border-slate-200 dark:border-slate-700 text-xs font-medium"
+                className="px-4 py-2 rounded-xl border border-zinc-200 dark:border-zinc-700 bg-zinc-50 dark:bg-zinc-900 text-xs font-semibold text-zinc-700 dark:text-zinc-200 hover:bg-zinc-100 dark:hover:bg-zinc-800"
               >
                 Cancel
               </button>
               <button
                 type="submit"
-                className="px-4 py-2 rounded-lg bg-blue-600 text-xs font-semibold text-white hover:bg-blue-700"
+                className="px-4 py-2 rounded-xl bg-blue-600 text-xs font-semibold text-white hover:bg-blue-700"
               >
                 Save Comment
               </button>

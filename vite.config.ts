@@ -1,6 +1,7 @@
 import tailwindcss from '@tailwindcss/vite';
 import react from '@vitejs/plugin-react';
 import fs from 'fs';
+import {transform as lightningTransform} from 'lightningcss';
 import path from 'path';
 import {defineConfig} from 'vite';
 import {VitePWA} from 'vite-plugin-pwa';
@@ -18,8 +19,8 @@ export default defineConfig(() => {
           name: 'Apartment Visitor CRM',
           short_name: 'Visitor CRM',
           description: 'Offline-first personal CRM for managing apartment viewings, visitor histories, budgets, and follow-ups.',
-          theme_color: '#0B0F17',
-          background_color: '#0B0F17',
+          theme_color: '#090D16',
+          background_color: '#090D16',
           display: 'standalone',
           orientation: 'portrait-primary',
           start_url: '/',
@@ -83,6 +84,28 @@ export default defineConfig(() => {
           type: 'module',
         },
       }),
+      // Downgrade modern CSS color functions (oklab/oklch) to sRGB hex fallbacks for Android WebViews
+      {
+        name: 'android-webview-css-fallbacks',
+        apply: 'build',
+        enforce: 'post',
+        generateBundle(_options, bundle) {
+          for (const [fileName, asset] of Object.entries(bundle)) {
+            if (fileName.endsWith('.css') && asset.type === 'asset' && typeof asset.source === 'string') {
+              const result = lightningTransform({
+                filename: fileName,
+                code: Buffer.from(asset.source),
+                minify: true,
+                targets: {
+                  chrome: 87 << 16,
+                  safari: 14 << 16,
+                },
+              });
+              asset.source = result.code.toString();
+            }
+          }
+        },
+      },
       // Copies src/assets into dist/ so root-relative URLs like
       // "/src/assets/images/..." (e.g. generate_image output) still resolve
       // in production builds. Do not remove.
@@ -102,6 +125,9 @@ export default defineConfig(() => {
         },
       },
     ],
+    build: {
+      cssTarget: ['chrome87', 'safari14'],
+    },
     resolve: {
       alias: {
         '@': path.resolve(__dirname, '.'),

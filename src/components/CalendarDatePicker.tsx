@@ -166,31 +166,31 @@ export const CalendarDatePicker: React.FC<CalendarDatePickerProps> = ({
         aria-expanded={open}
         aria-haspopup="dialog"
         onClick={() => setOpen(true)}
-        className={`w-full flex items-center justify-between gap-2 rounded-lg border bg-white dark:bg-[#0B0F17] text-left transition-colors focus:border-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-600/20 ${
-          compact ? 'px-3 py-2 text-xs min-h-[36px]' : 'px-3 py-2.5 text-sm min-h-[42px]'
+        className={`w-full flex items-center justify-between gap-2 rounded-xl border bg-zinc-50 dark:bg-zinc-900 text-left transition-colors focus:border-blue-600 dark:focus:border-blue-500 focus:bg-white dark:focus:bg-zinc-900 focus:outline-none focus:ring-2 focus:ring-blue-600/20 ${
+          compact ? 'px-3 py-2 text-xs min-h-[38px]' : 'px-3.5 py-2.5 text-sm min-h-[44px]'
         } ${
           hasError
             ? 'border-red-500 dark:border-red-500'
-            : 'border-slate-200 dark:border-slate-700'
+            : 'border-zinc-200 dark:border-zinc-700'
         }`}
       >
         <span
           className={`font-mono-num truncate ${
             displayValue
-              ? 'text-slate-900 dark:text-slate-100'
-              : 'text-slate-400 dark:text-slate-500'
+              ? 'text-zinc-900 dark:text-zinc-100'
+              : 'text-zinc-400 dark:text-zinc-500'
           }`}
         >
           {displayValue || placeholder}
         </span>
-        <Calendar className="h-4 w-4 text-slate-400 shrink-0" aria-hidden="true" />
+        <Calendar className="h-4 w-4 text-zinc-400 dark:text-zinc-500 shrink-0" aria-hidden="true" />
       </button>
 
       {open &&
         typeof document !== 'undefined' &&
         createPortal(
           <div
-            className="fixed inset-0 z-[70] flex items-center justify-center bg-black/40 p-4"
+            className="fixed inset-0 z-[70] flex items-center justify-center bg-black/60 p-4"
             onMouseDown={(e) => {
               if (e.target === e.currentTarget) setOpen(false);
             }}
@@ -199,20 +199,20 @@ export const CalendarDatePicker: React.FC<CalendarDatePickerProps> = ({
               role="dialog"
               aria-modal="true"
               aria-label="Calendar date picker"
-              className="w-full max-w-[330px] rounded-2xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-[#121826] p-4 shadow-2xl"
+              className="w-full max-w-[330px] rounded-2xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-[#18181B] p-4 shadow-2xl"
             >
               {/* Month / Year Header */}
-              <div className="flex items-center justify-between gap-2 pb-3 border-b border-slate-100 dark:border-slate-800">
+              <div className="flex items-center justify-between gap-2 pb-3 border-b border-zinc-100 dark:border-zinc-800">
                 <button
                   type="button"
                   aria-label="Previous month"
                   onClick={() => stepMonth(-1)}
-                  className="flex h-9 w-9 items-center justify-center rounded-lg border border-slate-200 dark:border-slate-700 text-slate-700 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800"
+                  className="flex h-9 w-9 items-center justify-center rounded-xl border border-zinc-200 dark:border-zinc-700 bg-zinc-50 dark:bg-zinc-900 text-zinc-700 dark:text-zinc-200 hover:bg-zinc-100 dark:hover:bg-zinc-800"
                 >
                   <ChevronLeft className="h-4 w-4" aria-hidden="true" />
                 </button>
 
-                <div className="flex items-center gap-1.5 text-sm font-semibold text-slate-900 dark:text-slate-100">
+                <div className="flex items-center gap-1.5 text-sm font-semibold text-zinc-950 dark:text-zinc-50">
                   <span>{FULL_MONTHS[viewMonth]}</span>
                   <span className="font-mono-num">{viewYear}</span>
                 </div>
@@ -221,7 +221,7 @@ export const CalendarDatePicker: React.FC<CalendarDatePickerProps> = ({
                   type="button"
                   aria-label="Next month"
                   onClick={() => stepMonth(1)}
-                  className="flex h-9 w-9 items-center justify-center rounded-lg border border-slate-200 dark:border-slate-700 text-slate-700 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800"
+                  className="flex h-9 w-9 items-center justify-center rounded-xl border border-zinc-200 dark:border-zinc-700 bg-zinc-50 dark:bg-zinc-900 text-zinc-700 dark:text-zinc-200 hover:bg-zinc-100 dark:hover:bg-zinc-800"
                 >
                   <ChevronRight className="h-4 w-4" aria-hidden="true" />
                 </button>
@@ -232,7 +232,7 @@ export const CalendarDatePicker: React.FC<CalendarDatePickerProps> = ({
                 {WEEKDAYS.map((wd) => (
                   <span
                     key={wd}
-                    className="text-[11px] font-medium text-slate-400 dark:text-slate-500"
+                    className="text-[11px] font-medium text-zinc-400 dark:text-zinc-500"
                   >
                     {wd}
                   </span>
@@ -257,8 +257,8 @@ export const CalendarDatePicker: React.FC<CalendarDatePickerProps> = ({
                           : isToday
                           ? 'border border-blue-500 text-blue-600 dark:text-blue-400 font-semibold hover:bg-blue-50 dark:hover:bg-blue-950/40'
                           : cell.inMonth
-                          ? 'text-slate-800 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800'
-                          : 'text-slate-400 dark:text-slate-600 hover:bg-slate-100 dark:hover:bg-slate-800/60'
+                          ? 'text-zinc-800 dark:text-zinc-200 hover:bg-zinc-100 dark:hover:bg-zinc-800'
+                          : 'text-zinc-400 dark:text-zinc-600 hover:bg-zinc-100 dark:hover:bg-zinc-800/60'
                       }`}
                     >
                       {cell.label}
@@ -268,19 +268,19 @@ export const CalendarDatePicker: React.FC<CalendarDatePickerProps> = ({
               </div>
 
               {/* Quick Actions */}
-              <div className="mt-3 pt-3 border-t border-slate-100 dark:border-slate-800 flex items-center justify-between gap-2">
+              <div className="mt-3 pt-3 border-t border-zinc-100 dark:border-zinc-800 flex items-center justify-between gap-2">
                 <div className="flex items-center gap-1.5">
                   <button
                     type="button"
                     onClick={() => selectDate(todayIso)}
-                    className="px-3 py-1.5 rounded-lg bg-slate-100 dark:bg-slate-800 text-xs font-medium text-slate-700 dark:text-slate-200 hover:bg-slate-200 dark:hover:bg-slate-700"
+                    className="px-3 py-1.5 rounded-lg bg-zinc-100 dark:bg-zinc-800 text-xs font-medium text-zinc-700 dark:text-zinc-200 hover:bg-zinc-200 dark:hover:bg-zinc-700"
                   >
                     Today
                   </button>
                   <button
                     type="button"
                     onClick={() => selectDate(tomorrowIso)}
-                    className="px-3 py-1.5 rounded-lg bg-slate-100 dark:bg-slate-800 text-xs font-medium text-slate-700 dark:text-slate-200 hover:bg-slate-200 dark:hover:bg-slate-700"
+                    className="px-3 py-1.5 rounded-lg bg-zinc-100 dark:bg-zinc-800 text-xs font-medium text-zinc-700 dark:text-zinc-200 hover:bg-zinc-200 dark:hover:bg-zinc-700"
                   >
                     Tomorrow
                   </button>
@@ -299,7 +299,7 @@ export const CalendarDatePicker: React.FC<CalendarDatePickerProps> = ({
                   <button
                     type="button"
                     onClick={() => setOpen(false)}
-                    className="px-3 py-1.5 rounded-lg text-xs font-medium text-slate-500 hover:text-slate-800 dark:hover:text-slate-200"
+                    className="px-3 py-1.5 rounded-lg text-xs font-medium text-zinc-500 hover:text-zinc-800 dark:text-zinc-400 dark:hover:text-zinc-200"
                   >
                     Close
                   </button>

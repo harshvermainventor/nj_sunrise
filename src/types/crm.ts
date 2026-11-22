@@ -171,4 +171,6 @@ export type AppView =
   | 'directory'
   | 'followups'
   | 'reports'
-  | 'settings';
+  | 'settings'
+  | 'public-portal';
+

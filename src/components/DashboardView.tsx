@@ -1,12 +1,8 @@
 import React from 'react';
 import {
   ArrowRight,
-  Building2,
   CalendarCheck2,
-  CalendarClock,
   CheckCircle2,
-  ClockAlert,
-  Handshake,
   Phone,
   UserPlus,
   Users,
@@ -41,70 +37,79 @@ export const DashboardView: React.FC<DashboardViewProps> = ({
     apartment.expectedMonthlyRent
   );
 
-  const kpis = [
+  const primaryKpis = [
     {
       label: 'Total Visitors',
       value: metrics.totalVisitors,
       icon: Users,
-      tone: 'text-slate-900 dark:text-slate-100',
+      tone: 'text-zinc-950 dark:text-zinc-50',
+      iconColor: 'text-zinc-400 dark:text-zinc-500',
     },
     {
       label: 'Completed Visits',
       value: metrics.totalCompletedVisits,
       icon: CheckCircle2,
-      tone: 'text-emerald-700 dark:text-emerald-400',
+      tone: 'text-emerald-600 dark:text-emerald-400',
+      iconColor: 'text-emerald-500 dark:text-emerald-400',
     },
     {
       label: 'Upcoming Visits',
       value: metrics.upcomingVisits,
       icon: CalendarCheck2,
-      tone: 'text-blue-700 dark:text-blue-400',
+      tone: 'text-blue-600 dark:text-blue-400',
+      iconColor: 'text-blue-500 dark:text-blue-400',
     },
     {
-      label: 'Interested Visitors',
+      label: 'Interested',
       value: metrics.interestedVisitors,
       icon: UserPlus,
-      tone: 'text-blue-700 dark:text-blue-400',
+      tone: 'text-zinc-950 dark:text-zinc-50',
+      iconColor: 'text-blue-500 dark:text-blue-400',
     },
+  ];
+
+  const secondaryStats = [
     {
       label: 'Pending Follow-ups',
       value: metrics.pendingFollowUps,
-      icon: CalendarClock,
-      tone: 'text-slate-900 dark:text-slate-100',
+      tone:
+        metrics.pendingFollowUps > 0
+          ? 'text-amber-600 dark:text-amber-400'
+          : 'text-zinc-900 dark:text-zinc-100',
     },
     {
       label: 'Overdue Follow-ups',
       value: metrics.overdueFollowUps,
-      icon: ClockAlert,
       tone:
         metrics.overdueFollowUps > 0
-          ? 'text-red-700 dark:text-red-400'
-          : 'text-slate-900 dark:text-slate-100',
+          ? 'text-red-600 dark:text-red-400'
+          : 'text-zinc-900 dark:text-zinc-100',
     },
     {
       label: 'Finalised Deals',
       value: metrics.finalisedDeals,
-      icon: Handshake,
-      tone: 'text-emerald-700 dark:text-emerald-400',
+      tone:
+        metrics.finalisedDeals > 0
+          ? 'text-emerald-600 dark:text-emerald-400'
+          : 'text-zinc-900 dark:text-zinc-100',
     },
     {
-      label: 'Apartment Status',
+      label: 'Availability',
       value: apartment.availabilityStatus,
-      icon: Building2,
       tone:
         apartment.availabilityStatus === 'Available'
-          ? 'text-emerald-700 dark:text-emerald-400'
-          : 'text-slate-900 dark:text-slate-100',
+          ? 'text-emerald-600 dark:text-emerald-400'
+          : 'text-zinc-900 dark:text-zinc-100',
     },
   ];
 
   return (
-    <div className="space-y-6">
-      {/* Single Apartment Banner */}
-      <section className="rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-[#121826] p-5">
+    <div className="space-y-5">
+      {/* Property Header Card */}
+      <section className="rounded-2xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-[#18181B] p-5 sm:p-6">
         <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
-          <div className="space-y-1.5">
-            <div className="text-xs text-slate-500 dark:text-slate-400">
+          <div className="space-y-2">
+            <div className="text-xs font-medium text-zinc-500 dark:text-zinc-400">
               {[
                 'Active Property',
                 apartment.floor,
@@ -114,31 +119,29 @@ export const DashboardView: React.FC<DashboardViewProps> = ({
                 .filter(Boolean)
                 .join(' · ')}
             </div>
-            <h2 className="font-display text-xl font-bold text-slate-900 dark:text-slate-100">
-              {apartment.apartmentNumber}
-            </h2>
-            <div className="flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-3 text-sm text-slate-600 dark:text-slate-300">
-              <span>
-                Expected Monthly Rent:{' '}
-                <span className="font-mono-num font-semibold text-slate-900 dark:text-slate-100">
-                  {formatCurrency(apartment.expectedMonthlyRent, apartment.currency)}/mo
-                </span>
+            <div className="flex flex-wrap items-baseline gap-x-4 gap-y-1">
+              <h2 className="font-display text-2xl sm:text-3xl font-bold tracking-tight text-zinc-950 dark:text-zinc-50">
+                {apartment.apartmentNumber}
+              </h2>
+              <span className="font-mono-num text-lg sm:text-xl font-bold text-blue-600 dark:text-blue-400">
+                {formatCurrency(apartment.expectedMonthlyRent, apartment.currency)}
+                <span className="text-xs font-medium text-zinc-500 dark:text-zinc-400">/mo</span>
               </span>
             </div>
           </div>
 
-          <div className="flex items-center gap-3 shrink-0">
+          <div className="flex flex-wrap items-center gap-2 shrink-0">
             <button
               type="button"
               onClick={() => onNavigate('settings')}
-              className="px-3.5 py-2 rounded-lg border border-slate-200 dark:border-slate-700 text-xs font-medium text-slate-700 dark:text-slate-200 hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors whitespace-nowrap"
+              className="px-4 py-2 rounded-xl border border-zinc-200 dark:border-zinc-700 bg-zinc-50 dark:bg-zinc-900 text-xs font-semibold text-zinc-700 dark:text-zinc-200 hover:bg-zinc-100 dark:hover:bg-zinc-800 transition-colors whitespace-nowrap"
             >
               Edit Apartment Info
             </button>
             <button
               type="button"
               onClick={() => onNavigate('reports')}
-              className="px-3.5 py-2 rounded-lg border border-slate-200 dark:border-slate-700 text-xs font-medium text-slate-700 dark:text-slate-200 hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors whitespace-nowrap"
+              className="px-4 py-2 rounded-xl border border-zinc-200 dark:border-zinc-700 bg-zinc-50 dark:bg-zinc-900 text-xs font-semibold text-zinc-700 dark:text-zinc-200 hover:bg-zinc-100 dark:hover:bg-zinc-800 transition-colors whitespace-nowrap"
             >
               View Reports
             </button>
@@ -146,26 +149,22 @@ export const DashboardView: React.FC<DashboardViewProps> = ({
         </div>
       </section>
 
-      {/* 8 KPI Cards */}
-      <section aria-label="Key metrics" className="grid grid-cols-2 md:grid-cols-4 gap-3.5">
-        {kpis.map((kpi) => {
+      {/* Primary Metrics (4 Cards) */}
+      <section aria-label="Key metrics" className="grid grid-cols-2 lg:grid-cols-4 gap-3.5">
+        {primaryKpis.map((kpi) => {
           const Icon = kpi.icon;
           return (
             <div
               key={kpi.label}
-              className="rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-[#121826] p-4 flex flex-col justify-between gap-2"
+              className="rounded-2xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-[#18181B] p-4 sm:p-5 flex flex-col justify-between gap-3"
             >
               <div className="flex items-center justify-between gap-2">
-                <span className="text-xs font-medium text-slate-500 dark:text-slate-400">
+                <span className="text-xs font-medium text-zinc-500 dark:text-zinc-400">
                   {kpi.label}
                 </span>
-                <Icon className="h-4 w-4 text-slate-400 dark:text-slate-500 shrink-0" aria-hidden="true" />
+                <Icon className={`h-4 w-4 shrink-0 ${kpi.iconColor}`} aria-hidden="true" />
               </div>
-              <div
-                className={`font-display font-bold tracking-tight font-mono-num ${
-                  typeof kpi.value === 'string' ? 'text-lg' : 'text-2xl'
-                } ${kpi.tone}`}
-              >
+              <div className={`font-display text-2xl sm:text-3xl font-bold tracking-tight font-mono-num ${kpi.tone}`}>
                 {kpi.value}
               </div>
             </div>
@@ -173,24 +172,45 @@ export const DashboardView: React.FC<DashboardViewProps> = ({
         })}
       </section>
 
-      {/* Empty State Banner when zero real visitors */}
-      {visitors.length === 0 ? (
-        <section className="rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-[#121826] p-8 text-center">
-          <div className="mx-auto flex h-12 w-12 items-center justify-center rounded-xl bg-blue-50 dark:bg-blue-950/60 text-blue-600 dark:text-blue-400">
-            <UserPlus className="h-6 w-6" aria-hidden="true" />
+      {/* Secondary Operations Summary Bar (Single Divided Strip) */}
+      <section
+        aria-label="Follow-up and property summary"
+        className="rounded-2xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-[#18181B] grid grid-cols-2 lg:grid-cols-4 divide-y lg:divide-y-0 lg:divide-x divide-zinc-100 dark:divide-zinc-800"
+      >
+        {secondaryStats.map((stat, idx) => (
+          <div
+            key={stat.label}
+            className={`px-4 py-3.5 sm:px-5 sm:py-4 flex items-center justify-between gap-3 ${
+              idx % 2 === 1 ? 'border-l border-zinc-100 dark:border-zinc-800 lg:border-l-0' : ''
+            }`}
+          >
+            <span className="text-xs font-medium text-zinc-500 dark:text-zinc-400">
+              {stat.label}
+            </span>
+            <span className={`font-display font-bold font-mono-num text-sm sm:text-base ${stat.tone}`}>
+              {stat.value}
+            </span>
           </div>
-          <h3 className="mt-4 font-display text-lg font-semibold text-slate-900 dark:text-slate-100">
+        ))}
+      </section>
+
+      {/* Empty State or Populated Analytics */}
+      {visitors.length === 0 ? (
+        <section className="rounded-2xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-[#18181B] p-7 sm:p-9 text-center">
+          <div className="mx-auto flex h-11 w-11 items-center justify-center rounded-xl bg-zinc-100 dark:bg-zinc-800 text-blue-600 dark:text-blue-400">
+            <UserPlus className="h-5 w-5" aria-hidden="true" />
+          </div>
+          <h3 className="mt-4 font-display text-lg font-semibold text-zinc-950 dark:text-zinc-50">
             No visitors registered yet
           </h3>
-          <p className="mt-1.5 max-w-md mx-auto text-sm text-slate-600 dark:text-slate-400">
-            Start tracking enquiries, apartment viewings, budgets, and follow-up reminders for{' '}
-            {apartment.apartmentNumber}. Every record stays safely stored offline on your device.
+          <p className="mt-1.5 max-w-md mx-auto text-sm text-zinc-600 dark:text-zinc-400">
+            Log enquiries, viewings, quoted rent, and follow-up reminders for {apartment.apartmentNumber}. Everything stays saved offline on your device.
           </p>
           <div className="mt-6 flex flex-wrap items-center justify-center gap-3">
             <button
               type="button"
               onClick={() => onNavigate('register')}
-              className="inline-flex items-center gap-2 rounded-lg bg-blue-600 px-5 py-2.5 text-sm font-medium text-white hover:bg-blue-700 transition-colors"
+              className="inline-flex items-center gap-2 rounded-xl bg-blue-600 px-5 py-2.5 text-sm font-semibold text-white hover:bg-blue-700 transition-colors"
             >
               <UserPlus className="h-4 w-4" aria-hidden="true" />
               Register First Visitor
@@ -198,7 +218,7 @@ export const DashboardView: React.FC<DashboardViewProps> = ({
             <button
               type="button"
               onClick={() => onNavigate('settings')}
-              className="inline-flex items-center gap-2 rounded-lg border border-slate-200 dark:border-slate-700 px-4 py-2.5 text-sm font-medium text-slate-700 dark:text-slate-200 hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors"
+              className="inline-flex items-center gap-2 rounded-xl border border-zinc-200 dark:border-zinc-700 bg-zinc-50 dark:bg-zinc-900 px-4 py-2.5 text-sm font-semibold text-zinc-700 dark:text-zinc-200 hover:bg-zinc-100 dark:hover:bg-zinc-800 transition-colors"
             >
               Restore from Backup
             </button>
@@ -208,21 +228,21 @@ export const DashboardView: React.FC<DashboardViewProps> = ({
         <>
           {/* Analytics Row */}
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-5">
-            <div className="lg:col-span-2 rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-[#121826] p-5">
+            <div className="lg:col-span-2 rounded-2xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-[#18181B] p-5">
               <div className="flex items-center justify-between mb-4">
-                <h3 className="font-display text-sm font-semibold text-slate-900 dark:text-slate-100">
+                <h3 className="font-display text-sm font-semibold text-zinc-950 dark:text-zinc-50">
                   Monthly Visitor Trends
                 </h3>
-                <span className="text-xs text-slate-500 dark:text-slate-400">
+                <span className="text-xs text-zinc-500 dark:text-zinc-400">
                   Last 6 active months
                 </span>
               </div>
               <MonthlyTrendsChart data={metrics.monthlyTrends} />
             </div>
 
-            <div className="rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-[#121826] p-5 space-y-5">
+            <div className="rounded-2xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-[#18181B] p-5 space-y-5">
               <div>
-                <h3 className="font-display text-sm font-semibold text-slate-900 dark:text-slate-100 mb-3">
+                <h3 className="font-display text-sm font-semibold text-zinc-950 dark:text-zinc-50 mb-3">
                   Rent Budget Fit (vs {formatCurrency(apartment.expectedMonthlyRent, apartment.currency)}/mo)
                 </h3>
                 <RentBudgetFitChart
@@ -232,8 +252,8 @@ export const DashboardView: React.FC<DashboardViewProps> = ({
                 />
               </div>
 
-              <div className="pt-4 border-t border-slate-100 dark:border-slate-800">
-                <h3 className="font-display text-sm font-semibold text-slate-900 dark:text-slate-100 mb-3">
+              <div className="pt-4 border-t border-zinc-100 dark:border-zinc-800">
+                <h3 className="font-display text-sm font-semibold text-zinc-950 dark:text-zinc-50 mb-3">
                   Rent Budget Distribution
                 </h3>
                 <BudgetDistributionChart buckets={metrics.budgetDistribution} />
@@ -243,10 +263,9 @@ export const DashboardView: React.FC<DashboardViewProps> = ({
 
           {/* Recent Visitors + Upcoming Follow-ups + Status Stats */}
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-5">
-            {/* Recently Registered Visitors */}
-            <div className="lg:col-span-2 rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-[#121826] p-5">
+            <div className="lg:col-span-2 rounded-2xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-[#18181B] p-5">
               <div className="flex items-center justify-between mb-4">
-                <h3 className="font-display text-sm font-semibold text-slate-900 dark:text-slate-100">
+                <h3 className="font-display text-sm font-semibold text-zinc-950 dark:text-zinc-50">
                   Recently Registered Visitors
                 </h3>
                 <button
@@ -257,21 +276,21 @@ export const DashboardView: React.FC<DashboardViewProps> = ({
                   View all <ArrowRight className="h-3.5 w-3.5" aria-hidden="true" />
                 </button>
               </div>
-              <div className="divide-y divide-slate-100 dark:divide-slate-800/80">
+              <div className="divide-y divide-zinc-100 dark:divide-zinc-800">
                 {metrics.recentVisitors.map((visitor) => (
                   <div
                     key={visitor.id}
-                    className="py-3 first:pt-0 last:pb-0 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2.5"
+                    className="py-3.5 first:pt-0 last:pb-0 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2.5"
                   >
                     <div className="min-w-0">
                       <button
                         type="button"
                         onClick={() => onSelectVisitor(visitor)}
-                        className="text-left font-medium text-sm text-slate-900 dark:text-slate-100 hover:text-blue-600 dark:hover:text-blue-400 transition-colors truncate block"
+                        className="text-left font-medium text-sm text-zinc-950 dark:text-zinc-50 hover:text-blue-600 dark:hover:text-blue-400 transition-colors truncate block"
                       >
                         {visitor.fullName}
                       </button>
-                      <div className="mt-0.5 flex flex-wrap items-center gap-2 text-xs text-slate-500 dark:text-slate-400">
+                      <div className="mt-0.5 flex flex-wrap items-center gap-2 text-xs text-zinc-500 dark:text-zinc-400">
                         <span className="font-mono-num">{visitor.contactNumber}</span>
                         {visitor.quotedRent ? (
                           <>
@@ -310,11 +329,10 @@ export const DashboardView: React.FC<DashboardViewProps> = ({
               </div>
             </div>
 
-            {/* Upcoming Follow-ups & Pipeline Status */}
             <div className="space-y-5">
-              <div className="rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-[#121826] p-5">
+              <div className="rounded-2xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-[#18181B] p-5">
                 <div className="flex items-center justify-between mb-3">
-                  <h3 className="font-display text-sm font-semibold text-slate-900 dark:text-slate-100">
+                  <h3 className="font-display text-sm font-semibold text-zinc-950 dark:text-zinc-50">
                     Upcoming Follow-ups
                   </h3>
                   <button
@@ -326,30 +344,30 @@ export const DashboardView: React.FC<DashboardViewProps> = ({
                   </button>
                 </div>
                 {metrics.upcomingFollowUpList.length === 0 ? (
-                  <p className="text-xs text-slate-500 dark:text-slate-400 py-4 text-center">
+                  <p className="text-xs text-zinc-500 dark:text-zinc-400 py-4 text-center">
                     No pending follow-ups scheduled.
                   </p>
                 ) : (
-                  <div className="divide-y divide-slate-100 dark:divide-slate-800/80">
+                  <div className="divide-y divide-zinc-100 dark:divide-zinc-800">
                     {metrics.upcomingFollowUpList.map(({ followUp, visitor }) => (
                       <div key={followUp.id} className="py-2.5 first:pt-0 last:pb-0 space-y-1.5">
                         <div className="flex items-center justify-between gap-2">
                           <button
                             type="button"
                             onClick={() => onSelectVisitor(visitor)}
-                            className="text-sm font-medium text-slate-900 dark:text-slate-100 hover:text-blue-600 dark:hover:text-blue-400 truncate"
+                            className="text-sm font-medium text-zinc-950 dark:text-zinc-50 hover:text-blue-600 dark:hover:text-blue-400 truncate"
                           >
                             {visitor.fullName}
                           </button>
                           <a
                             href={`tel:${visitor.contactNumber}`}
                             aria-label={`Call ${visitor.fullName}`}
-                            className="p-1.5 rounded-md text-slate-500 hover:text-blue-600 hover:bg-slate-100 dark:hover:bg-slate-800"
+                            className="p-1.5 rounded-lg text-zinc-500 hover:text-blue-600 hover:bg-zinc-100 dark:hover:bg-zinc-800"
                           >
                             <Phone className="h-3.5 w-3.5" />
                           </a>
                         </div>
-                        <div className="flex items-center gap-2 text-xs text-slate-500 dark:text-slate-400">
+                        <div className="flex items-center gap-2 text-xs text-zinc-500 dark:text-zinc-400">
                           <span className="font-mono-num">{followUp.scheduledDate}</span>
                           <span aria-hidden="true">·</span>
                           <span className="font-mono-num">{followUp.preferredTime}</span>
@@ -370,8 +388,8 @@ export const DashboardView: React.FC<DashboardViewProps> = ({
                 )}
               </div>
 
-              <div className="rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-[#121826] p-5">
-                <h3 className="font-display text-sm font-semibold text-slate-900 dark:text-slate-100 mb-3">
+              <div className="rounded-2xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-[#18181B] p-5">
+                <h3 className="font-display text-sm font-semibold text-zinc-950 dark:text-zinc-50 mb-3">
                   Visitor Status Statistics
                 </h3>
                 <StatusDistributionChart

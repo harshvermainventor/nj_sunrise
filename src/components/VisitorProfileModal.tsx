@@ -196,7 +196,7 @@ export const VisitorProfileModal: React.FC<VisitorProfileModalProps> = ({
   };
 
   const inputClass =
-    'w-full rounded-lg border border-slate-200 dark:border-slate-700 bg-white dark:bg-[#0B0F17] px-3 py-2 text-sm text-slate-900 dark:text-slate-100 focus:border-blue-600 focus:outline-none';
+    'w-full rounded-xl border border-zinc-200 dark:border-zinc-700 bg-zinc-50 dark:bg-zinc-900 px-3 py-2 text-sm text-zinc-900 dark:text-zinc-100 placeholder:text-zinc-400 dark:placeholder:text-zinc-500 focus:border-blue-600 dark:focus:border-blue-500 focus:bg-white dark:focus:bg-zinc-900 focus:outline-none';
 
   return (
     <div
@@ -205,21 +205,21 @@ export const VisitorProfileModal: React.FC<VisitorProfileModalProps> = ({
       aria-labelledby="profile-modal-title"
       className="fixed inset-0 z-50 flex items-end sm:items-center justify-center bg-black/60 sm:p-4"
     >
-      <div className="w-full max-w-3xl max-h-[92vh] flex flex-col rounded-t-2xl sm:rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-[#121826] shadow-2xl overflow-hidden">
+      <div className="w-full max-w-3xl max-h-[92vh] flex flex-col rounded-t-2xl sm:rounded-2xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-[#18181B] shadow-2xl overflow-hidden">
         {/* Header */}
-        <div className="flex items-start justify-between gap-4 px-5 py-4 border-b border-slate-200 dark:border-slate-800">
+        <div className="flex items-start justify-between gap-4 px-5 py-4 border-b border-zinc-200 dark:border-zinc-800">
           <div className="min-w-0 space-y-1.5">
             <div className="flex flex-wrap items-center gap-2.5">
               <h2
                 id="profile-modal-title"
-                className="font-display text-lg font-bold text-slate-900 dark:text-slate-100 truncate"
+                className="font-display text-lg font-bold text-zinc-950 dark:text-zinc-50 truncate"
               >
                 {visitor.fullName}
               </h2>
               <VisitorStageText status={visitor.visitorStatus} />
             </div>
-            <div className="flex flex-wrap items-center gap-2 text-xs text-slate-500 dark:text-slate-400">
-              <span className="font-mono-num text-slate-700 dark:text-slate-300">
+            <div className="flex flex-wrap items-center gap-2 text-xs text-zinc-500 dark:text-zinc-400">
+              <span className="font-mono-num text-zinc-700 dark:text-zinc-300">
                 {visitor.contactNumber}
               </span>
               <span aria-hidden="true">·</span>
@@ -240,17 +240,17 @@ export const VisitorProfileModal: React.FC<VisitorProfileModalProps> = ({
             type="button"
             onClick={onClose}
             aria-label="Close visitor profile"
-            className="p-2 rounded-lg text-slate-500 hover:bg-slate-100 dark:hover:bg-slate-800 hover:text-slate-800 dark:hover:text-slate-200"
+            className="p-2 rounded-xl text-zinc-500 hover:bg-zinc-100 dark:hover:bg-zinc-800 hover:text-zinc-900 dark:hover:text-zinc-100 transition-colors"
           >
             <X className="h-5 w-5" />
           </button>
         </div>
 
         {/* Action Toolbar */}
-        <div className="flex flex-wrap items-center gap-2 px-5 py-3 bg-slate-50 dark:bg-[#0B0F17]/60 border-b border-slate-200 dark:border-slate-800">
+        <div className="flex flex-wrap items-center gap-2 px-5 py-3 bg-zinc-50 dark:bg-zinc-900/70 border-b border-zinc-200 dark:border-zinc-800">
           <a
             href={`tel:${visitor.contactNumber}`}
-            className="inline-flex items-center gap-1.5 rounded-lg bg-blue-600 px-3 py-1.5 text-xs font-medium text-white hover:bg-blue-700"
+            className="inline-flex items-center gap-1.5 rounded-xl bg-blue-600 px-3 py-1.5 text-xs font-semibold text-white hover:bg-blue-700 transition-colors"
           >
             <Phone className="h-3.5 w-3.5" aria-hidden="true" />
             Call Visitor
@@ -260,7 +260,7 @@ export const VisitorProfileModal: React.FC<VisitorProfileModalProps> = ({
               href={`https://wa.me/${waPhone}`}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-1.5 rounded-lg border border-emerald-200 dark:border-emerald-800 bg-emerald-50 dark:bg-emerald-950/50 px-3 py-1.5 text-xs font-medium text-emerald-700 dark:text-emerald-300 hover:bg-emerald-100 dark:hover:bg-emerald-950"
+              className="inline-flex items-center gap-1.5 rounded-xl border border-emerald-200 dark:border-emerald-800 bg-emerald-50 dark:bg-emerald-950/50 px-3 py-1.5 text-xs font-medium text-emerald-700 dark:text-emerald-300 hover:bg-emerald-100 dark:hover:bg-emerald-950 transition-colors"
             >
               <MessageCircle className="h-3.5 w-3.5" aria-hidden="true" />
               WhatsApp
@@ -269,10 +269,10 @@ export const VisitorProfileModal: React.FC<VisitorProfileModalProps> = ({
           <button
             type="button"
             onClick={() => setMode(mode === 'add-visit' ? 'view' : 'add-visit')}
-            className={`inline-flex items-center gap-1.5 rounded-lg border px-3 py-1.5 text-xs font-medium transition-colors ${
+            className={`inline-flex items-center gap-1.5 rounded-xl border px-3 py-1.5 text-xs font-medium transition-colors ${
               mode === 'add-visit'
-                ? 'bg-slate-900 text-white border-slate-900 dark:bg-slate-100 dark:text-slate-900'
-                : 'border-slate-200 dark:border-slate-700 text-slate-700 dark:text-slate-200 hover:bg-white dark:hover:bg-slate-800'
+                ? 'bg-zinc-900 text-white border-zinc-900 dark:bg-zinc-100 dark:text-zinc-900 dark:border-zinc-100'
+                : 'border-zinc-200 dark:border-zinc-700 bg-white dark:bg-zinc-900 text-zinc-700 dark:text-zinc-200 hover:bg-zinc-100 dark:hover:bg-zinc-800'
             }`}
           >
             <CalendarPlus className="h-3.5 w-3.5" aria-hidden="true" />
@@ -281,10 +281,10 @@ export const VisitorProfileModal: React.FC<VisitorProfileModalProps> = ({
           <button
             type="button"
             onClick={() => setMode(mode === 'edit' ? 'view' : 'edit')}
-            className={`inline-flex items-center gap-1.5 rounded-lg border px-3 py-1.5 text-xs font-medium transition-colors ${
+            className={`inline-flex items-center gap-1.5 rounded-xl border px-3 py-1.5 text-xs font-medium transition-colors ${
               mode === 'edit'
-                ? 'bg-slate-900 text-white border-slate-900 dark:bg-slate-100 dark:text-slate-900'
-                : 'border-slate-200 dark:border-slate-700 text-slate-700 dark:text-slate-200 hover:bg-white dark:hover:bg-slate-800'
+                ? 'bg-zinc-900 text-white border-zinc-900 dark:bg-zinc-100 dark:text-zinc-900 dark:border-zinc-100'
+                : 'border-zinc-200 dark:border-zinc-700 bg-white dark:bg-zinc-900 text-zinc-700 dark:text-zinc-200 hover:bg-zinc-100 dark:hover:bg-zinc-800'
             }`}
           >
             <Edit3 className="h-3.5 w-3.5" aria-hidden="true" />
@@ -293,7 +293,7 @@ export const VisitorProfileModal: React.FC<VisitorProfileModalProps> = ({
           <button
             type="button"
             onClick={() => setConfirmDelete(true)}
-            className="ml-auto inline-flex items-center gap-1.5 rounded-lg border border-red-200 dark:border-red-900/70 px-3 py-1.5 text-xs font-medium text-red-700 dark:text-red-400 hover:bg-red-50 dark:hover:bg-red-950/40"
+            className="ml-auto inline-flex items-center gap-1.5 rounded-xl border border-red-200 dark:border-red-900/70 px-3 py-1.5 text-xs font-medium text-red-700 dark:text-red-400 hover:bg-red-50 dark:hover:bg-red-950/40 transition-colors"
           >
             <Trash2 className="h-3.5 w-3.5" aria-hidden="true" />
             Delete
@@ -311,7 +311,7 @@ export const VisitorProfileModal: React.FC<VisitorProfileModalProps> = ({
                 <button
                   type="button"
                   onClick={() => setConfirmDelete(false)}
-                  className="px-3 py-1.5 rounded-lg border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-900 text-xs font-medium"
+                  className="px-3 py-1.5 rounded-xl border border-zinc-300 dark:border-zinc-700 bg-white dark:bg-zinc-900 text-xs font-medium text-zinc-700 dark:text-zinc-200"
                 >
                   Cancel
                 </button>
@@ -321,7 +321,7 @@ export const VisitorProfileModal: React.FC<VisitorProfileModalProps> = ({
                     onDeleteVisitor(visitor.id);
                     onClose();
                   }}
-                  className="px-3 py-1.5 rounded-lg bg-red-600 text-xs font-semibold text-white hover:bg-red-700"
+                  className="px-3 py-1.5 rounded-xl bg-red-600 text-xs font-semibold text-white hover:bg-red-700"
                 >
                   Confirm Delete
                 </button>
@@ -332,9 +332,9 @@ export const VisitorProfileModal: React.FC<VisitorProfileModalProps> = ({
           {mode === 'edit' && (
             <form
               onSubmit={handleSaveEdit}
-              className="rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-[#0B0F17] p-4 space-y-4"
+              className="rounded-2xl border border-zinc-200 dark:border-zinc-800 bg-zinc-50 dark:bg-zinc-900/60 p-4 space-y-4"
             >
-              <h3 className="font-display text-sm font-semibold text-slate-900 dark:text-slate-100">
+              <h3 className="font-display text-sm font-semibold text-zinc-950 dark:text-zinc-50">
                 Edit Visitor Profile
               </h3>
               {editError && (
@@ -344,7 +344,7 @@ export const VisitorProfileModal: React.FC<VisitorProfileModalProps> = ({
               )}
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                 <div>
-                  <label htmlFor="edit-full-name" className="block text-xs text-slate-600 dark:text-slate-400 mb-1">
+                  <label htmlFor="edit-full-name" className="block text-xs text-zinc-600 dark:text-zinc-400 mb-1">
                     Full Name
                   </label>
                   <input
@@ -357,7 +357,7 @@ export const VisitorProfileModal: React.FC<VisitorProfileModalProps> = ({
                   />
                 </div>
                 <div>
-                  <label htmlFor="edit-contact-number" className="block text-xs text-slate-600 dark:text-slate-400 mb-1">
+                  <label htmlFor="edit-contact-number" className="block text-xs text-zinc-600 dark:text-zinc-400 mb-1">
                     Contact Number (10 digits)
                   </label>
                   <input
@@ -372,7 +372,7 @@ export const VisitorProfileModal: React.FC<VisitorProfileModalProps> = ({
                   />
                 </div>
                 <div>
-                  <label htmlFor="edit-quoted-rent" className="block text-xs text-slate-600 dark:text-slate-400 mb-1">
+                  <label htmlFor="edit-quoted-rent" className="block text-xs text-zinc-600 dark:text-zinc-400 mb-1">
                     Rent Said to Visitor ({currency}/month)
                   </label>
                   <input
@@ -385,7 +385,7 @@ export const VisitorProfileModal: React.FC<VisitorProfileModalProps> = ({
                   />
                 </div>
                 <div>
-                  <label htmlFor="edit-timeline" className="block text-xs text-slate-600 dark:text-slate-400 mb-1">
+                  <label htmlFor="edit-timeline" className="block text-xs text-zinc-600 dark:text-zinc-400 mb-1">
                     Expected Move-in Date
                   </label>
                   <CalendarDatePicker
@@ -399,7 +399,7 @@ export const VisitorProfileModal: React.FC<VisitorProfileModalProps> = ({
                   />
                 </div>
                 <div>
-                  <label htmlFor="edit-budget-min" className="block text-xs text-slate-600 dark:text-slate-400 mb-1">
+                  <label htmlFor="edit-budget-min" className="block text-xs text-zinc-600 dark:text-zinc-400 mb-1">
                     Budget Range Min ({currency}/month)
                   </label>
                   <input
@@ -412,7 +412,7 @@ export const VisitorProfileModal: React.FC<VisitorProfileModalProps> = ({
                   />
                 </div>
                 <div>
-                  <label htmlFor="edit-budget-max" className="block text-xs text-slate-600 dark:text-slate-400 mb-1">
+                  <label htmlFor="edit-budget-max" className="block text-xs text-zinc-600 dark:text-zinc-400 mb-1">
                     Budget Range Max ({currency}/month)
                   </label>
                   <input
@@ -425,7 +425,7 @@ export const VisitorProfileModal: React.FC<VisitorProfileModalProps> = ({
                   />
                 </div>
                 <div>
-                  <label htmlFor="edit-visit-status" className="block text-xs text-slate-600 dark:text-slate-400 mb-1">
+                  <label htmlFor="edit-visit-status" className="block text-xs text-zinc-600 dark:text-zinc-400 mb-1">
                     Visit Status (independent)
                   </label>
                   <select
@@ -441,7 +441,7 @@ export const VisitorProfileModal: React.FC<VisitorProfileModalProps> = ({
                   </select>
                 </div>
                 <div>
-                  <label htmlFor="edit-pet-status" className="block text-xs text-slate-600 dark:text-slate-400 mb-1">
+                  <label htmlFor="edit-pet-status" className="block text-xs text-zinc-600 dark:text-zinc-400 mb-1">
                     Pet Status (independent)
                   </label>
                   <select
@@ -458,7 +458,7 @@ export const VisitorProfileModal: React.FC<VisitorProfileModalProps> = ({
                   </select>
                 </div>
                 <div className="sm:col-span-2">
-                  <label htmlFor="edit-pipeline-status" className="block text-xs text-slate-600 dark:text-slate-400 mb-1">
+                  <label htmlFor="edit-pipeline-status" className="block text-xs text-zinc-600 dark:text-zinc-400 mb-1">
                     Visitor Pipeline Status
                   </label>
                   <select
@@ -475,7 +475,7 @@ export const VisitorProfileModal: React.FC<VisitorProfileModalProps> = ({
                   </select>
                 </div>
                 <div className="sm:col-span-2">
-                  <label className="block text-xs text-slate-600 dark:text-slate-400 mb-1">
+                  <label className="block text-xs text-zinc-600 dark:text-zinc-400 mb-1">
                     Visitor Description
                   </label>
                   <textarea
@@ -486,7 +486,7 @@ export const VisitorProfileModal: React.FC<VisitorProfileModalProps> = ({
                   />
                 </div>
                 <div className="sm:col-span-2">
-                  <label className="block text-xs text-slate-600 dark:text-slate-400 mb-1">
+                  <label className="block text-xs text-zinc-600 dark:text-zinc-400 mb-1">
                     Additional Requirements
                   </label>
                   <textarea
@@ -501,13 +501,13 @@ export const VisitorProfileModal: React.FC<VisitorProfileModalProps> = ({
                 <button
                   type="button"
                   onClick={() => setMode('view')}
-                  className="px-4 py-2 rounded-lg border border-slate-200 dark:border-slate-700 text-xs font-medium"
+                  className="px-4 py-2 rounded-xl border border-zinc-200 dark:border-zinc-700 bg-white dark:bg-zinc-900 text-xs font-semibold text-zinc-700 dark:text-zinc-200"
                 >
                   Cancel
                 </button>
                 <button
                   type="submit"
-                  className="px-4 py-2 rounded-lg bg-blue-600 text-xs font-semibold text-white hover:bg-blue-700"
+                  className="px-4 py-2 rounded-xl bg-blue-600 text-xs font-semibold text-white hover:bg-blue-700"
                 >
                   Save Changes
                 </button>
@@ -518,19 +518,19 @@ export const VisitorProfileModal: React.FC<VisitorProfileModalProps> = ({
           {mode === 'add-visit' && (
             <form
               onSubmit={handleSaveNewVisit}
-              className="rounded-xl border border-blue-200 dark:border-blue-800/70 bg-blue-50/50 dark:bg-blue-950/20 p-4 space-y-4"
+              className="rounded-2xl border border-blue-200 dark:border-blue-800/70 bg-blue-50/50 dark:bg-blue-950/20 p-4 space-y-4"
             >
               <div>
-                <h3 className="font-display text-sm font-semibold text-slate-900 dark:text-slate-100">
+                <h3 className="font-display text-sm font-semibold text-zinc-950 dark:text-zinc-50">
                   Log Repeat Visit for {visitor.fullName}
                 </h3>
-                <p className="text-xs text-slate-500 dark:text-slate-400">
+                <p className="text-xs text-zinc-500 dark:text-zinc-400">
                   Previous visit history will remain preserved.
                 </p>
               </div>
               <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
                 <div>
-                  <label className="block text-xs text-slate-600 dark:text-slate-400 mb-1">
+                  <label className="block text-xs text-zinc-600 dark:text-zinc-400 mb-1">
                     Visit Date
                   </label>
                   <CalendarDatePicker
@@ -542,7 +542,7 @@ export const VisitorProfileModal: React.FC<VisitorProfileModalProps> = ({
                 </div>
                 {newVisitOutcome !== 'Yes' && (
                   <div>
-                    <label className="block text-xs text-slate-600 dark:text-slate-400 mb-1">
+                    <label className="block text-xs text-zinc-600 dark:text-zinc-400 mb-1">
                       Visit Time
                     </label>
                     <TimePicker
@@ -554,7 +554,7 @@ export const VisitorProfileModal: React.FC<VisitorProfileModalProps> = ({
                   </div>
                 )}
                 <div>
-                  <label className="block text-xs text-slate-600 dark:text-slate-400 mb-1">
+                  <label className="block text-xs text-zinc-600 dark:text-zinc-400 mb-1">
                     Number of People Staying
                   </label>
                   <input
@@ -565,7 +565,7 @@ export const VisitorProfileModal: React.FC<VisitorProfileModalProps> = ({
                   />
                 </div>
                 <div>
-                  <label className="block text-xs text-slate-600 dark:text-slate-400 mb-1">
+                  <label className="block text-xs text-zinc-600 dark:text-zinc-400 mb-1">
                     Actually Visited?
                   </label>
                   <select
@@ -580,7 +580,7 @@ export const VisitorProfileModal: React.FC<VisitorProfileModalProps> = ({
                   </select>
                 </div>
                 <div>
-                  <label className="block text-xs text-slate-600 dark:text-slate-400 mb-1">
+                  <label className="block text-xs text-zinc-600 dark:text-zinc-400 mb-1">
                     Updated Status
                   </label>
                   <select
@@ -596,7 +596,7 @@ export const VisitorProfileModal: React.FC<VisitorProfileModalProps> = ({
                   </select>
                 </div>
                 <div>
-                  <label className="block text-xs text-slate-600 dark:text-slate-400 mb-1">
+                  <label className="block text-xs text-zinc-600 dark:text-zinc-400 mb-1">
                     Rent Said ({currency})
                   </label>
                   <input
@@ -608,7 +608,7 @@ export const VisitorProfileModal: React.FC<VisitorProfileModalProps> = ({
                   />
                 </div>
                 <div>
-                  <label className="block text-xs text-slate-600 dark:text-slate-400 mb-1">
+                  <label className="block text-xs text-zinc-600 dark:text-zinc-400 mb-1">
                     Budget Min ({currency})
                   </label>
                   <input
@@ -620,7 +620,7 @@ export const VisitorProfileModal: React.FC<VisitorProfileModalProps> = ({
                   />
                 </div>
                 <div>
-                  <label className="block text-xs text-slate-600 dark:text-slate-400 mb-1">
+                  <label className="block text-xs text-zinc-600 dark:text-zinc-400 mb-1">
                     Budget Max ({currency})
                   </label>
                   <input
@@ -632,7 +632,7 @@ export const VisitorProfileModal: React.FC<VisitorProfileModalProps> = ({
                   />
                 </div>
                 <div className="sm:col-span-3">
-                  <label className="block text-xs text-slate-600 dark:text-slate-400 mb-1">
+                  <label className="block text-xs text-zinc-600 dark:text-zinc-400 mb-1">
                     Visit Notes & Initial Comments
                   </label>
                   <textarea
@@ -644,7 +644,7 @@ export const VisitorProfileModal: React.FC<VisitorProfileModalProps> = ({
                   />
                 </div>
                 <div className="sm:col-span-3">
-                  <label className="block text-xs text-slate-600 dark:text-slate-400 mb-1">
+                  <label className="block text-xs text-zinc-600 dark:text-zinc-400 mb-1">
                     Follow-up Notes (optional)
                   </label>
                   <input
@@ -660,13 +660,13 @@ export const VisitorProfileModal: React.FC<VisitorProfileModalProps> = ({
                 <button
                   type="button"
                   onClick={() => setMode('view')}
-                  className="px-4 py-2 rounded-lg border border-slate-200 dark:border-slate-700 text-xs font-medium"
+                  className="px-4 py-2 rounded-xl border border-zinc-200 dark:border-zinc-700 bg-white dark:bg-zinc-900 text-xs font-semibold text-zinc-700 dark:text-zinc-200"
                 >
                   Cancel
                 </button>
                 <button
                   type="submit"
-                  className="px-4 py-2 rounded-lg bg-blue-600 text-xs font-semibold text-white hover:bg-blue-700"
+                  className="px-4 py-2 rounded-xl bg-blue-600 text-xs font-semibold text-white hover:bg-blue-700"
                 >
                   Save New Visit
                 </button>
@@ -676,15 +676,15 @@ export const VisitorProfileModal: React.FC<VisitorProfileModalProps> = ({
 
           {/* Summary Grid */}
           <section className="grid grid-cols-2 sm:grid-cols-4 gap-3 text-xs">
-            <div className="rounded-lg border border-slate-200 dark:border-slate-800 p-3">
-              <span className="block text-slate-500 dark:text-slate-400">Rent Said</span>
-              <span className="mt-1 block font-mono-num font-semibold text-slate-900 dark:text-slate-100">
+            <div className="rounded-xl border border-zinc-200 dark:border-zinc-800 bg-zinc-50/60 dark:bg-zinc-900/50 p-3">
+              <span className="block text-zinc-500 dark:text-zinc-400">Rent Said</span>
+              <span className="mt-1 block font-mono-num font-semibold text-zinc-950 dark:text-zinc-50">
                 {visitor.quotedRent ? `${formatCurrency(visitor.quotedRent, currency)}/mo` : 'Not specified'}
               </span>
             </div>
-            <div className="rounded-lg border border-slate-200 dark:border-slate-800 p-3">
-              <span className="block text-slate-500 dark:text-slate-400">Budget Range</span>
-              <span className="mt-1 block font-mono-num font-semibold text-slate-900 dark:text-slate-100">
+            <div className="rounded-xl border border-zinc-200 dark:border-zinc-800 bg-zinc-50/60 dark:bg-zinc-900/50 p-3">
+              <span className="block text-zinc-500 dark:text-zinc-400">Budget Range</span>
+              <span className="mt-1 block font-mono-num font-semibold text-zinc-950 dark:text-zinc-50">
                 {formatBudgetRange(
                   {
                     budgetMin: visitor.budgetMin,
@@ -695,15 +695,15 @@ export const VisitorProfileModal: React.FC<VisitorProfileModalProps> = ({
                 )}
               </span>
             </div>
-            <div className="rounded-lg border border-slate-200 dark:border-slate-800 p-3">
-              <span className="block text-slate-500 dark:text-slate-400">Expected Move-in</span>
-              <span className="mt-1 block font-mono-num font-semibold text-slate-900 dark:text-slate-100">
+            <div className="rounded-xl border border-zinc-200 dark:border-zinc-800 bg-zinc-50/60 dark:bg-zinc-900/50 p-3">
+              <span className="block text-zinc-500 dark:text-zinc-400">Expected Move-in</span>
+              <span className="mt-1 block font-mono-num font-semibold text-zinc-950 dark:text-zinc-50">
                 {visitor.moveInTimeline || 'Not specified'}
               </span>
             </div>
-            <div className="rounded-lg border border-slate-200 dark:border-slate-800 p-3">
-              <span className="block text-slate-500 dark:text-slate-400">Latest Visit</span>
-              <span className="mt-1 block font-mono-num font-semibold text-slate-900 dark:text-slate-100">
+            <div className="rounded-xl border border-zinc-200 dark:border-zinc-800 bg-zinc-50/60 dark:bg-zinc-900/50 p-3">
+              <span className="block text-zinc-500 dark:text-zinc-400">Latest Visit</span>
+              <span className="mt-1 block font-mono-num font-semibold text-zinc-950 dark:text-zinc-50">
                 {visitor.latestVisitDate}
                 {visitor.latestVisitTime ? ` · ${visitor.latestVisitTime}` : ''}
               </span>
@@ -714,18 +714,18 @@ export const VisitorProfileModal: React.FC<VisitorProfileModalProps> = ({
             <section className="space-y-2 text-sm">
               {visitor.description && (
                 <div>
-                  <span className="text-xs font-medium text-slate-500 dark:text-slate-400">
+                  <span className="text-xs font-medium text-zinc-500 dark:text-zinc-400">
                     Visitor Description
                   </span>
-                  <p className="mt-0.5 text-slate-800 dark:text-slate-200">{visitor.description}</p>
+                  <p className="mt-0.5 text-zinc-800 dark:text-zinc-200">{visitor.description}</p>
                 </div>
               )}
               {visitor.additionalRequirements && (
                 <div>
-                  <span className="text-xs font-medium text-slate-500 dark:text-slate-400">
+                  <span className="text-xs font-medium text-zinc-500 dark:text-zinc-400">
                     Additional Requirements
                   </span>
-                  <p className="mt-0.5 text-slate-800 dark:text-slate-200">
+                  <p className="mt-0.5 text-zinc-800 dark:text-zinc-200">
                     {visitor.additionalRequirements}
                   </p>
                 </div>
@@ -735,7 +735,7 @@ export const VisitorProfileModal: React.FC<VisitorProfileModalProps> = ({
 
           {/* Complete Visit History (Never Overwritten) */}
           <section className="space-y-3">
-            <h3 className="font-display text-sm font-semibold text-slate-900 dark:text-slate-100">
+            <h3 className="font-display text-sm font-semibold text-zinc-950 dark:text-zinc-50">
               Complete Visit History ({visitor.visits.length})
             </h3>
             <div className="space-y-3">
@@ -743,22 +743,22 @@ export const VisitorProfileModal: React.FC<VisitorProfileModalProps> = ({
                 <div
                   key={visit.id}
                   data-testid="visit-history-item"
-                  className="rounded-xl border border-slate-200 dark:border-slate-800 p-4 space-y-2"
+                  className="rounded-xl border border-zinc-200 dark:border-zinc-800 p-4 space-y-2"
                 >
                   <div className="flex flex-wrap items-center justify-between gap-2">
                     <div className="flex items-center gap-2 text-xs">
-                      <span className="font-semibold text-slate-900 dark:text-slate-100">
+                      <span className="font-semibold text-zinc-950 dark:text-zinc-50">
                         Visit #{visitor.visits.length - index}
                       </span>
                       <span aria-hidden="true">·</span>
-                      <span className="font-mono-num text-slate-700 dark:text-slate-300">
+                      <span className="font-mono-num text-zinc-700 dark:text-zinc-300">
                         {visit.visitDate}
                         {visit.visitTime ? ` at ${visit.visitTime}` : ''}
                       </span>
                       {formatPeopleStayingLabel(visit.peopleCount) && (
                         <>
                           <span aria-hidden="true">·</span>
-                          <span>{formatPeopleStayingLabel(visit.peopleCount)}</span>
+                          <span className="text-zinc-600 dark:text-zinc-300">{formatPeopleStayingLabel(visit.peopleCount)}</span>
                         </>
                       )}
                     </div>
@@ -771,7 +771,7 @@ export const VisitorProfileModal: React.FC<VisitorProfileModalProps> = ({
                       <PetStatusBadge petStatus={visitor.petStatus} compact />
                     </div>
                   </div>
-                  <div className="text-xs text-slate-500 dark:text-slate-400 flex flex-wrap gap-2">
+                  <div className="text-xs text-zinc-500 dark:text-zinc-400 flex flex-wrap gap-2">
                     <span>Status: {visit.visitorStatus}</span>
                     {visit.quotedRent ? (
                       <>
@@ -795,12 +795,12 @@ export const VisitorProfileModal: React.FC<VisitorProfileModalProps> = ({
                     </span>
                   </div>
                   {visit.initialComments && (
-                    <p className="text-xs text-slate-700 dark:text-slate-300">
+                    <p className="text-xs text-zinc-700 dark:text-zinc-300">
                       <strong className="font-medium">Comments:</strong> {visit.initialComments}
                     </p>
                   )}
                   {visit.followUpComments && (
-                    <p className="text-xs text-slate-600 dark:text-slate-400">
+                    <p className="text-xs text-zinc-600 dark:text-zinc-400">
                       <strong className="font-medium">Follow-up note:</strong> {visit.followUpComments}
                     </p>
                   )}
@@ -812,7 +812,7 @@ export const VisitorProfileModal: React.FC<VisitorProfileModalProps> = ({
           {/* Follow-ups & Quick Add Follow-up */}
           <section className="space-y-3">
             <div className="flex items-center justify-between">
-              <h3 className="font-display text-sm font-semibold text-slate-900 dark:text-slate-100">
+              <h3 className="font-display text-sm font-semibold text-zinc-950 dark:text-zinc-50">
                 Follow-ups ({visitor.followUps.length})
               </h3>
               <button
@@ -827,7 +827,7 @@ export const VisitorProfileModal: React.FC<VisitorProfileModalProps> = ({
             {showFollowUpForm && (
               <form
                 onSubmit={handleAddFollowUpSubmit}
-                className="rounded-lg border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-[#0B0F17] p-3.5 space-y-3"
+                className="rounded-xl border border-zinc-200 dark:border-zinc-800 bg-zinc-50 dark:bg-zinc-900/60 p-3.5 space-y-3"
               >
                 <div className="grid grid-cols-1 sm:grid-cols-3 gap-2.5">
                   <CalendarDatePicker
@@ -864,7 +864,7 @@ export const VisitorProfileModal: React.FC<VisitorProfileModalProps> = ({
                   />
                   <button
                     type="submit"
-                    className="px-4 py-2 rounded-lg bg-blue-600 text-xs font-medium text-white hover:bg-blue-700 whitespace-nowrap"
+                    className="px-4 py-2 rounded-xl bg-blue-600 text-xs font-semibold text-white hover:bg-blue-700 whitespace-nowrap"
                   >
                     Schedule
                   </button>
@@ -873,22 +873,22 @@ export const VisitorProfileModal: React.FC<VisitorProfileModalProps> = ({
             )}
 
             {visitor.followUps.length === 0 ? (
-              <p className="text-xs text-slate-500 dark:text-slate-400">
+              <p className="text-xs text-zinc-500 dark:text-zinc-400">
                 No follow-ups logged for this visitor yet.
               </p>
             ) : (
-              <div className="divide-y divide-slate-100 dark:divide-slate-800 rounded-xl border border-slate-200 dark:border-slate-800">
+              <div className="divide-y divide-zinc-100 dark:divide-zinc-800 rounded-xl border border-zinc-200 dark:border-zinc-800">
                 {visitor.followUps.map((f) => (
                   <div key={f.id} className="p-3 flex items-center justify-between gap-3 text-xs">
                     <div className="space-y-0.5">
-                      <div className="font-medium text-slate-900 dark:text-slate-100">
+                      <div className="font-medium text-zinc-950 dark:text-zinc-50">
                         <span className="font-mono-num">{f.scheduledDate}</span> at{' '}
                         <span className="font-mono-num">{f.preferredTime}</span> · {f.method}
                       </div>
-                      <div className="text-slate-500 dark:text-slate-400">{f.notes}</div>
+                      <div className="text-zinc-500 dark:text-zinc-400">{f.notes}</div>
                     </div>
                     <span
-                      className={`px-2 py-0.5 rounded text-[11px] font-medium ${
+                      className={`px-2 py-0.5 rounded-md text-[11px] font-medium ${
                         f.status === 'Completed'
                           ? 'bg-emerald-50 text-emerald-700 dark:bg-emerald-950/60 dark:text-emerald-300'
                           : 'bg-blue-50 text-blue-700 dark:bg-blue-950/60 dark:text-blue-300'
@@ -904,7 +904,7 @@ export const VisitorProfileModal: React.FC<VisitorProfileModalProps> = ({
 
           {/* Comments & Conversation Log */}
           <section className="space-y-3">
-            <h3 className="font-display text-sm font-semibold text-slate-900 dark:text-slate-100">
+            <h3 className="font-display text-sm font-semibold text-zinc-950 dark:text-zinc-50">
               Conversation & Comment History ({visitor.comments.length})
             </h3>
             <form onSubmit={handleAddCommentSubmit} className="flex gap-2">
@@ -917,7 +917,7 @@ export const VisitorProfileModal: React.FC<VisitorProfileModalProps> = ({
               />
               <button
                 type="submit"
-                className="inline-flex items-center gap-1.5 px-4 py-2 rounded-lg bg-slate-900 dark:bg-slate-100 text-xs font-medium text-white dark:text-slate-900 hover:bg-slate-800 dark:hover:bg-white whitespace-nowrap"
+                className="inline-flex items-center gap-1.5 px-4 py-2 rounded-xl bg-zinc-900 dark:bg-zinc-100 text-xs font-semibold text-white dark:text-zinc-900 hover:bg-zinc-800 dark:hover:bg-zinc-200 whitespace-nowrap transition-colors"
               >
                 <MessageSquarePlus className="h-3.5 w-3.5" aria-hidden="true" />
                 Add Note
@@ -928,15 +928,15 @@ export const VisitorProfileModal: React.FC<VisitorProfileModalProps> = ({
                 {visitor.comments.map((cmt) => (
                   <div
                     key={cmt.id}
-                    className="rounded-lg border border-slate-200 dark:border-slate-800 px-3.5 py-2.5 text-xs space-y-1"
+                    className="rounded-xl border border-zinc-200 dark:border-zinc-800 px-3.5 py-2.5 text-xs space-y-1"
                   >
-                    <div className="flex items-center justify-between text-slate-400">
+                    <div className="flex items-center justify-between text-zinc-400 dark:text-zinc-500">
                       <span>{cmt.type}</span>
                       <span className="font-mono-num">
                         {new Date(cmt.createdAt).toLocaleString()}
                       </span>
                     </div>
-                    <p className="text-slate-800 dark:text-slate-200">{cmt.text}</p>
+                    <p className="text-zinc-800 dark:text-zinc-200">{cmt.text}</p>
                   </div>
                 ))}
               </div>

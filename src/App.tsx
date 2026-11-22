@@ -30,13 +30,9 @@ import {
   tryAutoRestoreFromNativeDocuments,
 } from './utils/deviceFileSync';
 import { checkAndTriggerDueFollowUpNotifications } from './utils/notifications';
-import {
-  applyAndSaveTheme,
-  getSavedTheme,
-  loadCrmStateAsync,
-  loadCrmStateSync,
-  saveCrmState,
-} from './utils/storage';
+import { applyAndSaveTheme, getSavedTheme, loadCrmStateAsync, loadCrmStateSync, saveCrmState, subscribeToRealtimeSync } from './utils/storage';
+import { PublicPortalView } from './components/PublicPortalView';
+
 
 export default function App() {
   const initialSync = useMemo(() => loadCrmStateSync(), []);
@@ -100,6 +96,17 @@ export default function App() {
     };
   }, [refreshDeviceSyncStatus]);
 
+  // Real-time sync subscription across tabs and website / public portal enquiries
+  useEffect(() => {
+    const unsubscribe = subscribeToRealtimeSync((newState) => {
+      setApartment(newState.apartment);
+      setVisitors(newState.visitors);
+    });
+    return () => {
+      unsubscribe();
+    };
+  }, []);
+
   // Persist changes locally + auto-update linked external phone/folder file whenever apartment or visitors change
   useEffect(() => {
     if (!hydrated) return;
@@ -115,6 +122,7 @@ export default function App() {
   useEffect(() => {
     applyAndSaveTheme(theme);
   }, [theme]);
+
 
   // Periodically check due local notifications without any external servers
   useEffect(() => {
@@ -348,6 +356,18 @@ export default function App() {
     }
   };
 
+  if (activeView === 'public-portal') {
+    return (
+      <PublicPortalView
+        apartment={apartment}
+        visitors={visitors}
+        currency={apartment.currency}
+        onRegisterNew={handleRegisterNew}
+        onReturnToAdmin={() => setActiveView('dashboard')}
+      />
+    );
+  }
+
   return (
     <AppShell
       activeView={activeView}
@@ -435,3 +455,4 @@ export default function App() {
     </AppShell>
   );
 }
+

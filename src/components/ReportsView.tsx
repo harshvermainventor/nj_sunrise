@@ -74,12 +74,12 @@ export const ReportsView: React.FC<ReportsViewProps> = ({ apartment, visitors })
   };
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-5">
       {/* Filter & Export Bar */}
-      <section className="rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-[#121826] p-4 flex flex-col lg:flex-row lg:items-end lg:justify-between gap-4">
+      <section className="rounded-2xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-[#18181B] p-4 sm:p-5 flex flex-col lg:flex-row lg:items-end lg:justify-between gap-4">
         <div className="flex flex-wrap items-end gap-3">
-          <div className="min-w-[160px]">
-            <label htmlFor="rep-from" className="block text-[11px] font-medium text-slate-500 dark:text-slate-400 mb-1">
+          <div className="min-w-[160px] flex-1 sm:flex-none">
+            <label htmlFor="rep-from" className="block text-[11px] font-medium text-zinc-500 dark:text-zinc-400 mb-1.5">
               From Date
             </label>
             <CalendarDatePicker
@@ -92,8 +92,8 @@ export const ReportsView: React.FC<ReportsViewProps> = ({ apartment, visitors })
               ariaLabel="From Date"
             />
           </div>
-          <div className="min-w-[160px]">
-            <label htmlFor="rep-to" className="block text-[11px] font-medium text-slate-500 dark:text-slate-400 mb-1">
+          <div className="min-w-[160px] flex-1 sm:flex-none">
+            <label htmlFor="rep-to" className="block text-[11px] font-medium text-zinc-500 dark:text-zinc-400 mb-1.5">
               To Date
             </label>
             <CalendarDatePicker
@@ -126,7 +126,7 @@ export const ReportsView: React.FC<ReportsViewProps> = ({ apartment, visitors })
             type="button"
             onClick={handleExportCsv}
             disabled={scopedVisitors.length === 0}
-            className="inline-flex items-center gap-1.5 rounded-lg border border-slate-200 dark:border-slate-700 px-3.5 py-2 text-xs font-medium text-slate-700 dark:text-slate-200 hover:bg-slate-50 dark:hover:bg-slate-800 disabled:opacity-50"
+            className="inline-flex items-center gap-1.5 rounded-xl border border-zinc-200 dark:border-zinc-700 bg-zinc-50 dark:bg-zinc-900 px-3.5 py-2 text-xs font-semibold text-zinc-700 dark:text-zinc-200 hover:bg-zinc-100 dark:hover:bg-zinc-800 disabled:opacity-50 transition-colors"
           >
             <Download className="h-3.5 w-3.5" aria-hidden="true" />
             Export CSV
@@ -135,7 +135,7 @@ export const ReportsView: React.FC<ReportsViewProps> = ({ apartment, visitors })
             type="button"
             onClick={handleExportJson}
             disabled={scopedVisitors.length === 0}
-            className="inline-flex items-center gap-1.5 rounded-lg bg-blue-600 px-3.5 py-2 text-xs font-semibold text-white hover:bg-blue-700 disabled:opacity-50"
+            className="inline-flex items-center gap-1.5 rounded-xl bg-blue-600 px-3.5 py-2 text-xs font-semibold text-white hover:bg-blue-700 disabled:opacity-50 transition-colors"
           >
             <FileJson className="h-3.5 w-3.5" aria-hidden="true" />
             Export JSON
@@ -145,27 +145,27 @@ export const ReportsView: React.FC<ReportsViewProps> = ({ apartment, visitors })
 
       {/* Conversion & Summary Cards */}
       <section className="grid grid-cols-2 sm:grid-cols-4 gap-3.5">
-        <div className="rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-[#121826] p-4">
-          <span className="text-xs text-slate-500 dark:text-slate-400">Visitors in Range</span>
-          <div className="mt-1 font-display text-2xl font-bold font-mono-num text-slate-900 dark:text-slate-100">
+        <div className="rounded-2xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-[#18181B] p-4 sm:p-5">
+          <span className="text-xs font-medium text-zinc-500 dark:text-zinc-400">Visitors in Range</span>
+          <div className="mt-1.5 font-display text-2xl sm:text-3xl font-bold font-mono-num text-zinc-950 dark:text-zinc-50">
             {metrics.filteredVisitorCount}
           </div>
         </div>
-        <div className="rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-[#121826] p-4">
-          <span className="text-xs text-slate-500 dark:text-slate-400">Interested / Negotiating</span>
-          <div className="mt-1 font-display text-2xl font-bold font-mono-num text-blue-600 dark:text-blue-400">
+        <div className="rounded-2xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-[#18181B] p-4 sm:p-5">
+          <span className="text-xs font-medium text-zinc-500 dark:text-zinc-400">Interested / Negotiating</span>
+          <div className="mt-1.5 font-display text-2xl sm:text-3xl font-bold font-mono-num text-blue-600 dark:text-blue-400">
             {metrics.interestedVisitors}
           </div>
         </div>
-        <div className="rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-[#121826] p-4">
-          <span className="text-xs text-slate-500 dark:text-slate-400">Finalised Deals</span>
-          <div className="mt-1 font-display text-2xl font-bold font-mono-num text-emerald-600 dark:text-emerald-400">
+        <div className="rounded-2xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-[#18181B] p-4 sm:p-5">
+          <span className="text-xs font-medium text-zinc-500 dark:text-zinc-400">Finalised Deals</span>
+          <div className="mt-1.5 font-display text-2xl sm:text-3xl font-bold font-mono-num text-emerald-600 dark:text-emerald-400">
             {metrics.finalisedDeals}
           </div>
         </div>
-        <div className="rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-[#121826] p-4">
-          <span className="text-xs text-slate-500 dark:text-slate-400">Conversion Rate</span>
-          <div className="mt-1 font-display text-2xl font-bold font-mono-num text-slate-900 dark:text-slate-100">
+        <div className="rounded-2xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-[#18181B] p-4 sm:p-5">
+          <span className="text-xs font-medium text-zinc-500 dark:text-zinc-400">Conversion Rate</span>
+          <div className="mt-1.5 font-display text-2xl sm:text-3xl font-bold font-mono-num text-zinc-950 dark:text-zinc-50">
             {metrics.conversionRatePct}%
           </div>
         </div>
@@ -173,16 +173,16 @@ export const ReportsView: React.FC<ReportsViewProps> = ({ apartment, visitors })
 
       {/* Monthly Count & Enquiries */}
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-5">
-        <div className="lg:col-span-2 rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-[#121826] p-5">
-          <h2 className="font-display text-sm font-semibold text-slate-900 dark:text-slate-100 mb-4">
+        <div className="lg:col-span-2 rounded-2xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-[#18181B] p-5">
+          <h2 className="font-display text-sm font-semibold text-zinc-950 dark:text-zinc-50 mb-4">
             Monthly Visitor Count
           </h2>
           <MonthlyTrendsChart data={metrics.monthlyCounts} />
         </div>
 
-        <div className="rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-[#121826] p-5 space-y-5">
+        <div className="rounded-2xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-[#18181B] p-5 space-y-5">
           <div>
-            <h2 className="font-display text-sm font-semibold text-slate-900 dark:text-slate-100 mb-3">
+            <h2 className="font-display text-sm font-semibold text-zinc-950 dark:text-zinc-50 mb-3">
               Rent Budget Fit
             </h2>
             <RentBudgetFitChart
@@ -191,8 +191,8 @@ export const ReportsView: React.FC<ReportsViewProps> = ({ apartment, visitors })
               unspecified={metrics.budgetFitStats.unspecified}
             />
           </div>
-          <div className="pt-4 border-t border-slate-100 dark:border-slate-800">
-            <h2 className="font-display text-sm font-semibold text-slate-900 dark:text-slate-100 mb-3">
+          <div className="pt-4 border-t border-zinc-100 dark:border-zinc-800">
+            <h2 className="font-display text-sm font-semibold text-zinc-950 dark:text-zinc-50 mb-3">
               Rent Budget Distribution
             </h2>
             <BudgetDistributionChart buckets={metrics.budgetDistribution} />
@@ -202,46 +202,46 @@ export const ReportsView: React.FC<ReportsViewProps> = ({ apartment, visitors })
 
       {/* Pet Stats & Visit Outcome Stats */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
-        <div className="rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-[#121826] p-5 space-y-3">
-          <h2 className="font-display text-sm font-semibold text-slate-900 dark:text-slate-100">
+        <div className="rounded-2xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-[#18181B] p-5 space-y-3">
+          <h2 className="font-display text-sm font-semibold text-zinc-950 dark:text-zinc-50">
             Visited vs Not-Visited Statistics
           </h2>
-          <div className="divide-y divide-slate-100 dark:divide-slate-800 text-sm">
+          <div className="divide-y divide-zinc-100 dark:divide-zinc-800 text-sm">
             <div className="py-2.5 flex items-center justify-between">
               <span className="text-emerald-700 dark:text-emerald-400 font-medium">Visited</span>
-              <span className="font-mono-num font-semibold">{metrics.visitStats.visited}</span>
+              <span className="font-mono-num font-semibold text-zinc-950 dark:text-zinc-50">{metrics.visitStats.visited}</span>
             </div>
             <div className="py-2.5 flex items-center justify-between">
-              <span className="text-blue-700 dark:text-blue-400 font-medium">Scheduled</span>
-              <span className="font-mono-num font-semibold">{metrics.visitStats.scheduled}</span>
+              <span className="text-blue-600 dark:text-blue-400 font-medium">Scheduled</span>
+              <span className="font-mono-num font-semibold text-zinc-950 dark:text-zinc-50">{metrics.visitStats.scheduled}</span>
             </div>
             <div className="py-2.5 flex items-center justify-between">
-              <span className="text-red-700 dark:text-red-400 font-medium">Not visited</span>
-              <span className="font-mono-num font-semibold">{metrics.visitStats.notVisited}</span>
+              <span className="text-red-600 dark:text-red-400 font-medium">Not visited</span>
+              <span className="font-mono-num font-semibold text-zinc-950 dark:text-zinc-50">{metrics.visitStats.notVisited}</span>
             </div>
             <div className="py-2.5 flex items-center justify-between">
-              <span className="text-red-700 dark:text-red-400 font-medium">No-show</span>
-              <span className="font-mono-num font-semibold">{metrics.visitStats.noShow}</span>
+              <span className="text-red-600 dark:text-red-400 font-medium">No-show</span>
+              <span className="font-mono-num font-semibold text-zinc-950 dark:text-zinc-50">{metrics.visitStats.noShow}</span>
             </div>
           </div>
         </div>
 
-        <div className="rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-[#121826] p-5 space-y-3">
-          <h2 className="font-display text-sm font-semibold text-slate-900 dark:text-slate-100">
+        <div className="rounded-2xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-[#18181B] p-5 space-y-3">
+          <h2 className="font-display text-sm font-semibold text-zinc-950 dark:text-zinc-50">
             Pet & No-Pet Statistics
           </h2>
-          <div className="divide-y divide-slate-100 dark:divide-slate-800 text-sm">
+          <div className="divide-y divide-zinc-100 dark:divide-zinc-800 text-sm">
             <div className="py-2.5 flex items-center justify-between">
-              <span className="text-red-700 dark:text-red-400 font-medium">Has pets</span>
-              <span className="font-mono-num font-semibold">{metrics.petStats.hasPets}</span>
+              <span className="text-red-600 dark:text-red-400 font-medium">Has pets</span>
+              <span className="font-mono-num font-semibold text-zinc-950 dark:text-zinc-50">{metrics.petStats.hasPets}</span>
             </div>
             <div className="py-2.5 flex items-center justify-between">
               <span className="text-emerald-700 dark:text-emerald-400 font-medium">No pets</span>
-              <span className="font-mono-num font-semibold">{metrics.petStats.noPets}</span>
+              <span className="font-mono-num font-semibold text-zinc-950 dark:text-zinc-50">{metrics.petStats.noPets}</span>
             </div>
             <div className="py-2.5 flex items-center justify-between">
-              <span className="text-slate-600 dark:text-slate-400 font-medium">Not specified</span>
-              <span className="font-mono-num font-semibold">{metrics.petStats.notSpecified}</span>
+              <span className="text-zinc-600 dark:text-zinc-400 font-medium">Not specified</span>
+              <span className="font-mono-num font-semibold text-zinc-950 dark:text-zinc-50">{metrics.petStats.notSpecified}</span>
             </div>
           </div>
         </div>

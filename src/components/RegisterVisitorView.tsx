@@ -353,265 +353,250 @@ export const RegisterVisitorView: React.FC<RegisterVisitorViewProps> = ({
   };
 
   const inputClass =
-    'w-full rounded-lg border border-slate-200 dark:border-slate-700 bg-white dark:bg-[#0B0F17] px-3 py-2.5 text-sm text-slate-900 dark:text-slate-100 placeholder:text-slate-400 focus:border-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-600/20';
-  const labelClass = 'block text-xs font-medium text-slate-700 dark:text-slate-300 mb-1.5';
+    'w-full rounded-xl border border-zinc-200 dark:border-zinc-700 bg-zinc-50 dark:bg-zinc-900 px-3.5 py-2.5 text-sm text-zinc-900 dark:text-zinc-100 placeholder:text-zinc-400 dark:placeholder:text-zinc-500 focus:border-blue-600 dark:focus:border-blue-500 focus:bg-white dark:focus:bg-zinc-900 focus:outline-none focus:ring-2 focus:ring-blue-600/20';
+  const labelClass = 'block text-xs font-medium text-zinc-700 dark:text-zinc-300 mb-1.5';
+
+  const progressPct = Math.round(((currentStep + 1) / STEPS.length) * 100);
 
   return (
-    <div ref={topRef} className="max-w-4xl mx-auto space-y-5 scroll-mt-20">
+    <div ref={topRef} className="max-w-4xl mx-auto space-y-4 scroll-mt-20">
       {successMsg && (
         <div
           role="status"
-          className="flex items-center gap-2.5 rounded-xl border border-emerald-200 dark:border-emerald-800/70 bg-emerald-50 dark:bg-emerald-950/40 px-4 py-3 text-sm text-emerald-800 dark:text-emerald-200"
+          className="flex items-center gap-2.5 rounded-2xl border border-emerald-200 dark:border-emerald-800/70 bg-emerald-50 dark:bg-emerald-950/40 px-4 py-3 text-sm text-emerald-800 dark:text-emerald-200"
         >
           <CheckCircle2 className="h-4 w-4 shrink-0" aria-hidden="true" />
           <span>{successMsg}</span>
         </div>
       )}
 
-      {/* Horizontal Category Stepper */}
-      <nav aria-label="Registration categories" className="rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-[#121826] p-2">
-        <div className="grid grid-cols-5 gap-1.5">
-          {STEPS.map((step, index) => {
-            const isActive = currentStep === index;
-            const isCompleted = index < currentStep;
-            return (
-              <button
-                key={step.id}
-                type="button"
-                onClick={() => goToStep(index)}
-                aria-current={isActive ? 'step' : undefined}
-                className={`flex items-center justify-center gap-1.5 rounded-lg px-2 py-2.5 text-xs font-medium transition-colors min-h-[44px] whitespace-nowrap ${
-                  isActive
-                    ? 'bg-blue-600 text-white'
-                    : isCompleted
-                    ? 'bg-emerald-50 text-emerald-700 dark:bg-emerald-950/50 dark:text-emerald-300 hover:bg-emerald-100 dark:hover:bg-emerald-950'
-                    : 'text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800/70'
-                }`}
-              >
-                <span
-                  className={`flex h-5 w-5 items-center justify-center rounded-full text-[11px] font-mono-num shrink-0 ${
-                    isActive
-                      ? 'bg-white/20 text-white'
-                      : isCompleted
-                      ? 'bg-emerald-600 text-white'
-                      : 'bg-slate-200 dark:bg-slate-700 text-slate-700 dark:text-slate-300'
-                  }`}
-                >
-                  {isCompleted ? <Check className="h-3 w-3" aria-hidden="true" /> : index + 1}
-                </span>
-                <span className="hidden sm:inline truncate">{step.shortLabel}</span>
-              </button>
-            );
-          })}
-        </div>
-        <div className="mt-2 px-2 pb-1 flex items-center justify-between text-xs text-slate-500 dark:text-slate-400 sm:hidden">
-          <span className="font-semibold text-slate-900 dark:text-slate-100">
-            {STEPS[currentStep].fullLabel}
-          </span>
-          <span className="font-mono-num">
-            Step {currentStep + 1} of {STEPS.length}
-          </span>
-        </div>
-      </nav>
-
-      {/* Main Horizontal Wizard Card */}
+      {/* Integrated Horizontal Wizard Card */}
       <form
         onSubmit={handleFormSubmit}
         noValidate
-        className="rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-[#121826] p-5 sm:p-6 overflow-x-clip"
+        className="rounded-2xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-[#18181B] overflow-x-clip"
       >
-        <div className="border-b border-slate-100 dark:border-slate-800 pb-3.5 mb-5 flex items-center justify-between gap-3">
-          <div>
-            <h2 className="font-display text-base font-semibold text-slate-900 dark:text-slate-100">
-              {STEPS[currentStep].fullLabel}
-            </h2>
-            <p className="text-xs text-slate-500 dark:text-slate-400 mt-0.5">
-              {currentStep === 0 && 'Visitor identity, 10-digit mobile number, people staying, and visit schedule'}
-              {currentStep === 1 && 'Monthly rent quoted, visitor budget range in ₹, move-in date, and pet status'}
-              {currentStep === 2 && 'Select the visitor’s current stage in your pipeline'}
-              {currentStep === 3 && 'Visitor background, viewing impressions, and special requests'}
-              {currentStep === 4 && 'Follow-up reminder schedule and final summary'}
-            </p>
+        {/* Slim Integrated Stepper Header */}
+        <div className="px-4 pt-3.5 pb-3 sm:px-6 sm:pt-4 border-b border-zinc-100 dark:border-zinc-800 space-y-3">
+          <nav aria-label="Registration categories" className="grid grid-cols-5 gap-1.5">
+            {STEPS.map((step, index) => {
+              const isActive = currentStep === index;
+              const isCompleted = index < currentStep;
+              return (
+                <button
+                  key={step.id}
+                  type="button"
+                  onClick={() => goToStep(index)}
+                  aria-current={isActive ? 'step' : undefined}
+                  aria-label={step.fullLabel}
+                  className={`flex items-center justify-center gap-1.5 rounded-xl px-2 py-2 text-xs font-medium transition-colors min-h-[40px] whitespace-nowrap ${
+                    isActive
+                      ? 'bg-blue-600 text-white font-semibold'
+                      : isCompleted
+                      ? 'bg-zinc-100 text-zinc-900 dark:bg-zinc-800 dark:text-zinc-100 hover:bg-zinc-200 dark:hover:bg-zinc-700'
+                      : 'text-zinc-500 dark:text-zinc-400 hover:bg-zinc-100 dark:hover:bg-zinc-800/60'
+                  }`}
+                >
+                  <span
+                    className={`flex h-5 w-5 items-center justify-center rounded-full text-[11px] font-mono-num shrink-0 ${
+                      isActive
+                        ? 'bg-white/20 text-white'
+                        : isCompleted
+                        ? 'bg-emerald-600 text-white'
+                        : 'bg-zinc-200 dark:bg-zinc-700 text-zinc-700 dark:text-zinc-300'
+                    }`}
+                  >
+                    {isCompleted ? <Check className="h-3 w-3" aria-hidden="true" /> : index + 1}
+                  </span>
+                  <span className="hidden sm:inline truncate">{step.shortLabel}</span>
+                </button>
+              );
+            })}
+          </nav>
+
+          {/* Thin Progress Track */}
+          <div className="h-1 w-full rounded-full bg-zinc-100 dark:bg-zinc-800 overflow-hidden">
+            <div
+              style={{ width: `${progressPct}%` }}
+              className="h-full rounded-full bg-blue-600 transition-all duration-200"
+            />
           </div>
-          <span className="hidden sm:inline font-mono-num text-xs text-slate-500 dark:text-slate-400 shrink-0">
-            Step {currentStep + 1} / {STEPS.length}
-          </span>
+
+          {/* Single Clean Step Title */}
+          <div className="flex items-start justify-between gap-3 pt-0.5">
+            <div>
+              <h2 className="font-display text-base font-semibold text-zinc-950 dark:text-zinc-50">
+                {STEPS[currentStep].fullLabel}
+              </h2>
+              <p className="text-xs text-zinc-500 dark:text-zinc-400 mt-0.5">
+                {currentStep === 0 && 'Visitor identity, 10-digit mobile number, people staying, and visit schedule'}
+                {currentStep === 1 && 'Monthly rent quoted, visitor budget range in ₹, move-in date, and pet status'}
+                {currentStep === 2 && 'Select the visitor’s current stage in your pipeline'}
+                {currentStep === 3 && 'Visitor background, viewing impressions, and special requests'}
+                {currentStep === 4 && 'Follow-up reminder schedule and final summary'}
+              </p>
+            </div>
+            <span className="font-mono-num text-xs font-medium text-zinc-500 dark:text-zinc-400 shrink-0 pt-0.5">
+              {currentStep + 1} / {STEPS.length}
+            </span>
+          </div>
         </div>
 
-        {errorMsg && (
-          <div
-            role="alert"
-            className="mb-5 flex items-center gap-2.5 rounded-lg border border-red-200 dark:border-red-800/70 bg-red-50 dark:bg-red-950/40 px-3.5 py-2.5 text-xs font-medium text-red-800 dark:text-red-200"
-          >
-            <AlertTriangle className="h-4 w-4 shrink-0" aria-hidden="true" />
-            <span>{errorMsg}</span>
-          </div>
-        )}
+        <div className="p-4 sm:p-6">
+          {errorMsg && (
+            <div
+              role="alert"
+              className="mb-4 flex items-center gap-2.5 rounded-xl border border-red-200 dark:border-red-800/70 bg-red-50 dark:bg-red-950/40 px-3.5 py-2.5 text-xs font-medium text-red-800 dark:text-red-200"
+            >
+              <AlertTriangle className="h-4 w-4 shrink-0" aria-hidden="true" />
+              <span>{errorMsg}</span>
+            </div>
+          )}
 
-        <AnimatePresence mode="wait" initial={false}>
-          <motion.div
-            key={currentStep}
-            initial={{ opacity: 0, x: direction * 18 }}
-            animate={{ opacity: 1, x: 0 }}
-            exit={{ opacity: 0, x: direction * -18 }}
-            transition={{ duration: 0.16, ease: [0.16, 1, 0.3, 1] }}
-          >
-            {/* STEP 1: Basic Information */}
-            {currentStep === 0 && (
-              <div className="space-y-4">
-                {liveMatch && (
-                  <div className="rounded-xl border border-blue-200 dark:border-blue-800/70 bg-blue-50 dark:bg-blue-950/40 p-3.5 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
-                    <div className="space-y-0.5">
-                      <div className="flex items-center gap-2 text-xs font-semibold text-blue-900 dark:text-blue-200">
-                        <UserCheck className="h-4 w-4 shrink-0" aria-hidden="true" />
-                        <span>Returning visitor recognised: {liveMatch.fullName}</span>
-                      </div>
-                      <p className="text-xs text-blue-800 dark:text-blue-300">
-                        {liveMatch.visits.length} prior visit{liveMatch.visits.length === 1 ? '' : 's'} ·
-                        Saving will prompt to add this visit without overwriting history.
-                      </p>
-                    </div>
-                    <button
-                      type="button"
-                      onClick={() => onOpenVisitorProfile(liveMatch)}
-                      className="px-3 py-1.5 rounded-lg bg-white dark:bg-slate-900 border border-blue-200 dark:border-blue-700 text-xs font-medium text-blue-700 dark:text-blue-300 hover:bg-blue-100 whitespace-nowrap shrink-0"
-                    >
-                      View Profile
-                    </button>
-                  </div>
-                )}
-
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                  <div>
-                    <label htmlFor="reg-full-name" className={labelClass}>
-                      Full name <span className="text-red-500">*</span>
-                    </label>
-                    <input
-                      id="reg-full-name"
-                      type="text"
-                      value={form.fullName}
-                      onChange={(e) => updateField('fullName', e.target.value)}
-                      placeholder="e.g. Priya Sharma"
-                      className={`${inputClass} ${
-                        fieldErrors.fullName ? 'border-red-500 dark:border-red-500' : ''
-                      }`}
-                    />
-                    {fieldErrors.fullName && (
-                      <p className="mt-1 text-xs text-red-600 dark:text-red-400">
-                        {fieldErrors.fullName}
-                      </p>
-                    )}
-                  </div>
-
-                  <div>
-                    <div className="flex items-center justify-between mb-1.5">
-                      <label htmlFor="reg-contact-number" className="text-xs font-medium text-slate-700 dark:text-slate-300">
-                        Contact number (10 digits) <span className="text-red-500">*</span>
-                      </label>
-                      <span
-                        className={`font-mono-num text-[11px] ${
-                          form.contactNumber.length === 10
-                            ? 'text-emerald-600 dark:text-emerald-400 font-semibold'
-                            : 'text-slate-400'
-                        }`}
-                      >
-                        {form.contactNumber.length}/10 digits
-                      </span>
-                    </div>
-                    <input
-                      id="reg-contact-number"
-                      type="tel"
-                      inputMode="numeric"
-                      maxLength={10}
-                      value={form.contactNumber}
-                      onChange={(e) => handlePhoneChange(e.target.value)}
-                      placeholder="e.g. 9876543210"
-                      className={`${inputClass} font-mono-num ${
-                        fieldErrors.contactNumber ? 'border-red-500 dark:border-red-500' : ''
-                      }`}
-                    />
-                    {fieldErrors.contactNumber && (
-                      <p className="mt-1 text-xs text-red-600 dark:text-red-400">
-                        {fieldErrors.contactNumber}
-                      </p>
-                    )}
-                  </div>
-
-                  <div>
-                    <label htmlFor="reg-people-staying" className={labelClass}>
-                      Number of people staying
-                    </label>
-                    <input
-                      id="reg-people-staying"
-                      type="text"
-                      value={form.peopleCount}
-                      onChange={(e) => updateField('peopleCount', e.target.value)}
-                      className={inputClass}
-                    />
-                  </div>
-
-                  <div>
-                    <span className={labelClass}>Whether they actually visited / planned</span>
-                    <div className="grid grid-cols-3 gap-2">
-                      {(
-                        [
-                          { val: 'Yes', label: 'Yes' },
-                          { val: 'Scheduled', label: 'Planned' },
-                          { val: 'No', label: 'No' },
-                        ] as { val: VisitedAnswer; label: string }[]
-                      ).map((opt) => (
-                        <button
-                          key={opt.val}
-                          type="button"
-                          onClick={() => handleVisitedChange(opt.val)}
-                          className={`py-2.5 px-3 rounded-lg border text-xs font-medium transition-colors min-h-[42px] ${
-                            form.visitedStatus === opt.val
-                              ? opt.val === 'Yes'
-                                ? 'bg-emerald-600 text-white border-emerald-600'
-                                : opt.val === 'No'
-                                ? 'bg-red-600 text-white border-red-600'
-                                : 'bg-blue-600 text-white border-blue-600'
-                              : 'border-slate-200 dark:border-slate-700 text-slate-700 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-800'
-                          }`}
-                        >
-                          {opt.label}
-                        </button>
-                      ))}
-                    </div>
-                  </div>
-
-                  {form.visitedStatus === 'Yes' && (
-                    <div>
-                      <label htmlFor="reg-visit-date" className={labelClass}>
-                        Visit date <span className="text-red-500">*</span>
-                      </label>
-                      <CalendarDatePicker
-                        id="reg-visit-date"
-                        value={form.visitDate}
-                        onChange={(val) => updateField('visitDate', val)}
-                        hasError={Boolean(fieldErrors.visitDate)}
-                        ariaLabel="Visit date"
-                      />
-                      {fieldErrors.visitDate && (
-                        <p className="mt-1 text-xs text-red-600 dark:text-red-400">
-                          {fieldErrors.visitDate}
+          <AnimatePresence mode="wait" initial={false}>
+            <motion.div
+              key={currentStep}
+              initial={{ opacity: 0, x: direction * 18 }}
+              animate={{ opacity: 1, x: 0 }}
+              exit={{ opacity: 0, x: direction * -18 }}
+              transition={{ duration: 0.16, ease: [0.16, 1, 0.3, 1] }}
+            >
+              {/* STEP 1: Basic Information */}
+              {currentStep === 0 && (
+                <div className="space-y-3.5">
+                  {liveMatch && (
+                    <div className="rounded-xl border border-blue-200 dark:border-blue-800/70 bg-blue-50 dark:bg-blue-950/40 p-3.5 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
+                      <div className="space-y-0.5">
+                        <div className="flex items-center gap-2 text-xs font-semibold text-blue-900 dark:text-blue-200">
+                          <UserCheck className="h-4 w-4 shrink-0" aria-hidden="true" />
+                          <span>Returning visitor recognised: {liveMatch.fullName}</span>
+                        </div>
+                        <p className="text-xs text-blue-800 dark:text-blue-300">
+                          {liveMatch.visits.length} prior visit{liveMatch.visits.length === 1 ? '' : 's'} ·
+                          Saving will prompt to add this visit without overwriting history.
                         </p>
-                      )}
+                      </div>
+                      <button
+                        type="button"
+                        onClick={() => onOpenVisitorProfile(liveMatch)}
+                        className="px-3 py-1.5 rounded-xl bg-white dark:bg-zinc-900 border border-blue-200 dark:border-blue-700 text-xs font-semibold text-blue-700 dark:text-blue-300 hover:bg-blue-100 whitespace-nowrap shrink-0"
+                      >
+                        View Profile
+                      </button>
                     </div>
                   )}
 
-                  {form.visitedStatus === 'Scheduled' && (
-                    <>
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5 sm:gap-4">
+                    <div>
+                      <label htmlFor="reg-full-name" className={labelClass}>
+                        Full name <span className="text-red-500">*</span>
+                      </label>
+                      <input
+                        id="reg-full-name"
+                        type="text"
+                        value={form.fullName}
+                        onChange={(e) => updateField('fullName', e.target.value)}
+                        placeholder="e.g. Priya Sharma"
+                        className={`${inputClass} ${
+                          fieldErrors.fullName ? 'border-red-500 dark:border-red-500' : ''
+                        }`}
+                      />
+                      {fieldErrors.fullName && (
+                        <p className="mt-1 text-xs text-red-600 dark:text-red-400">
+                          {fieldErrors.fullName}
+                        </p>
+                      )}
+                    </div>
+
+                    <div>
+                      <div className="flex items-center justify-between mb-1.5">
+                        <label htmlFor="reg-contact-number" className="text-xs font-medium text-zinc-700 dark:text-zinc-300">
+                          Contact number (10 digits) <span className="text-red-500">*</span>
+                        </label>
+                        <span
+                          className={`font-mono-num text-[11px] ${
+                            form.contactNumber.length === 10
+                              ? 'text-emerald-600 dark:text-emerald-400 font-semibold'
+                              : 'text-zinc-400 dark:text-zinc-500'
+                          }`}
+                        >
+                          {form.contactNumber.length}/10 digits
+                        </span>
+                      </div>
+                      <input
+                        id="reg-contact-number"
+                        type="tel"
+                        inputMode="numeric"
+                        maxLength={10}
+                        value={form.contactNumber}
+                        onChange={(e) => handlePhoneChange(e.target.value)}
+                        placeholder="e.g. 9876543210"
+                        className={`${inputClass} font-mono-num ${
+                          fieldErrors.contactNumber ? 'border-red-500 dark:border-red-500' : ''
+                        }`}
+                      />
+                      {fieldErrors.contactNumber && (
+                        <p className="mt-1 text-xs text-red-600 dark:text-red-400">
+                          {fieldErrors.contactNumber}
+                        </p>
+                      )}
+                    </div>
+
+                    <div>
+                      <label htmlFor="reg-people-staying" className={labelClass}>
+                        Number of people staying
+                      </label>
+                      <input
+                        id="reg-people-staying"
+                        type="text"
+                        value={form.peopleCount}
+                        onChange={(e) => updateField('peopleCount', e.target.value)}
+                        placeholder="e.g. 2"
+                        className={inputClass}
+                      />
+                    </div>
+
+                    <div>
+                      <span className={labelClass}>Whether they actually visited / planned</span>
+                      <div className="grid grid-cols-3 gap-2">
+                        {(
+                          [
+                            { val: 'Yes', label: 'Yes' },
+                            { val: 'Scheduled', label: 'Planned' },
+                            { val: 'No', label: 'No' },
+                          ] as { val: VisitedAnswer; label: string }[]
+                        ).map((opt) => (
+                          <button
+                            key={opt.val}
+                            type="button"
+                            onClick={() => handleVisitedChange(opt.val)}
+                            className={`py-2.5 px-3 rounded-xl border text-xs font-semibold transition-colors min-h-[42px] ${
+                              form.visitedStatus === opt.val
+                                ? opt.val === 'Yes'
+                                  ? 'bg-emerald-600 text-white border-emerald-600'
+                                  : opt.val === 'No'
+                                  ? 'bg-red-600 text-white border-red-600'
+                                  : 'bg-blue-600 text-white border-blue-600'
+                                : 'border-zinc-200 dark:border-zinc-700 bg-zinc-50 dark:bg-zinc-900 text-zinc-700 dark:text-zinc-200 hover:bg-zinc-100 dark:hover:bg-zinc-800'
+                            }`}
+                          >
+                            {opt.label}
+                          </button>
+                        ))}
+                      </div>
+                    </div>
+
+                    {form.visitedStatus === 'Yes' && (
                       <div>
                         <label htmlFor="reg-visit-date" className={labelClass}>
-                          Planned visit date <span className="text-red-500">*</span>
+                          Visit date <span className="text-red-500">*</span>
                         </label>
                         <CalendarDatePicker
                           id="reg-visit-date"
                           value={form.visitDate}
                           onChange={(val) => updateField('visitDate', val)}
                           hasError={Boolean(fieldErrors.visitDate)}
-                          ariaLabel="Planned visit date"
+                          ariaLabel="Visit date"
                         />
                         {fieldErrors.visitDate && (
                           <p className="mt-1 text-xs text-red-600 dark:text-red-400">
@@ -619,453 +604,475 @@ export const RegisterVisitorView: React.FC<RegisterVisitorViewProps> = ({
                           </p>
                         )}
                       </div>
-
-                      <div>
-                        <label htmlFor="reg-visit-time" className={labelClass}>
-                          Planned visit time
-                        </label>
-                        <TimePicker
-                          id="reg-visit-time"
-                          value={form.visitTime}
-                          onChange={(val) => updateField('visitTime', val)}
-                          ariaLabel="Planned visit time"
-                        />
-                      </div>
-                    </>
-                  )}
-                </div>
-              </div>
-            )}
-
-            {/* STEP 2: Rent, Budget Range & Move-in */}
-            {currentStep === 1 && (
-              <div className="space-y-4">
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                  <div>
-                    <label htmlFor="reg-quoted-rent" className={labelClass}>
-                      Rent said to them ({currency}/month)
-                    </label>
-                    <input
-                      id="reg-quoted-rent"
-                      type="number"
-                      min={0}
-                      step="any"
-                      value={form.quotedRent || ''}
-                      onChange={(e) => updateField('quotedRent', Math.max(0, Number(e.target.value) || 0))}
-                      placeholder="e.g. 25000"
-                      className={`${inputClass} font-mono-num`}
-                    />
-                  </div>
-
-                  <div>
-                    <label htmlFor="reg-move-in-date" className={labelClass}>
-                      Expected move-in date
-                    </label>
-                    <CalendarDatePicker
-                      id="reg-move-in-date"
-                      value={form.moveInTimeline}
-                      onChange={(val) => updateField('moveInTimeline', val)}
-                      placeholder="Choose move-in date"
-                      allowClear
-                      ariaLabel="Expected move-in date"
-                    />
-                  </div>
-
-                  <div>
-                    <label htmlFor="reg-budget-min" className={labelClass}>
-                      Visitor budget range — Minimum ({currency}/month)
-                    </label>
-                    <input
-                      id="reg-budget-min"
-                      type="number"
-                      min={0}
-                      step="any"
-                      value={form.budgetMin || ''}
-                      onChange={(e) => {
-                        const nextMin = Math.max(0, Number(e.target.value) || 0);
-                        updateField('budgetMin', nextMin);
-                      }}
-                      placeholder="e.g. 20000"
-                      className={`${inputClass} font-mono-num`}
-                    />
-                  </div>
-
-                  <div>
-                    <label htmlFor="reg-budget-max" className={labelClass}>
-                      Visitor budget range — Maximum ({currency}/month)
-                    </label>
-                    <input
-                      id="reg-budget-max"
-                      type="number"
-                      min={0}
-                      step="any"
-                      value={form.budgetMax || ''}
-                      onChange={(e) => {
-                        const nextMax = Math.max(0, Number(e.target.value) || 0);
-                        updateField('budgetMax', nextMax);
-                      }}
-                      placeholder="e.g. 24000"
-                      className={`${inputClass} font-mono-num ${
-                        fieldErrors.budgetMax ? 'border-red-500 dark:border-red-500' : ''
-                      }`}
-                    />
-                    {fieldErrors.budgetMax && (
-                      <p className="mt-1 text-xs text-red-600 dark:text-red-400">
-                        {fieldErrors.budgetMax}
-                      </p>
                     )}
-                  </div>
-                </div>
 
-                {(form.quotedRent > 0 || form.budgetMin > 0 || form.budgetMax > 0) && (
-                  <div className="rounded-lg border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-[#0B0F17] px-3.5 py-2.5 text-xs text-slate-600 dark:text-slate-300 flex flex-wrap gap-3">
-                    {form.quotedRent > 0 && (
-                      <span>
-                        Rent said:{' '}
-                        <strong className="font-mono-num text-slate-900 dark:text-slate-100">
-                          {formatCurrency(form.quotedRent, currency)}/mo
-                        </strong>
-                      </span>
-                    )}
-                    {(form.budgetMin > 0 || form.budgetMax > 0) && (
-                      <span>
-                        Budget range:{' '}
-                        <strong className="font-mono-num text-slate-900 dark:text-slate-100">
-                          {formatBudgetRange(
-                            { budgetMin: form.budgetMin, budgetMax: form.budgetMax },
-                            currency
+                    {form.visitedStatus === 'Scheduled' && (
+                      <>
+                        <div>
+                          <label htmlFor="reg-visit-date" className={labelClass}>
+                            Planned visit date <span className="text-red-500">*</span>
+                          </label>
+                          <CalendarDatePicker
+                            id="reg-visit-date"
+                            value={form.visitDate}
+                            onChange={(val) => updateField('visitDate', val)}
+                            hasError={Boolean(fieldErrors.visitDate)}
+                            ariaLabel="Planned visit date"
+                          />
+                          {fieldErrors.visitDate && (
+                            <p className="mt-1 text-xs text-red-600 dark:text-red-400">
+                              {fieldErrors.visitDate}
+                            </p>
                           )}
-                        </strong>
-                      </span>
+                        </div>
+
+                        <div>
+                          <label htmlFor="reg-visit-time" className={labelClass}>
+                            Planned visit time
+                          </label>
+                          <TimePicker
+                            id="reg-visit-time"
+                            value={form.visitTime}
+                            onChange={(val) => updateField('visitTime', val)}
+                            ariaLabel="Planned visit time"
+                          />
+                        </div>
+                      </>
                     )}
                   </div>
-                )}
-
-                <div>
-                  <span className={labelClass}>Pet status (independent indicator)</span>
-                  <div className="grid grid-cols-3 gap-2">
-                    {PET_STATUSES.map((pet) => (
-                      <button
-                        key={pet}
-                        type="button"
-                        onClick={() => updateField('petStatus', pet as PetStatus)}
-                        className={`py-2.5 px-3 rounded-lg border text-xs font-medium transition-colors min-h-[42px] ${
-                          form.petStatus === pet
-                            ? pet === 'Has pets'
-                              ? 'bg-red-600 text-white border-red-600'
-                              : pet === 'No pets'
-                              ? 'bg-emerald-600 text-white border-emerald-600'
-                              : 'bg-slate-700 text-white border-slate-700'
-                            : 'border-slate-200 dark:border-slate-700 text-slate-700 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-800'
-                        }`}
-                      >
-                        {pet}
-                      </button>
-                    ))}
-                  </div>
                 </div>
-              </div>
-            )}
+              )}
 
-            {/* STEP 3: Visitor Status */}
-            {currentStep === 2 && (
-              <div className="space-y-4">
-                <div>
-                  <label htmlFor="reg-visitor-status" className={labelClass}>
-                    Select pipeline status
-                  </label>
-                  <div className="grid grid-cols-2 sm:grid-cols-3 gap-2.5">
-                    {VISITOR_STATUSES.map((status) => {
-                      const active = form.visitorStatus === status;
-                      return (
-                        <button
-                          key={status}
-                          type="button"
-                          onClick={() => updateField('visitorStatus', status)}
-                          className={`py-3 px-3.5 rounded-lg border text-xs font-medium text-left transition-colors min-h-[44px] ${
-                            active
-                              ? 'bg-blue-600 text-white border-blue-600'
-                              : 'border-slate-200 dark:border-slate-700 text-slate-700 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-800'
-                          }`}
-                        >
-                          {status}
-                        </button>
-                      );
-                    })}
-                  </div>
-                </div>
-                <select
-                  id="reg-visitor-status"
-                  aria-label="Pipeline status"
-                  value={form.visitorStatus}
-                  onChange={(e) => updateField('visitorStatus', e.target.value as VisitorStatus)}
-                  className="sr-only"
-                >
-                  {VISITOR_STATUSES.map((status) => (
-                    <option key={status} value={status}>
-                      {status}
-                    </option>
-                  ))}
-                </select>
-              </div>
-            )}
-
-            {/* STEP 4: Notes & Descriptions */}
-            {currentStep === 3 && (
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                <div>
-                  <label htmlFor="reg-description" className={labelClass}>
-                    Description of the visitors
-                  </label>
-                  <textarea
-                    id="reg-description"
-                    rows={3}
-                    value={form.visitorDescription}
-                    onChange={(e) => updateField('visitorDescription', e.target.value)}
-                    placeholder="e.g. Young family of 3 relocating for work"
-                    className={inputClass}
-                  />
-                </div>
-
-                <div>
-                  <label htmlFor="reg-initial-comments" className={labelClass}>
-                    Initial comments
-                  </label>
-                  <textarea
-                    id="reg-initial-comments"
-                    rows={3}
-                    value={form.initialComments}
-                    onChange={(e) => updateField('initialComments', e.target.value)}
-                    placeholder="e.g. Liked the natural light and quiet floor"
-                    className={inputClass}
-                  />
-                </div>
-
-                <div>
-                  <label htmlFor="reg-followup-comments" className={labelClass}>
-                    Follow-up comments
-                  </label>
-                  <textarea
-                    id="reg-followup-comments"
-                    rows={2}
-                    value={form.followUpComments}
-                    onChange={(e) => updateField('followUpComments', e.target.value)}
-                    placeholder="e.g. Wants to confirm parking dimensions"
-                    className={inputClass}
-                  />
-                </div>
-
-                <div>
-                  <label htmlFor="reg-additional-reqs" className={labelClass}>
-                    Additional requirements
-                  </label>
-                  <textarea
-                    id="reg-additional-reqs"
-                    rows={2}
-                    value={form.additionalRequirements}
-                    onChange={(e) => updateField('additionalRequirements', e.target.value)}
-                    placeholder="e.g. Needs covered bike storage or furnished option"
-                    className={inputClass}
-                  />
-                </div>
-              </div>
-            )}
-
-            {/* STEP 5: Follow-up & Save */}
-            {currentStep === 4 && (
-              <div className="space-y-5">
-                <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 rounded-lg border border-slate-200 dark:border-slate-800 p-3.5">
-                  <div>
-                    <span className="text-sm font-medium text-slate-900 dark:text-slate-100">
-                      Follow-up required?
-                    </span>
-                    <p className="text-xs text-slate-500 dark:text-slate-400">
-                      Schedule a reminder in your Follow-ups queue
-                    </p>
-                  </div>
-                  <div className="inline-flex rounded-lg border border-slate-200 dark:border-slate-700 p-0.5 bg-slate-50 dark:bg-[#0B0F17] self-start">
-                    <button
-                      type="button"
-                      onClick={() => updateField('followUpRequired', true)}
-                      className={`px-4 py-1.5 rounded-md text-xs font-medium transition-colors ${
-                        form.followUpRequired
-                          ? 'bg-blue-600 text-white'
-                          : 'text-slate-600 dark:text-slate-300'
-                      }`}
-                    >
-                      Yes
-                    </button>
-                    <button
-                      type="button"
-                      onClick={() => updateField('followUpRequired', false)}
-                      className={`px-4 py-1.5 rounded-md text-xs font-medium transition-colors ${
-                        !form.followUpRequired
-                          ? 'bg-slate-700 text-white'
-                          : 'text-slate-600 dark:text-slate-300'
-                      }`}
-                    >
-                      No
-                    </button>
-                  </div>
-                </div>
-
-                {form.followUpRequired && (
-                  <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+              {/* STEP 2: Rent, Budget Range & Move-in */}
+              {currentStep === 1 && (
+                <div className="space-y-4">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <div>
-                      <label htmlFor="reg-followup-date" className={labelClass}>
-                        Next follow-up date
+                      <label htmlFor="reg-quoted-rent" className={labelClass}>
+                        Rent said to them ({currency}/month)
+                      </label>
+                      <input
+                        id="reg-quoted-rent"
+                        type="number"
+                        min={0}
+                        step="any"
+                        value={form.quotedRent || ''}
+                        onChange={(e) => updateField('quotedRent', Math.max(0, Number(e.target.value) || 0))}
+                        placeholder="e.g. 25000"
+                        className={`${inputClass} font-mono-num`}
+                      />
+                    </div>
+
+                    <div>
+                      <label htmlFor="reg-move-in-date" className={labelClass}>
+                        Expected move-in date
                       </label>
                       <CalendarDatePicker
-                        id="reg-followup-date"
-                        value={form.nextFollowUpDate}
-                        onChange={(val) => updateField('nextFollowUpDate', val)}
-                        hasError={Boolean(fieldErrors.nextFollowUpDate)}
-                        ariaLabel="Next follow-up date"
+                        id="reg-move-in-date"
+                        value={form.moveInTimeline}
+                        onChange={(val) => updateField('moveInTimeline', val)}
+                        placeholder="Choose move-in date"
+                        allowClear
+                        ariaLabel="Expected move-in date"
                       />
                     </div>
 
                     <div>
-                      <label htmlFor="reg-followup-time" className={labelClass}>
-                        Preferred follow-up time
+                      <label htmlFor="reg-budget-min" className={labelClass}>
+                        Visitor budget range — Minimum ({currency}/month)
                       </label>
-                      <TimePicker
-                        id="reg-followup-time"
-                        value={form.preferredFollowUpTime}
-                        onChange={(val) => updateField('preferredFollowUpTime', val)}
-                        ariaLabel="Preferred follow-up time"
+                      <input
+                        id="reg-budget-min"
+                        type="number"
+                        min={0}
+                        step="any"
+                        value={form.budgetMin || ''}
+                        onChange={(e) => {
+                          const nextMin = Math.max(0, Number(e.target.value) || 0);
+                          updateField('budgetMin', nextMin);
+                        }}
+                        placeholder="e.g. 20000"
+                        className={`${inputClass} font-mono-num`}
                       />
                     </div>
 
                     <div>
-                      <label htmlFor="reg-followup-method" className={labelClass}>
-                        Follow-up method
+                      <label htmlFor="reg-budget-max" className={labelClass}>
+                        Visitor budget range — Maximum ({currency}/month)
                       </label>
-                      <select
-                        id="reg-followup-method"
-                        value={form.followUpMethod}
-                        onChange={(e) =>
-                          updateField('followUpMethod', e.target.value as FollowUpMethod)
-                        }
-                        className={inputClass}
-                      >
-                        <option value="Phone call">Phone call</option>
-                        <option value="WhatsApp">WhatsApp</option>
-                        <option value="SMS">SMS</option>
-                        <option value="Email">Email</option>
-                        <option value="In-person">In-person</option>
-                      </select>
-                    </div>
-                  </div>
-                )}
-
-                {/* Concise Summary Preview before Saving */}
-                <div className="rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-[#0B0F17] p-4 space-y-2.5">
-                  <div className="flex flex-wrap items-center justify-between gap-2">
-                    <span className="text-xs font-semibold text-slate-900 dark:text-slate-100">
-                      Summary: {form.fullName || 'Unnamed Visitor'}
-                    </span>
-                    <div className="flex items-center gap-2">
-                      <VisitStatusBadge
-                        visitedStatus={form.visitedStatus}
-                        visitorStatus={form.visitorStatus}
-                        compact
+                      <input
+                        id="reg-budget-max"
+                        type="number"
+                        min={0}
+                        step="any"
+                        value={form.budgetMax || ''}
+                        onChange={(e) => {
+                          const nextMax = Math.max(0, Number(e.target.value) || 0);
+                          updateField('budgetMax', nextMax);
+                        }}
+                        placeholder="e.g. 24000"
+                        className={`${inputClass} font-mono-num ${
+                          fieldErrors.budgetMax ? 'border-red-500 dark:border-red-500' : ''
+                        }`}
                       />
-                      <PetStatusBadge petStatus={form.petStatus} compact />
-                    </div>
-                  </div>
-                  <div className="text-xs text-slate-600 dark:text-slate-400 flex flex-wrap gap-2">
-                    <span className="font-mono-num">{form.contactNumber || 'No number'}</span>
-                    {formatPeopleStayingLabel(form.peopleCount) && (
-                      <>
-                        <span aria-hidden="true">·</span>
-                        <span>{formatPeopleStayingLabel(form.peopleCount)}</span>
-                      </>
-                    )}
-                    {form.quotedRent > 0 && (
-                      <>
-                        <span aria-hidden="true">·</span>
-                        <span>Rent said: {formatCurrency(form.quotedRent, currency)}/mo</span>
-                      </>
-                    )}
-                    <span aria-hidden="true">·</span>
-                    <span>
-                      Budget:{' '}
-                      {formatBudgetRange(
-                        { budgetMin: form.budgetMin, budgetMax: form.budgetMax },
-                        currency
+                      {fieldErrors.budgetMax && (
+                        <p className="mt-1 text-xs text-red-600 dark:text-red-400">
+                          {fieldErrors.budgetMax}
+                        </p>
                       )}
-                    </span>
-                    {form.moveInTimeline && (
-                      <>
-                        <span aria-hidden="true">·</span>
-                        <span>Move-in: {formatIsoDateDisplay(form.moveInTimeline)}</span>
-                      </>
-                    )}
-                    {form.visitedStatus === 'Scheduled' && form.visitTime && (
-                      <>
-                        <span aria-hidden="true">·</span>
-                        <span>Time: {formatTime12h(form.visitTime)}</span>
-                      </>
-                    )}
-                    <span aria-hidden="true">·</span>
-                    <span>Status: {form.visitorStatus}</span>
+                    </div>
+                  </div>
+
+                  {(form.quotedRent > 0 || form.budgetMin > 0 || form.budgetMax > 0) && (
+                    <div className="rounded-xl border border-zinc-200 dark:border-zinc-800 bg-zinc-50 dark:bg-zinc-900 px-3.5 py-2.5 text-xs text-zinc-600 dark:text-zinc-300 flex flex-wrap gap-3">
+                      {form.quotedRent > 0 && (
+                        <span>
+                          Rent said:{' '}
+                          <strong className="font-mono-num text-zinc-950 dark:text-zinc-50">
+                            {formatCurrency(form.quotedRent, currency)}/mo
+                          </strong>
+                        </span>
+                      )}
+                      {(form.budgetMin > 0 || form.budgetMax > 0) && (
+                        <span>
+                          Budget range:{' '}
+                          <strong className="font-mono-num text-zinc-950 dark:text-zinc-50">
+                            {formatBudgetRange(
+                              { budgetMin: form.budgetMin, budgetMax: form.budgetMax },
+                              currency
+                            )}
+                          </strong>
+                        </span>
+                      )}
+                    </div>
+                  )}
+
+                  <div>
+                    <span className={labelClass}>Pet status (independent indicator)</span>
+                    <div className="grid grid-cols-3 gap-2">
+                      {PET_STATUSES.map((pet) => (
+                        <button
+                          key={pet}
+                          type="button"
+                          onClick={() => updateField('petStatus', pet as PetStatus)}
+                          className={`py-2.5 px-3 rounded-xl border text-xs font-semibold transition-colors min-h-[42px] ${
+                            form.petStatus === pet
+                              ? pet === 'Has pets'
+                                ? 'bg-red-600 text-white border-red-600'
+                                : pet === 'No pets'
+                                ? 'bg-emerald-600 text-white border-emerald-600'
+                                : 'bg-zinc-900 dark:bg-zinc-100 text-white dark:text-zinc-900 border-zinc-900 dark:border-zinc-100'
+                              : 'border-zinc-200 dark:border-zinc-700 bg-zinc-50 dark:bg-zinc-900 text-zinc-700 dark:text-zinc-200 hover:bg-zinc-100 dark:hover:bg-zinc-800'
+                          }`}
+                        >
+                          {pet}
+                        </button>
+                      ))}
+                    </div>
                   </div>
                 </div>
-              </div>
-            )}
-          </motion.div>
-        </AnimatePresence>
+              )}
 
-        {/* Horizontal Stepper Footer Navigation */}
-        <div className="mt-6 pt-4 border-t border-slate-100 dark:border-slate-800 flex items-center justify-between gap-3">
-          <div className="flex items-center gap-2">
-            {currentStep > 0 ? (
-              <button
-                type="button"
-                onClick={handlePrevStep}
-                className="inline-flex items-center gap-1.5 px-4 py-2.5 rounded-lg border border-slate-200 dark:border-slate-700 text-xs sm:text-sm font-medium text-slate-700 dark:text-slate-200 hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors min-h-[42px]"
-              >
-                <ArrowLeft className="h-4 w-4" aria-hidden="true" />
-                Back
-              </button>
-            ) : (
-              <button
-                type="button"
-                onClick={() => {
-                  clearRegistrationDraft();
-                  setForm(createInitialForm());
-                  setErrorMsg(null);
-                  setFieldErrors({});
-                  setSuccessMsg(null);
-                }}
-                className="px-4 py-2.5 rounded-lg border border-slate-200 dark:border-slate-700 text-xs sm:text-sm font-medium text-slate-700 dark:text-slate-200 hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors min-h-[42px]"
-              >
-                Reset
-              </button>
-            )}
-          </div>
+              {/* STEP 3: Visitor Status */}
+              {currentStep === 2 && (
+                <div className="space-y-4">
+                  <div>
+                    <label htmlFor="reg-visitor-status" className={labelClass}>
+                      Select pipeline status
+                    </label>
+                    <div className="grid grid-cols-2 sm:grid-cols-3 gap-2.5">
+                      {VISITOR_STATUSES.map((status) => {
+                        const active = form.visitorStatus === status;
+                        return (
+                          <button
+                            key={status}
+                            type="button"
+                            onClick={() => updateField('visitorStatus', status)}
+                            className={`py-3 px-3.5 rounded-xl border text-xs font-semibold text-left transition-colors min-h-[44px] ${
+                              active
+                                ? 'bg-blue-600 text-white border-blue-600'
+                                : 'border-zinc-200 dark:border-zinc-700 bg-zinc-50 dark:bg-zinc-900 text-zinc-700 dark:text-zinc-200 hover:bg-zinc-100 dark:hover:bg-zinc-800'
+                            }`}
+                          >
+                            {status}
+                          </button>
+                        );
+                      })}
+                    </div>
+                  </div>
+                  <select
+                    id="reg-visitor-status"
+                    aria-label="Pipeline status"
+                    value={form.visitorStatus}
+                    onChange={(e) => updateField('visitorStatus', e.target.value as VisitorStatus)}
+                    className="sr-only"
+                  >
+                    {VISITOR_STATUSES.map((status) => (
+                      <option key={status} value={status}>
+                        {status}
+                      </option>
+                    ))}
+                  </select>
+                </div>
+              )}
 
-          <div className="flex items-center gap-2">
-            {currentStep < STEPS.length - 1 ? (
-              <button
-                key="btn-next-step"
-                type="button"
-                onClick={handleNextStep}
-                className="inline-flex items-center gap-1.5 px-5 py-2.5 rounded-lg bg-blue-600 text-xs sm:text-sm font-semibold text-white hover:bg-blue-700 transition-colors min-h-[42px]"
-              >
-                <span>Next: {STEPS[currentStep + 1].shortLabel}</span>
-                <ArrowRight className="h-4 w-4" aria-hidden="true" />
-              </button>
-            ) : (
-              <button
-                key="btn-save-visitor"
-                type="submit"
-                className="inline-flex items-center gap-2 px-6 py-2.5 rounded-lg bg-blue-600 text-xs sm:text-sm font-semibold text-white hover:bg-blue-700 transition-colors min-h-[42px]"
-              >
-                <UserPlus className="h-4 w-4" aria-hidden="true" />
-                Save Visitor Record
-              </button>
-            )}
+              {/* STEP 4: Notes & Descriptions */}
+              {currentStep === 3 && (
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  <div>
+                    <label htmlFor="reg-description" className={labelClass}>
+                      Description of the visitors
+                    </label>
+                    <textarea
+                      id="reg-description"
+                      rows={3}
+                      value={form.visitorDescription}
+                      onChange={(e) => updateField('visitorDescription', e.target.value)}
+                      placeholder="e.g. Young family of 3 relocating for work"
+                      className={inputClass}
+                    />
+                  </div>
+
+                  <div>
+                    <label htmlFor="reg-initial-comments" className={labelClass}>
+                      Initial comments
+                    </label>
+                    <textarea
+                      id="reg-initial-comments"
+                      rows={3}
+                      value={form.initialComments}
+                      onChange={(e) => updateField('initialComments', e.target.value)}
+                      placeholder="e.g. Liked the natural light and quiet floor"
+                      className={inputClass}
+                    />
+                  </div>
+
+                  <div>
+                    <label htmlFor="reg-followup-comments" className={labelClass}>
+                      Follow-up comments
+                    </label>
+                    <textarea
+                      id="reg-followup-comments"
+                      rows={2}
+                      value={form.followUpComments}
+                      onChange={(e) => updateField('followUpComments', e.target.value)}
+                      placeholder="e.g. Wants to confirm parking dimensions"
+                      className={inputClass}
+                    />
+                  </div>
+
+                  <div>
+                    <label htmlFor="reg-additional-reqs" className={labelClass}>
+                      Additional requirements
+                    </label>
+                    <textarea
+                      id="reg-additional-reqs"
+                      rows={2}
+                      value={form.additionalRequirements}
+                      onChange={(e) => updateField('additionalRequirements', e.target.value)}
+                      placeholder="e.g. Needs covered bike storage or furnished option"
+                      className={inputClass}
+                    />
+                  </div>
+                </div>
+              )}
+
+              {/* STEP 5: Follow-up & Save */}
+              {currentStep === 4 && (
+                <div className="space-y-4">
+                  <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 rounded-xl border border-zinc-200 dark:border-zinc-800 bg-zinc-50 dark:bg-zinc-900/60 p-3.5">
+                    <div>
+                      <span className="text-sm font-semibold text-zinc-950 dark:text-zinc-50">
+                        Follow-up required?
+                      </span>
+                      <p className="text-xs text-zinc-500 dark:text-zinc-400">
+                        Schedule a reminder in your Follow-ups queue
+                      </p>
+                    </div>
+                    <div className="inline-flex rounded-xl border border-zinc-200 dark:border-zinc-700 p-0.5 bg-white dark:bg-zinc-950 self-start">
+                      <button
+                        type="button"
+                        onClick={() => updateField('followUpRequired', true)}
+                        className={`px-4 py-1.5 rounded-lg text-xs font-semibold transition-colors ${
+                          form.followUpRequired
+                            ? 'bg-blue-600 text-white'
+                            : 'text-zinc-600 dark:text-zinc-300'
+                        }`}
+                      >
+                        Yes
+                      </button>
+                      <button
+                        type="button"
+                        onClick={() => updateField('followUpRequired', false)}
+                        className={`px-4 py-1.5 rounded-lg text-xs font-semibold transition-colors ${
+                          !form.followUpRequired
+                            ? 'bg-zinc-900 dark:bg-zinc-200 text-white dark:text-zinc-900'
+                            : 'text-zinc-600 dark:text-zinc-300'
+                        }`}
+                      >
+                        No
+                      </button>
+                    </div>
+                  </div>
+
+                  {form.followUpRequired && (
+                    <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                      <div>
+                        <label htmlFor="reg-followup-date" className={labelClass}>
+                          Next follow-up date
+                        </label>
+                        <CalendarDatePicker
+                          id="reg-followup-date"
+                          value={form.nextFollowUpDate}
+                          onChange={(val) => updateField('nextFollowUpDate', val)}
+                          hasError={Boolean(fieldErrors.nextFollowUpDate)}
+                          ariaLabel="Next follow-up date"
+                        />
+                      </div>
+
+                      <div>
+                        <label htmlFor="reg-followup-time" className={labelClass}>
+                          Preferred follow-up time
+                        </label>
+                        <TimePicker
+                          id="reg-followup-time"
+                          value={form.preferredFollowUpTime}
+                          onChange={(val) => updateField('preferredFollowUpTime', val)}
+                          ariaLabel="Preferred follow-up time"
+                        />
+                      </div>
+
+                      <div>
+                        <label htmlFor="reg-followup-method" className={labelClass}>
+                          Follow-up method
+                        </label>
+                        <select
+                          id="reg-followup-method"
+                          value={form.followUpMethod}
+                          onChange={(e) =>
+                            updateField('followUpMethod', e.target.value as FollowUpMethod)
+                          }
+                          className={inputClass}
+                        >
+                          <option value="Phone call">Phone call</option>
+                          <option value="WhatsApp">WhatsApp</option>
+                          <option value="SMS">SMS</option>
+                          <option value="Email">Email</option>
+                          <option value="In-person">In-person</option>
+                        </select>
+                      </div>
+                    </div>
+                  )}
+
+                  {/* Concise Summary Preview before Saving */}
+                  <div className="rounded-xl border border-zinc-200 dark:border-zinc-800 bg-zinc-50 dark:bg-zinc-900/60 p-4 space-y-2.5">
+                    <div className="flex flex-wrap items-center justify-between gap-2">
+                      <span className="text-xs font-semibold text-zinc-950 dark:text-zinc-50">
+                        Summary: {form.fullName || 'Unnamed Visitor'}
+                      </span>
+                      <div className="flex items-center gap-2">
+                        <VisitStatusBadge
+                          visitedStatus={form.visitedStatus}
+                          visitorStatus={form.visitorStatus}
+                          compact
+                        />
+                        <PetStatusBadge petStatus={form.petStatus} compact />
+                      </div>
+                    </div>
+                    <div className="text-xs text-zinc-600 dark:text-zinc-400 flex flex-wrap gap-2">
+                      <span className="font-mono-num">{form.contactNumber || 'No number'}</span>
+                      {formatPeopleStayingLabel(form.peopleCount) && (
+                        <>
+                          <span aria-hidden="true">·</span>
+                          <span>{formatPeopleStayingLabel(form.peopleCount)}</span>
+                        </>
+                      )}
+                      {form.quotedRent > 0 && (
+                        <>
+                          <span aria-hidden="true">·</span>
+                          <span>Rent said: {formatCurrency(form.quotedRent, currency)}/mo</span>
+                        </>
+                      )}
+                      <span aria-hidden="true">·</span>
+                      <span>
+                        Budget:{' '}
+                        {formatBudgetRange(
+                          { budgetMin: form.budgetMin, budgetMax: form.budgetMax },
+                          currency
+                        )}
+                      </span>
+                      {form.moveInTimeline && (
+                        <>
+                          <span aria-hidden="true">·</span>
+                          <span>Move-in: {formatIsoDateDisplay(form.moveInTimeline)}</span>
+                        </>
+                      )}
+                      {form.visitedStatus === 'Scheduled' && form.visitTime && (
+                        <>
+                          <span aria-hidden="true">·</span>
+                          <span>Time: {formatTime12h(form.visitTime)}</span>
+                        </>
+                      )}
+                      <span aria-hidden="true">·</span>
+                      <span>Status: {form.visitorStatus}</span>
+                    </div>
+                  </div>
+                </div>
+              )}
+            </motion.div>
+          </AnimatePresence>
+
+          {/* Horizontal Stepper Footer Navigation */}
+          <div className="mt-5 pt-4 border-t border-zinc-100 dark:border-zinc-800 flex items-center justify-between gap-3">
+            <div className="flex items-center gap-2">
+              {currentStep > 0 ? (
+                <button
+                  type="button"
+                  onClick={handlePrevStep}
+                  className="inline-flex items-center gap-1.5 px-4 py-2.5 rounded-xl border border-zinc-200 dark:border-zinc-700 bg-zinc-50 dark:bg-zinc-900 text-xs sm:text-sm font-semibold text-zinc-700 dark:text-zinc-200 hover:bg-zinc-100 dark:hover:bg-zinc-800 transition-colors min-h-[42px]"
+                >
+                  <ArrowLeft className="h-4 w-4" aria-hidden="true" />
+                  Back
+                </button>
+              ) : (
+                <button
+                  type="button"
+                  onClick={() => {
+                    clearRegistrationDraft();
+                    setForm(createInitialForm());
+                    setErrorMsg(null);
+                    setFieldErrors({});
+                    setSuccessMsg(null);
+                  }}
+                  className="px-4 py-2.5 rounded-xl border border-zinc-200 dark:border-zinc-700 bg-zinc-50 dark:bg-zinc-900 text-xs sm:text-sm font-semibold text-zinc-700 dark:text-zinc-200 hover:bg-zinc-100 dark:hover:bg-zinc-800 transition-colors min-h-[42px]"
+                >
+                  Reset
+                </button>
+              )}
+            </div>
+
+            <div className="flex items-center gap-2">
+              {currentStep < STEPS.length - 1 ? (
+                <button
+                  key="btn-next-step"
+                  type="button"
+                  onClick={handleNextStep}
+                  className="inline-flex items-center gap-1.5 px-5 py-2.5 rounded-xl bg-blue-600 text-xs sm:text-sm font-semibold text-white hover:bg-blue-700 transition-colors min-h-[42px]"
+                >
+                  <span>Next: {STEPS[currentStep + 1].shortLabel}</span>
+                  <ArrowRight className="h-4 w-4" aria-hidden="true" />
+                </button>
+              ) : (
+                <button
+                  key="btn-save-visitor"
+                  type="submit"
+                  className="inline-flex items-center gap-2 px-6 py-2.5 rounded-xl bg-blue-600 text-xs sm:text-sm font-semibold text-white hover:bg-blue-700 transition-colors min-h-[42px]"
+                >
+                  <UserPlus className="h-4 w-4" aria-hidden="true" />
+                  Save Visitor Record
+                </button>
+              )}
+            </div>
           </div>
         </div>
       </form>
@@ -1076,25 +1083,25 @@ export const RegisterVisitorView: React.FC<RegisterVisitorViewProps> = ({
           role="dialog"
           aria-modal="true"
           aria-labelledby="dup-modal-title"
-          className="fixed inset-0 z-50 flex items-center justify-center bg-black/55 p-4"
+          className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 p-4"
         >
-          <div className="w-full max-w-md rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-[#121826] p-6 shadow-xl space-y-4">
+          <div className="w-full max-w-md rounded-2xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-[#18181B] p-6 shadow-2xl space-y-4">
             <h3
               id="dup-modal-title"
-              className="font-display text-lg font-semibold text-slate-900 dark:text-slate-100"
+              className="font-display text-lg font-semibold text-zinc-950 dark:text-zinc-50"
             >
               Existing Visitor Found
             </h3>
-            <p className="text-sm text-slate-600 dark:text-slate-300">
+            <p className="text-sm text-zinc-600 dark:text-zinc-300">
               A visitor with phone number{' '}
               <span className="font-mono-num font-semibold">{pendingDuplicate.contactNumber}</span>{' '}
               is already registered:
             </p>
-            <div className="rounded-lg border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-[#0B0F17] p-3.5 space-y-2">
-              <div className="font-semibold text-sm text-slate-900 dark:text-slate-100">
+            <div className="rounded-xl border border-zinc-200 dark:border-zinc-800 bg-zinc-50 dark:bg-zinc-900 p-3.5 space-y-2">
+              <div className="font-semibold text-sm text-zinc-950 dark:text-zinc-50">
                 {pendingDuplicate.fullName}
               </div>
-              <div className="text-xs text-slate-500 dark:text-slate-400">
+              <div className="text-xs text-zinc-500 dark:text-zinc-400">
                 {pendingDuplicate.visits.length} prior visit
                 {pendingDuplicate.visits.length === 1 ? '' : 's'} · Latest:{' '}
                 {pendingDuplicate.latestVisitDate}
@@ -1108,7 +1115,7 @@ export const RegisterVisitorView: React.FC<RegisterVisitorViewProps> = ({
                 <PetStatusBadge petStatus={pendingDuplicate.petStatus} compact />
               </div>
             </div>
-            <p className="text-xs text-slate-500 dark:text-slate-400">
+            <p className="text-xs text-zinc-500 dark:text-zinc-400">
               Adding this visit to the existing profile preserves all previous visit details and
               comments in their timeline.
             </p>
@@ -1116,21 +1123,21 @@ export const RegisterVisitorView: React.FC<RegisterVisitorViewProps> = ({
               <button
                 type="button"
                 onClick={confirmMergeIntoExisting}
-                className="w-full py-2.5 px-4 rounded-lg bg-blue-600 text-sm font-medium text-white hover:bg-blue-700 transition-colors"
+                className="w-full py-2.5 px-4 rounded-xl bg-blue-600 text-sm font-semibold text-white hover:bg-blue-700 transition-colors"
               >
                 Add Visit to {pendingDuplicate.fullName}'s Profile
               </button>
               <button
                 type="button"
                 onClick={confirmCreateSeparate}
-                className="w-full py-2.5 px-4 rounded-lg border border-slate-200 dark:border-slate-700 text-sm font-medium text-slate-700 dark:text-slate-200 hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors"
+                className="w-full py-2.5 px-4 rounded-xl border border-zinc-200 dark:border-zinc-700 bg-zinc-50 dark:bg-zinc-900 text-sm font-medium text-zinc-700 dark:text-zinc-200 hover:bg-zinc-100 dark:hover:bg-zinc-800 transition-colors"
               >
                 Create Separate Profile Anyway
               </button>
               <button
                 type="button"
                 onClick={() => setPendingDuplicate(null)}
-                className="w-full py-2 px-4 text-xs font-medium text-slate-500 hover:text-slate-700 dark:text-slate-400 dark:hover:text-slate-200"
+                className="w-full py-2 px-4 text-xs font-medium text-zinc-500 hover:text-zinc-800 dark:text-zinc-400 dark:hover:text-zinc-200"
               >
                 Cancel
               </button>

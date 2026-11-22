@@ -239,24 +239,24 @@ export const SettingsView: React.FC<SettingsViewProps> = ({
   };
 
   const inputClass =
-    'w-full rounded-lg border border-slate-200 dark:border-slate-700 bg-white dark:bg-[#0B0F17] px-3 py-2.5 text-sm text-slate-900 dark:text-slate-100 focus:border-blue-600 focus:outline-none';
-  const labelClass = 'block text-xs font-medium text-slate-700 dark:text-slate-300 mb-1.5';
+    'w-full rounded-xl border border-zinc-200 dark:border-zinc-700 bg-zinc-50 dark:bg-zinc-900 px-3.5 py-2.5 text-sm text-zinc-900 dark:text-zinc-100 placeholder:text-zinc-400 dark:placeholder:text-zinc-500 focus:border-blue-600 dark:focus:border-blue-500 focus:bg-white dark:focus:bg-zinc-900 focus:outline-none focus:ring-2 focus:ring-blue-600/20';
+  const labelClass = 'block text-xs font-medium text-zinc-700 dark:text-zinc-300 mb-1.5';
 
   return (
-    <div className="max-w-4xl mx-auto space-y-6">
+    <div className="max-w-4xl mx-auto space-y-5">
       {/* Single Apartment Details Editor */}
-      <section className="rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-[#121826] p-5 sm:p-6 space-y-5">
-        <div className="flex items-start justify-between gap-4 border-b border-slate-100 dark:border-slate-800 pb-4">
+      <section className="rounded-2xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-[#18181B] p-5 sm:p-6 space-y-5">
+        <div className="flex items-start justify-between gap-4 border-b border-zinc-100 dark:border-zinc-800 pb-4">
           <div className="flex items-center gap-3">
-            <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-blue-50 dark:bg-blue-950/60 text-blue-600 dark:text-blue-400">
+            <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-zinc-100 dark:bg-zinc-800 text-blue-600 dark:text-blue-400 shrink-0">
               <Building2 className="h-4 w-4" aria-hidden="true" />
             </div>
             <div>
-              <h2 className="font-display text-base font-semibold text-slate-900 dark:text-slate-100">
+              <h2 className="font-display text-base font-semibold text-zinc-950 dark:text-zinc-50">
                 Apartment Information
               </h2>
-              <p className="text-xs text-slate-500 dark:text-slate-400">
-                Version 1 manages your primary apartment with single-property focus.
+              <p className="text-xs text-zinc-500 dark:text-zinc-400">
+                Single-property settings for your active rental apartment.
               </p>
             </div>
           </div>
@@ -269,7 +269,7 @@ export const SettingsView: React.FC<SettingsViewProps> = ({
         </div>
 
         <form onSubmit={handleSaveApartment} className="space-y-4">
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div>
               <label htmlFor="apt-number" className={labelClass}>
                 Apartment number
@@ -327,19 +327,6 @@ export const SettingsView: React.FC<SettingsViewProps> = ({
             </div>
 
             <div>
-              <label htmlFor="apt-currency" className={labelClass}>
-                Currency
-              </label>
-              <input
-                id="apt-currency"
-                type="text"
-                readOnly
-                value="INR (₹)"
-                className={`${inputClass} bg-slate-50 dark:bg-slate-900/60 text-slate-600 dark:text-slate-300 cursor-default`}
-              />
-            </div>
-
-            <div>
               <label htmlFor="apt-availability" className={labelClass}>
                 Availability status
               </label>
@@ -377,7 +364,7 @@ export const SettingsView: React.FC<SettingsViewProps> = ({
               />
             </div>
 
-            <div className="sm:col-span-2 lg:col-span-3">
+            <div className="sm:col-span-2">
               <label htmlFor="apt-notes" className={labelClass}>
                 Additional notes
               </label>
@@ -394,7 +381,7 @@ export const SettingsView: React.FC<SettingsViewProps> = ({
           <div className="flex justify-end">
             <button
               type="submit"
-              className="px-5 py-2.5 rounded-lg bg-blue-600 text-xs font-semibold text-white hover:bg-blue-700 transition-colors"
+              className="px-5 py-2.5 rounded-xl bg-blue-600 text-xs font-semibold text-white hover:bg-blue-700 transition-colors"
             >
               Save Apartment Info
             </button>
@@ -403,20 +390,17 @@ export const SettingsView: React.FC<SettingsViewProps> = ({
       </section>
 
       {/* Backup & Data Safety */}
-      <section className="rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-[#121826] p-5 sm:p-6 space-y-5">
-        <div className="flex items-start gap-3 border-b border-slate-100 dark:border-slate-800 pb-4">
-          <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-emerald-50 dark:bg-emerald-950/60 text-emerald-600 dark:text-emerald-400">
+      <section className="rounded-2xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-[#18181B] p-5 sm:p-6 space-y-5">
+        <div className="flex items-start gap-3 border-b border-zinc-100 dark:border-zinc-800 pb-4">
+          <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-zinc-100 dark:bg-zinc-800 text-emerald-600 dark:text-emerald-400 shrink-0">
             <HardDrive className="h-4 w-4" aria-hidden="true" />
           </div>
           <div>
-            <h2 className="font-display text-base font-semibold text-slate-900 dark:text-slate-100">
+            <h2 className="font-display text-base font-semibold text-zinc-950 dark:text-zinc-50">
               Backup & Data Safety (100% Local & Offline)
             </h2>
-            <p className="text-xs text-slate-500 dark:text-slate-400">
-              All visitor records, apartment settings, and form drafts are automatically saved
-              locally in your browser cache (IndexedDB + localStorage + CacheStorage) or inside the
-              Android APK&apos;s private app storage. Export a JSON backup anytime to transfer data
-              between your browser and the Android APK.
+            <p className="text-xs text-zinc-500 dark:text-zinc-400 mt-0.5 leading-relaxed">
+              Visitor records, apartment settings, and drafts are automatically stored locally on this device. Export or sync a JSON file anytime to transfer records or keep a permanent copy.
             </p>
           </div>
         </div>
@@ -424,7 +408,7 @@ export const SettingsView: React.FC<SettingsViewProps> = ({
         {backupStatus && (
           <div
             role="status"
-            className={`rounded-lg border px-4 py-3 text-xs flex items-center gap-2 ${
+            className={`rounded-xl border px-4 py-3 text-xs flex items-center gap-2 ${
               backupStatus.type === 'success'
                 ? 'border-emerald-200 dark:border-emerald-800 bg-emerald-50 dark:bg-emerald-950/40 text-emerald-800 dark:text-emerald-200'
                 : 'border-red-200 dark:border-red-800 bg-red-50 dark:bg-red-950/40 text-red-800 dark:text-red-200'
@@ -439,121 +423,118 @@ export const SettingsView: React.FC<SettingsViewProps> = ({
           </div>
         )}
 
-        {/* Auto-Synced Local Phone / Folder File (Survives App Deletion) */}
-        <div className="rounded-xl border border-emerald-200 dark:border-emerald-900/70 bg-emerald-50/60 dark:bg-emerald-950/20 p-4 space-y-3">
-          <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-3">
-            <div className="flex items-start gap-2.5">
-              <FolderSync className="h-4 w-4 text-emerald-600 dark:text-emerald-400 mt-0.5 shrink-0" aria-hidden="true" />
-              <div className="space-y-1 text-xs">
-                <div className="font-semibold text-slate-900 dark:text-slate-100">
-                  {deviceSyncStatus.isNativeAndroid
-                    ? 'Phone Documents Auto-Sync Active (Survives APK Deletion)'
-                    : deviceSyncStatus.targetLabel
-                    ? `Auto-Sync Linked: ${deviceSyncStatus.targetLabel}`
-                    : 'Auto-Save Local File on Phone / PC (Survives App Deletion)'}
-                </div>
-                <p className="text-slate-600 dark:text-slate-300 leading-relaxed">
-                  {deviceSyncStatus.isNativeAndroid ? (
-                    <>
-                      Every change in the app automatically updates{' '}
-                      <code className="font-mono-num px-1 py-0.5 rounded bg-white/80 dark:bg-slate-900">
-                        {deviceSyncStatus.targetLabel}
-                      </code>{' '}
-                      in your phone&apos;s storage. Even if you delete the APK, this file remains in{' '}
-                      <strong>Files → Documents → ApartmentVisitorCRM</strong> so you can restore it anytime.
-                    </>
-                  ) : deviceSyncStatus.targetLabel ? (
-                    <>
-                      Changes made in the app automatically update{' '}
-                      <code className="font-mono-num px-1 py-0.5 rounded bg-white/80 dark:bg-slate-900">
-                        {deviceSyncStatus.targetLabel}
-                      </code>{' '}
-                      on your device. Deleting the app or clearing browser cache will not delete this file.
-                    </>
-                  ) : (
-                    <>
-                      Inside the Android APK, data auto-updates directly into{' '}
-                      <code className="font-mono-num px-1 py-0.5 rounded bg-white/80 dark:bg-slate-900">
-                        Documents/ApartmentVisitorCRM/
-                      </code>
-                      . In this browser, link a local <code className="font-mono-num">.json</code> file below so any change auto-updates your saved file too.
-                    </>
-                  )}
-                </p>
-                {deviceSyncStatus.lastSyncedAt && (
-                  <p className="text-[11px] font-mono-num text-emerald-700 dark:text-emerald-400">
-                    Last auto-sync: {new Date(deviceSyncStatus.lastSyncedAt).toLocaleString()}
-                  </p>
-                )}
-                {deviceSyncStatus.lastError && (
-                  <p className="text-[11px] text-red-600 dark:text-red-400">
-                    Sync warning: {deviceSyncStatus.lastError}
-                  </p>
-                )}
+        {/* Auto-Synced Local Phone / Folder File (Hairline Row, No Nested Card) */}
+        <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-3.5">
+          <div className="flex items-start gap-3">
+            <FolderSync className="h-4 w-4 text-emerald-600 dark:text-emerald-400 mt-0.5 shrink-0" aria-hidden="true" />
+            <div className="space-y-1 text-xs">
+              <div className="font-semibold text-zinc-950 dark:text-zinc-50">
+                {deviceSyncStatus.isNativeAndroid
+                  ? 'Phone Documents Auto-Sync Active (Survives APK Deletion)'
+                  : deviceSyncStatus.targetLabel
+                  ? `Auto-Sync Linked: ${deviceSyncStatus.targetLabel}`
+                  : 'Auto-Save Local File on Phone / PC (Survives App Deletion)'}
               </div>
-            </div>
-
-            <div className="flex flex-wrap items-center gap-2 shrink-0">
-              {deviceSyncStatus.isNativeAndroid ? (
-                <button
-                  type="button"
-                  onClick={() => void handleSyncNow()}
-                  className="inline-flex items-center gap-1.5 rounded-lg bg-emerald-600 px-3 py-2 text-xs font-semibold text-white hover:bg-emerald-700"
-                >
-                  <RefreshCw className="h-3.5 w-3.5" aria-hidden="true" />
-                  Sync Phone File Now
-                </button>
-              ) : deviceSyncStatus.targetLabel ? (
-                <>
-                  {deviceSyncStatus.needsPermissionPrompt ? (
-                    <button
-                      type="button"
-                      onClick={() => void handleReconnectBrowserFile()}
-                      className="inline-flex items-center gap-1.5 rounded-lg bg-amber-600 px-3 py-2 text-xs font-semibold text-white hover:bg-amber-700"
-                    >
-                      <RefreshCw className="h-3.5 w-3.5" aria-hidden="true" />
-                      Reconnect File Access
-                    </button>
-                  ) : (
-                    <button
-                      type="button"
-                      onClick={() => void handleSyncNow()}
-                      className="inline-flex items-center gap-1.5 rounded-lg bg-emerald-600 px-3 py-2 text-xs font-semibold text-white hover:bg-emerald-700"
-                    >
-                      <RefreshCw className="h-3.5 w-3.5" aria-hidden="true" />
-                      Sync Now
-                    </button>
-                  )}
-                  <button
-                    type="button"
-                    onClick={() => void handleUnlinkBrowserFile()}
-                    className="inline-flex items-center gap-1.5 rounded-lg border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-900 px-3 py-2 text-xs font-medium text-slate-700 dark:text-slate-200 hover:bg-slate-50 dark:hover:bg-slate-800"
-                  >
-                    <Link2Off className="h-3.5 w-3.5" aria-hidden="true" />
-                    Unlink
-                  </button>
-                </>
-              ) : (
-                deviceSyncStatus.supportsBrowserFileHandle && (
-                  <button
-                    type="button"
-                    onClick={() => void handleLinkBrowserFile()}
-                    className="inline-flex items-center gap-1.5 rounded-lg bg-emerald-600 px-3 py-2 text-xs font-semibold text-white hover:bg-emerald-700"
-                  >
-                    <FolderSync className="h-3.5 w-3.5" aria-hidden="true" />
-                    Link Auto-Sync File
-                  </button>
-                )
+              <p className="text-zinc-600 dark:text-zinc-400 leading-relaxed">
+                {deviceSyncStatus.isNativeAndroid ? (
+                  <>
+                    Every change automatically updates{' '}
+                    <code className="font-mono-num px-1.5 py-0.5 rounded bg-zinc-100 dark:bg-zinc-800 text-zinc-800 dark:text-zinc-200">
+                      {deviceSyncStatus.targetLabel}
+                    </code>{' '}
+                    in phone storage (<strong>Files → Documents → ApartmentVisitorCRM</strong>), surviving APK deletion.
+                  </>
+                ) : deviceSyncStatus.targetLabel ? (
+                  <>
+                    Changes automatically update{' '}
+                    <code className="font-mono-num px-1.5 py-0.5 rounded bg-zinc-100 dark:bg-zinc-800 text-zinc-800 dark:text-zinc-200">
+                      {deviceSyncStatus.targetLabel}
+                    </code>{' '}
+                    on your device, safe even if browser cache is cleared.
+                  </>
+                ) : (
+                  <>
+                    Inside the Android APK, data auto-updates directly into{' '}
+                    <code className="font-mono-num px-1.5 py-0.5 rounded bg-zinc-100 dark:bg-zinc-800 text-zinc-800 dark:text-zinc-200">
+                      Documents/ApartmentVisitorCRM/
+                    </code>
+                    . In this browser, link a local <code className="font-mono-num">.json</code> file so every change auto-updates your saved file too.
+                  </>
+                )}
+              </p>
+              {deviceSyncStatus.lastSyncedAt && (
+                <p className="text-[11px] font-mono-num text-emerald-700 dark:text-emerald-400">
+                  Last auto-sync: {new Date(deviceSyncStatus.lastSyncedAt).toLocaleString()}
+                </p>
+              )}
+              {deviceSyncStatus.lastError && (
+                <p className="text-[11px] text-red-600 dark:text-red-400">
+                  Sync warning: {deviceSyncStatus.lastError}
+                </p>
               )}
             </div>
           </div>
+
+          <div className="flex flex-wrap items-center gap-2 shrink-0">
+            {deviceSyncStatus.isNativeAndroid ? (
+              <button
+                type="button"
+                onClick={() => void handleSyncNow()}
+                className="inline-flex items-center gap-1.5 rounded-xl border border-zinc-200 dark:border-zinc-700 bg-zinc-50 dark:bg-zinc-900 px-3.5 py-2 text-xs font-semibold text-zinc-800 dark:text-zinc-100 hover:bg-zinc-100 dark:hover:bg-zinc-800 transition-colors"
+              >
+                <RefreshCw className="h-3.5 w-3.5 text-emerald-600 dark:text-emerald-400" aria-hidden="true" />
+                Sync Phone File Now
+              </button>
+            ) : deviceSyncStatus.targetLabel ? (
+              <>
+                {deviceSyncStatus.needsPermissionPrompt ? (
+                  <button
+                    type="button"
+                    onClick={() => void handleReconnectBrowserFile()}
+                    className="inline-flex items-center gap-1.5 rounded-xl bg-amber-600 px-3.5 py-2 text-xs font-semibold text-white hover:bg-amber-700 transition-colors"
+                  >
+                    <RefreshCw className="h-3.5 w-3.5" aria-hidden="true" />
+                    Reconnect File Access
+                  </button>
+                ) : (
+                  <button
+                    type="button"
+                    onClick={() => void handleSyncNow()}
+                    className="inline-flex items-center gap-1.5 rounded-xl border border-zinc-200 dark:border-zinc-700 bg-zinc-50 dark:bg-zinc-900 px-3.5 py-2 text-xs font-semibold text-zinc-800 dark:text-zinc-100 hover:bg-zinc-100 dark:hover:bg-zinc-800 transition-colors"
+                  >
+                    <RefreshCw className="h-3.5 w-3.5 text-emerald-600 dark:text-emerald-400" aria-hidden="true" />
+                    Sync Now
+                  </button>
+                )}
+                <button
+                  type="button"
+                  onClick={() => void handleUnlinkBrowserFile()}
+                  className="inline-flex items-center gap-1.5 rounded-xl border border-zinc-200 dark:border-zinc-700 bg-zinc-50 dark:bg-zinc-900 px-3 py-2 text-xs font-medium text-zinc-700 dark:text-zinc-200 hover:bg-zinc-100 dark:hover:bg-zinc-800 transition-colors"
+                >
+                  <Link2Off className="h-3.5 w-3.5" aria-hidden="true" />
+                  Unlink
+                </button>
+              </>
+            ) : (
+              deviceSyncStatus.supportsBrowserFileHandle && (
+                <button
+                  type="button"
+                  onClick={() => void handleLinkBrowserFile()}
+                  className="inline-flex items-center gap-1.5 rounded-xl border border-zinc-200 dark:border-zinc-700 bg-zinc-50 dark:bg-zinc-900 px-3.5 py-2 text-xs font-semibold text-zinc-800 dark:text-zinc-100 hover:bg-zinc-100 dark:hover:bg-zinc-800 transition-colors"
+                >
+                  <FolderSync className="h-3.5 w-3.5 text-emerald-600 dark:text-emerald-400" aria-hidden="true" />
+                  Link Auto-Sync File
+                </button>
+              )
+            )}
+          </div>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
+        <div className="pt-4 border-t border-zinc-100 dark:border-zinc-800 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-2.5">
           <button
             type="button"
             onClick={() => void handleShareOrSaveSafeCopy()}
-            className="flex items-center justify-center gap-2 rounded-lg bg-emerald-600 px-4 py-3 text-xs font-semibold text-white hover:bg-emerald-700 transition-colors"
+            className="flex items-center justify-center gap-2 rounded-xl bg-blue-600 px-4 py-2.5 text-xs font-semibold text-white hover:bg-blue-700 transition-colors"
           >
             <Share2 className="h-4 w-4" aria-hidden="true" />
             Save to Drive / Folder
@@ -562,7 +543,7 @@ export const SettingsView: React.FC<SettingsViewProps> = ({
           <button
             type="button"
             onClick={handleDownloadJsonBackup}
-            className="flex items-center justify-center gap-2 rounded-lg bg-blue-600 px-4 py-3 text-xs font-semibold text-white hover:bg-blue-700 transition-colors"
+            className="flex items-center justify-center gap-2 rounded-xl border border-zinc-200 dark:border-zinc-700 bg-zinc-50 dark:bg-zinc-900 px-4 py-2.5 text-xs font-semibold text-zinc-700 dark:text-zinc-200 hover:bg-zinc-100 dark:hover:bg-zinc-800 transition-colors"
           >
             <Download className="h-4 w-4" aria-hidden="true" />
             Download JSON Backup
@@ -571,7 +552,7 @@ export const SettingsView: React.FC<SettingsViewProps> = ({
           <button
             type="button"
             onClick={() => fileInputRef.current?.click()}
-            className="flex items-center justify-center gap-2 rounded-lg border border-slate-200 dark:border-slate-700 px-4 py-3 text-xs font-semibold text-slate-700 dark:text-slate-200 hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors"
+            className="flex items-center justify-center gap-2 rounded-xl border border-zinc-200 dark:border-zinc-700 bg-zinc-50 dark:bg-zinc-900 px-4 py-2.5 text-xs font-semibold text-zinc-700 dark:text-zinc-200 hover:bg-zinc-100 dark:hover:bg-zinc-800 transition-colors"
           >
             <Upload className="h-4 w-4" aria-hidden="true" />
             Restore from Backup
@@ -588,17 +569,17 @@ export const SettingsView: React.FC<SettingsViewProps> = ({
             type="button"
             onClick={handleDownloadCsv}
             disabled={visitors.length === 0}
-            className="flex items-center justify-center gap-2 rounded-lg border border-slate-200 dark:border-slate-700 px-4 py-3 text-xs font-semibold text-slate-700 dark:text-slate-200 hover:bg-slate-50 dark:hover:bg-slate-800 disabled:opacity-50 transition-colors"
+            className="flex items-center justify-center gap-2 rounded-xl border border-zinc-200 dark:border-zinc-700 bg-zinc-50 dark:bg-zinc-900 px-4 py-2.5 text-xs font-semibold text-zinc-700 dark:text-zinc-200 hover:bg-zinc-100 dark:hover:bg-zinc-800 disabled:opacity-50 transition-colors"
           >
             <FileSpreadsheet className="h-4 w-4" aria-hidden="true" />
             Export CSV Spreadsheet
           </button>
         </div>
 
-        <div className="pt-3 border-t border-slate-100 dark:border-slate-800 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
-          <div className="text-xs text-slate-500 dark:text-slate-400 space-y-0.5">
+        <div className="pt-4 border-t border-zinc-100 dark:border-zinc-800 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
+          <div className="text-xs text-zinc-500 dark:text-zinc-400 space-y-0.5">
             <div>
-              Currently storing <strong className="font-mono-num text-slate-900 dark:text-slate-100">{visitors.length}</strong> visitor profile(s) locally.
+              Currently storing <strong className="font-mono-num text-zinc-950 dark:text-zinc-50">{visitors.length}</strong> visitor profile(s) locally.
             </div>
             <div>
               {lastBackupAt ? (
@@ -628,31 +609,31 @@ export const SettingsView: React.FC<SettingsViewProps> = ({
       </section>
 
       {/* Android App & APK Guide */}
-      <section className="rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-[#121826] p-5 sm:p-6 space-y-4">
-        <div className="flex items-start gap-3 border-b border-slate-100 dark:border-slate-800 pb-4">
-          <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-200">
+      <section className="rounded-2xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-[#18181B] p-5 sm:p-6 space-y-4">
+        <div className="flex items-start gap-3 border-b border-zinc-100 dark:border-zinc-800 pb-4">
+          <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-zinc-100 dark:bg-zinc-800 text-zinc-700 dark:text-zinc-200 shrink-0">
             <Smartphone className="h-4 w-4" aria-hidden="true" />
           </div>
           <div>
-            <h2 className="font-display text-base font-semibold text-slate-900 dark:text-slate-100">
+            <h2 className="font-display text-base font-semibold text-zinc-950 dark:text-zinc-50">
               Android Installation & APK Build Source
             </h2>
-            <p className="text-xs text-slate-500 dark:text-slate-400">
-              Install directly on your Android phone as an offline standalone app, or build a signed APK using the included Capacitor Android project.
+            <p className="text-xs text-zinc-500 dark:text-zinc-400 mt-0.5">
+              Install directly on your Android phone as an offline standalone app, or build an APK using the included Capacitor Android project.
             </p>
           </div>
         </div>
 
-        <div className="space-y-3 text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
+        <div className="space-y-3 text-xs text-zinc-600 dark:text-zinc-300 leading-relaxed">
           {isInstallable && !isInstalled && (
-            <div className="p-3.5 rounded-lg bg-blue-50 dark:bg-blue-950/40 border border-blue-200 dark:border-blue-800 flex items-center justify-between gap-3">
+            <div className="p-3.5 rounded-xl bg-blue-50 dark:bg-blue-950/40 border border-blue-200 dark:border-blue-800 flex items-center justify-between gap-3">
               <span className="font-medium text-blue-900 dark:text-blue-200">
                 Your browser supports instant offline installation with app icon and splash screen.
               </span>
               <button
                 type="button"
                 onClick={install}
-                className="px-3.5 py-2 rounded-lg bg-blue-600 text-white font-semibold hover:bg-blue-700 shrink-0"
+                className="px-3.5 py-2 rounded-xl bg-blue-600 text-white font-semibold hover:bg-blue-700 shrink-0"
               >
                 Install App Now
               </button>
@@ -660,27 +641,27 @@ export const SettingsView: React.FC<SettingsViewProps> = ({
           )}
 
           <div>
-            <strong className="text-slate-900 dark:text-slate-100">Option A — Free Direct Android Install (Works Immediately):</strong>{' '}
+            <strong className="text-zinc-950 dark:text-zinc-50">Option A — Free Direct Android Install (Works Immediately):</strong>{' '}
             Open the app URL in Chrome on your Android phone (signed into the same Google account), tap the menu (⋮), and select{' '}
             <strong>Install app</strong> / <strong>Add to Home screen</strong>. It installs onto your home screen with its own app icon, splash screen, offline storage, phone dialler links, and WhatsApp shortcuts.
           </div>
 
           <div>
-            <strong className="text-slate-900 dark:text-slate-100">Option B — Free Cloud APK via GitHub Actions (No Android Studio Needed):</strong>{' '}
+            <strong className="text-zinc-950 dark:text-zinc-50">Option B — Free Cloud APK via GitHub Actions (No Android Studio Needed):</strong>{' '}
             Download the project ZIP from AI Studio and upload it to a free GitHub repository (<code className="font-mono-num">main</code> branch).
             The included workflow{' '}
-            <code className="font-mono-num px-1 py-0.5 rounded bg-slate-100 dark:bg-slate-800">.github/workflows/build-android-apk.yml</code>{' '}
+            <code className="font-mono-num px-1.5 py-0.5 rounded bg-zinc-100 dark:bg-zinc-800 text-zinc-800 dark:text-zinc-200">.github/workflows/build-android-apk.yml</code>{' '}
             automatically builds and gives you <code className="font-mono-num">app-debug.apk</code> under the repository&apos;s <strong>Actions</strong> tab for free.
           </div>
 
           <div>
-            <strong className="text-slate-900 dark:text-slate-100">Option C — Free Local APK Build (Android Studio + JDK 21):</strong>{' '}
-            Using <code className="font-mono-num px-1 py-0.5 rounded bg-slate-100 dark:bg-slate-800">capacitor.config.ts</code> and{' '}
-            <code className="font-mono-num px-1 py-0.5 rounded bg-slate-100 dark:bg-slate-800">ANDROID_BUILD_GUIDE.md</code>:
-            <pre className="mt-2 p-3 rounded-lg bg-slate-900 text-slate-100 font-mono-num text-[11px] overflow-x-auto">
-{`npm install
+            <strong className="text-zinc-950 dark:text-zinc-50">Option C — Free Local APK Build (Android Studio + JDK 21):</strong>{' '}
+            Using <code className="font-mono-num px-1.5 py-0.5 rounded bg-zinc-100 dark:bg-zinc-800 text-zinc-800 dark:text-zinc-200">capacitor.config.ts</code> and{' '}
+            <code className="font-mono-num px-1.5 py-0.5 rounded bg-zinc-100 dark:bg-zinc-800 text-zinc-800 dark:text-zinc-200">ANDROID_BUILD_GUIDE.md</code>:
+            <pre className="mt-2 p-3.5 rounded-xl bg-zinc-900 dark:bg-zinc-950 border border-zinc-800 text-zinc-100 font-mono-num text-[11px] overflow-x-auto">
+{`npm install --legacy-peer-deps
 npm run build
-npm install --no-save @capacitor/core @capacitor/cli @capacitor/android
+npm install --no-save --legacy-peer-deps @capacitor/core @capacitor/cli @capacitor/android
 npx cap add android && npx cap sync android
 cd android && ./gradlew assembleDebug`}
             </pre>
@@ -696,16 +677,16 @@ cd android && ./gradlew assembleDebug`}
           role="dialog"
           aria-modal="true"
           aria-labelledby="restore-modal-title"
-          className="fixed inset-0 z-50 flex items-center justify-center bg-black/55 p-4"
+          className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 p-4"
         >
-          <div className="w-full max-w-md rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-[#121826] p-6 shadow-xl space-y-4">
+          <div className="w-full max-w-md rounded-2xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-[#18181B] p-6 shadow-2xl space-y-4">
             <h3
               id="restore-modal-title"
-              className="font-display text-lg font-semibold text-slate-900 dark:text-slate-100"
+              className="font-display text-lg font-semibold text-zinc-950 dark:text-zinc-50"
             >
               Restore Backup
             </h3>
-            <p className="text-sm text-slate-600 dark:text-slate-300">
+            <p className="text-sm text-zinc-600 dark:text-zinc-300">
               Backup contains{' '}
               <strong className="font-mono-num">{pendingBackup.visitors.length}</strong> visitor
               profile(s) for <strong>{pendingBackup.apartment.apartmentNumber}</strong> (exported{' '}
@@ -726,7 +707,7 @@ cd android && ./gradlew assembleDebug`}
                   });
                   setPendingBackup(null);
                 }}
-                className="w-full py-2.5 px-4 rounded-lg bg-blue-600 text-xs font-semibold text-white hover:bg-blue-700"
+                className="w-full py-2.5 px-4 rounded-xl bg-blue-600 text-xs font-semibold text-white hover:bg-blue-700"
               >
                 Replace Current Data with Backup
               </button>
@@ -740,14 +721,14 @@ cd android && ./gradlew assembleDebug`}
                   });
                   setPendingBackup(null);
                 }}
-                className="w-full py-2.5 px-4 rounded-lg border border-slate-200 dark:border-slate-700 text-xs font-medium text-slate-700 dark:text-slate-200 hover:bg-slate-50 dark:hover:bg-slate-800"
+                className="w-full py-2.5 px-4 rounded-xl border border-zinc-200 dark:border-zinc-700 bg-zinc-50 dark:bg-zinc-900 text-xs font-medium text-zinc-700 dark:text-zinc-200 hover:bg-zinc-100 dark:hover:bg-zinc-800"
               >
                 Merge New Records into Existing Data
               </button>
               <button
                 type="button"
                 onClick={() => setPendingBackup(null)}
-                className="w-full py-2 text-xs text-slate-500 hover:text-slate-700"
+                className="w-full py-2 text-xs text-zinc-500 hover:text-zinc-800 dark:text-zinc-400 dark:hover:text-zinc-200"
               >
                 Cancel
               </button>
@@ -762,16 +743,16 @@ cd android && ./gradlew assembleDebug`}
           role="dialog"
           aria-modal="true"
           aria-labelledby="clear-modal-title"
-          className="fixed inset-0 z-50 flex items-center justify-center bg-black/55 p-4"
+          className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 p-4"
         >
-          <div className="w-full max-w-sm rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-[#121826] p-6 shadow-xl space-y-4">
+          <div className="w-full max-w-sm rounded-2xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-[#18181B] p-6 shadow-2xl space-y-4">
             <h3
               id="clear-modal-title"
-              className="font-display text-lg font-semibold text-slate-900 dark:text-slate-100"
+              className="font-display text-lg font-semibold text-zinc-950 dark:text-zinc-50"
             >
               Clear All Visitor Records?
             </h3>
-            <p className="text-sm text-slate-600 dark:text-slate-300">
+            <p className="text-sm text-zinc-600 dark:text-zinc-300">
               This will permanently delete all {visitors.length} visitor profiles and histories from
               this device. Export a JSON backup first if you want to keep a copy.
             </p>
@@ -779,7 +760,7 @@ cd android && ./gradlew assembleDebug`}
               <button
                 type="button"
                 onClick={() => setConfirmClearAll(false)}
-                className="px-4 py-2 rounded-lg border border-slate-200 dark:border-slate-700 text-xs font-medium"
+                className="px-4 py-2 rounded-xl border border-zinc-200 dark:border-zinc-700 bg-zinc-50 dark:bg-zinc-900 text-xs font-semibold text-zinc-700 dark:text-zinc-200"
               >
                 Cancel
               </button>
@@ -793,7 +774,7 @@ cd android && ./gradlew assembleDebug`}
                     message: 'All visitor records have been cleared.',
                   });
                 }}
-                className="px-4 py-2 rounded-lg bg-red-600 text-xs font-semibold text-white hover:bg-red-700"
+                className="px-4 py-2 rounded-xl bg-red-600 text-xs font-semibold text-white hover:bg-red-700"
               >
                 Clear All Data
               </button>

@@ -4,7 +4,7 @@ import { BudgetBucket, MonthlyTrendPoint, StatusCount } from '../utils/crmLogic'
 export const MonthlyTrendsChart: React.FC<{ data: MonthlyTrendPoint[] }> = ({ data }) => {
   if (data.length === 0) {
     return (
-      <div className="flex h-48 items-center justify-center rounded-lg border border-dashed border-slate-200 dark:border-slate-800 text-sm text-slate-500 dark:text-slate-400">
+      <div className="flex h-48 items-center justify-center rounded-xl border border-dashed border-zinc-200 dark:border-zinc-800 text-sm text-zinc-500 dark:text-zinc-400">
         Monthly trends will appear once visits are logged.
       </div>
     );
@@ -34,7 +34,7 @@ export const MonthlyTrendsChart: React.FC<{ data: MonthlyTrendPoint[] }> = ({ da
                 <text
                   x={0}
                   y={y + 3}
-                  className="fill-slate-400 dark:fill-slate-500 text-[10px] font-mono-num"
+                  className="fill-zinc-400 dark:fill-zinc-500 text-[10px] font-mono-num"
                 >
                   {tickVal}
                 </text>
@@ -43,7 +43,7 @@ export const MonthlyTrendsChart: React.FC<{ data: MonthlyTrendPoint[] }> = ({ da
                   y1={y}
                   x2={chartWidth}
                   y2={y}
-                  className="stroke-slate-200 dark:stroke-slate-800"
+                  className="stroke-zinc-200 dark:stroke-zinc-800"
                   strokeWidth="1"
                   strokeDasharray={step === 0 ? undefined : '3 3'}
                 />
@@ -81,7 +81,7 @@ export const MonthlyTrendsChart: React.FC<{ data: MonthlyTrendPoint[] }> = ({ da
                   x={groupX - barWidth / 2 - 3}
                   y={baseLineY - totalH - 6}
                   textAnchor="middle"
-                  className="fill-slate-600 dark:fill-slate-300 text-[10px] font-mono-num"
+                  className="fill-zinc-600 dark:fill-zinc-300 text-[10px] font-mono-num"
                 >
                   {point.visitors}
                 </text>
@@ -99,7 +99,7 @@ export const MonthlyTrendsChart: React.FC<{ data: MonthlyTrendPoint[] }> = ({ da
                   x={groupX}
                   y={baseLineY + 18}
                   textAnchor="middle"
-                  className="fill-slate-500 dark:fill-slate-400 text-[11px]"
+                  className="fill-zinc-500 dark:fill-zinc-400 text-[11px]"
                 >
                   {point.label}
                 </text>
@@ -107,7 +107,7 @@ export const MonthlyTrendsChart: React.FC<{ data: MonthlyTrendPoint[] }> = ({ da
             );
           })}
         </svg>
-        <div className="mt-2 flex items-center gap-5 text-xs text-slate-600 dark:text-slate-400">
+        <div className="mt-2 flex items-center gap-5 text-xs text-zinc-600 dark:text-zinc-400">
           <span className="inline-flex items-center gap-1.5">
             <span className="h-2.5 w-2.5 rounded-sm bg-blue-600 dark:bg-blue-500" />
             Visitors
@@ -130,7 +130,7 @@ export const RentBudgetFitChart: React.FC<{
   const total = withinRent + belowRent + unspecified;
   if (total === 0) {
     return (
-      <p className="text-sm text-slate-500 dark:text-slate-400 py-6 text-center">
+      <p className="text-sm text-zinc-500 dark:text-zinc-400 py-6 text-center">
         No rental enquiries recorded yet.
       </p>
     );
@@ -141,7 +141,7 @@ export const RentBudgetFitChart: React.FC<{
 
   return (
     <div className="space-y-3">
-      <div className="flex h-3 w-full overflow-hidden rounded-full bg-slate-100 dark:bg-slate-800">
+      <div className="flex h-3 w-full overflow-hidden rounded-full bg-zinc-100 dark:bg-zinc-800">
         {withinRent > 0 && (
           <div
             style={{ width: `${withinPct}%` }}
@@ -159,37 +159,37 @@ export const RentBudgetFitChart: React.FC<{
         {unspecified > 0 && (
           <div
             style={{ width: `${unspecPct}%` }}
-            className="bg-slate-400 dark:bg-slate-600 transition-all duration-300"
+            className="bg-zinc-400 dark:bg-zinc-600 transition-all duration-300"
             title={`Not specified: ${unspecified} (${unspecPct}%)`}
           />
         )}
       </div>
       <div className="space-y-1.5 text-xs">
         <div className="flex items-center justify-between">
-          <span className="inline-flex items-center gap-2 text-slate-600 dark:text-slate-300">
+          <span className="inline-flex items-center gap-2 text-zinc-600 dark:text-zinc-300">
             <span className="h-2.5 w-2.5 rounded-sm bg-emerald-600 dark:bg-emerald-500" />
             Matches asking rent
           </span>
-          <span className="font-mono-num font-semibold text-slate-900 dark:text-slate-100">
+          <span className="font-mono-num font-semibold text-zinc-950 dark:text-zinc-50">
             {withinRent} ({withinPct}%)
           </span>
         </div>
         <div className="flex items-center justify-between">
-          <span className="inline-flex items-center gap-2 text-slate-600 dark:text-slate-300">
+          <span className="inline-flex items-center gap-2 text-zinc-600 dark:text-zinc-300">
             <span className="h-2.5 w-2.5 rounded-sm bg-amber-500 dark:bg-amber-400" />
             Below asking rent
           </span>
-          <span className="font-mono-num font-semibold text-slate-900 dark:text-slate-100">
+          <span className="font-mono-num font-semibold text-zinc-950 dark:text-zinc-50">
             {belowRent} ({belowPct}%)
           </span>
         </div>
         {unspecified > 0 && (
           <div className="flex items-center justify-between">
-            <span className="inline-flex items-center gap-2 text-slate-600 dark:text-slate-300">
-              <span className="h-2.5 w-2.5 rounded-sm bg-slate-400 dark:bg-slate-600" />
+            <span className="inline-flex items-center gap-2 text-zinc-600 dark:text-zinc-300">
+              <span className="h-2.5 w-2.5 rounded-sm bg-zinc-400 dark:bg-zinc-600" />
               Budget not specified
             </span>
-            <span className="font-mono-num font-semibold text-slate-900 dark:text-slate-100">
+            <span className="font-mono-num font-semibold text-zinc-950 dark:text-zinc-50">
               {unspecified} ({unspecPct}%)
             </span>
           </div>
@@ -206,7 +206,7 @@ export const RentalPurchaseSplitChart: React.FC<{
   const total = rentalCount + purchaseCount;
   if (total === 0) {
     return (
-      <p className="text-sm text-slate-500 dark:text-slate-400 py-6 text-center">
+      <p className="text-sm text-zinc-500 dark:text-zinc-400 py-6 text-center">
         No enquiries recorded yet.
       </p>
     );
@@ -216,7 +216,7 @@ export const RentalPurchaseSplitChart: React.FC<{
 
   return (
     <div className="space-y-3">
-      <div className="flex h-3 w-full overflow-hidden rounded-full bg-slate-100 dark:bg-slate-800">
+      <div className="flex h-3 w-full overflow-hidden rounded-full bg-zinc-100 dark:bg-zinc-800">
         {rentalCount > 0 && (
           <div
             style={{ width: `${rentalPct}%` }}
@@ -227,27 +227,27 @@ export const RentalPurchaseSplitChart: React.FC<{
         {purchaseCount > 0 && (
           <div
             style={{ width: `${purchasePct}%` }}
-            className="bg-slate-700 dark:bg-slate-400 transition-all duration-300"
+            className="bg-zinc-700 dark:bg-zinc-400 transition-all duration-300"
             title={`Purchase: ${purchaseCount} (${purchasePct}%)`}
           />
         )}
       </div>
       <div className="grid grid-cols-2 gap-3 text-sm">
-        <div className="flex items-center justify-between border-t border-slate-100 dark:border-slate-800 pt-2.5">
-          <span className="inline-flex items-center gap-2 text-slate-600 dark:text-slate-300">
+        <div className="flex items-center justify-between border-t border-zinc-100 dark:border-zinc-800 pt-2.5">
+          <span className="inline-flex items-center gap-2 text-zinc-600 dark:text-zinc-300">
             <span className="h-2.5 w-2.5 rounded-sm bg-blue-600 dark:bg-blue-500" />
             Rental
           </span>
-          <span className="font-mono-num font-semibold text-slate-900 dark:text-slate-100">
+          <span className="font-mono-num font-semibold text-zinc-950 dark:text-zinc-50">
             {rentalCount} ({rentalPct}%)
           </span>
         </div>
-        <div className="flex items-center justify-between border-t border-slate-100 dark:border-slate-800 pt-2.5">
-          <span className="inline-flex items-center gap-2 text-slate-600 dark:text-slate-300">
-            <span className="h-2.5 w-2.5 rounded-sm bg-slate-700 dark:bg-slate-400" />
+        <div className="flex items-center justify-between border-t border-zinc-100 dark:border-zinc-800 pt-2.5">
+          <span className="inline-flex items-center gap-2 text-zinc-600 dark:text-zinc-300">
+            <span className="h-2.5 w-2.5 rounded-sm bg-zinc-700 dark:bg-zinc-400" />
             Purchase
           </span>
-          <span className="font-mono-num font-semibold text-slate-900 dark:text-slate-100">
+          <span className="font-mono-num font-semibold text-zinc-950 dark:text-zinc-50">
             {purchaseCount} ({purchasePct}%)
           </span>
         </div>
@@ -259,7 +259,7 @@ export const RentalPurchaseSplitChart: React.FC<{
 export const BudgetDistributionChart: React.FC<{ buckets: BudgetBucket[] }> = ({ buckets }) => {
   if (buckets.length === 0) {
     return (
-      <p className="text-sm text-slate-500 dark:text-slate-400 py-6 text-center">
+      <p className="text-sm text-zinc-500 dark:text-zinc-400 py-6 text-center">
         No budget records entered yet.
       </p>
     );
@@ -273,14 +273,14 @@ export const BudgetDistributionChart: React.FC<{ buckets: BudgetBucket[] }> = ({
         return (
           <div key={`${bucket.label}-${idx}`} className="space-y-1">
             <div className="flex items-center justify-between text-xs">
-              <span className="font-mono-num text-slate-700 dark:text-slate-300">
+              <span className="font-mono-num text-zinc-700 dark:text-zinc-300">
                 {bucket.label}
               </span>
-              <span className="font-mono-num font-semibold text-slate-900 dark:text-slate-100">
+              <span className="font-mono-num font-semibold text-zinc-950 dark:text-zinc-50">
                 {bucket.count}
               </span>
             </div>
-            <div className="h-2 w-full rounded-full bg-slate-100 dark:bg-slate-800 overflow-hidden">
+            <div className="h-2 w-full rounded-full bg-zinc-100 dark:bg-zinc-800 overflow-hidden">
               <div
                 style={{ width: `${pct}%` }}
                 className="h-full rounded-full bg-blue-600 dark:bg-blue-500 transition-all duration-300"
@@ -299,7 +299,7 @@ export const StatusDistributionChart: React.FC<{
 }> = ({ items, total }) => {
   if (items.length === 0 || total === 0) {
     return (
-      <p className="text-sm text-slate-500 dark:text-slate-400 py-6 text-center">
+      <p className="text-sm text-zinc-500 dark:text-zinc-400 py-6 text-center">
         Visitor pipeline breakdown will appear after registration.
       </p>
     );
@@ -318,12 +318,12 @@ export const StatusDistributionChart: React.FC<{
         return (
           <div key={item.status} className="space-y-1">
             <div className="flex items-center justify-between text-xs">
-              <span className="text-slate-700 dark:text-slate-300">{item.status}</span>
-              <span className="font-mono-num text-slate-900 dark:text-slate-100 font-medium">
+              <span className="text-zinc-700 dark:text-zinc-300">{item.status}</span>
+              <span className="font-mono-num text-zinc-950 dark:text-zinc-50 font-medium">
                 {item.count} · {pct}%
               </span>
             </div>
-            <div className="h-1.5 w-full rounded-full bg-slate-100 dark:bg-slate-800 overflow-hidden">
+            <div className="h-1.5 w-full rounded-full bg-zinc-100 dark:bg-zinc-800 overflow-hidden">
               <div style={{ width: `${pct}%` }} className={`h-full rounded-full ${barColor}`} />
             </div>
           </div>

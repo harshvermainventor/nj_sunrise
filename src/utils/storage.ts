@@ -190,6 +190,16 @@ export async function saveCrmState(state: StoredCrmState): Promise<void> {
 
   void writeToCacheStorage(state);
 
+  try {
+    if ('BroadcastChannel' in window) {
+      const ch = new BroadcastChannel('avcrm-realtime-sync');
+      ch.postMessage(state);
+      ch.close();
+    }
+  } catch {
+    // ignore
+  }
+
   const db = await openDatabase();
   if (!db) return;
 
@@ -212,6 +222,41 @@ export async function saveCrmState(state: StoredCrmState): Promise<void> {
     }
   });
 }
+
+export function subscribeToRealtimeSync(onUpdate: (state: StoredCrmState) => void): () => void {
+  if (typeof window === 'undefined') return () => {};
+
+  let channel: BroadcastChannel | null = null;
+  try {
+    if ('BroadcastChannel' in window) {
+      channel = new BroadcastChannel('avcrm-realtime-sync');
+      channel.onmessage = (event) => {
+        if (event.data && typeof event.data === 'object') {
+          const { apartment, visitors } = event.data as StoredCrmState;
+          if (apartment && visitors) {
+            onUpdate({ apartment, visitors });
+          }
+        }
+      };
+    }
+  } catch {
+    // ignore
+  }
+
+  const handleStorage = (e: StorageEvent) => {
+    if (e.key === LS_APARTMENT_KEY || e.key === LS_VISITORS_KEY) {
+      const current = loadCrmStateSync();
+      onUpdate(current);
+    }
+  };
+  window.addEventListener('storage', handleStorage);
+
+  return () => {
+    if (channel) channel.close();
+    window.removeEventListener('storage', handleStorage);
+  };
+}
+
 
 export function loadRegistrationDraft<T>(fallback: T): { form: T; step: number } {
   if (typeof window === 'undefined') return { form: fallback, step: 0 };
@@ -296,11 +341,13 @@ export function applyAndSaveTheme(theme: 'light' | 'dark'): void {
   }
   if (theme === 'dark') {
     document.documentElement.classList.add('dark');
+    document.documentElement.style.colorScheme = 'dark';
   } else {
     document.documentElement.classList.remove('dark');
+    document.documentElement.style.colorScheme = 'light';
   }
   const metaTheme = document.querySelector('meta[name="theme-color"]');
   if (metaTheme) {
-    metaTheme.setAttribute('content', theme === 'dark' ? '#0B0F17' : '#F8FAFC');
+    metaTheme.setAttribute('content', theme === 'dark' ? '#111114' : '#FFFFFF');
   }
 }
